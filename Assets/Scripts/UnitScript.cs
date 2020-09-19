@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class UnitScript : MonoBehaviour
 {
+   
+
     [Header("Components")]
     public Rigidbody2D rb;
     public GameObject moveCircle;
+    public Animator animator;
 
     [Header("Base States")]
+    public bool isPlayer = true;
     public float speed = 5f;
     public int health;
     public float movement;
@@ -44,12 +48,18 @@ public class UnitScript : MonoBehaviour
     public void moveUnit(Vector2 dir)
     {
         moveDirection = dir;
+        animator.SetFloat("Speed", moveDirection.magnitude);
+        animator.SetFloat("H_Speed", moveDirection.x);
+
     }
 
     private void move()
     {
-        if (movement_current > 0f)
+        if (movement_current > 0.1f)
         {
+
+            animator.SetFloat("Speed", moveDirection.magnitude);
+            animator.SetFloat("H_Speed", moveDirection.x);
 
             rb.MovePosition(rb.position + moveDirection * speed * Time.fixedDeltaTime);
             movement_current -= speed * Time.fixedDeltaTime;
@@ -58,12 +68,22 @@ public class UnitScript : MonoBehaviour
         else
         {
             updateMoveRange(0);
+            animator.SetFloat("Speed", 0);
+            animator.SetFloat("H_Speed", 0);
+
 
         }
     }
 
+    public void endTurn()
+    {
+        moveCircle.SetActive(false);
+
+    }
+
     public void newTurn()
     {
+        moveCircle.SetActive(true);
         movement_current = movement;
         updateMoveRange(movement_current);
 

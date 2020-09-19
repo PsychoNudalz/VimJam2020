@@ -33,6 +33,13 @@ public class TurnHandler : MonoBehaviour
     }
     public void setCurrentUnit(UnitScript unit)
     {
+        if (currentUnit != null)
+        {
+
+            currentUnit.endTurn();
+        }
+
+
         currentUnit = unit;
         currentUnit.newTurn();
     }
@@ -62,7 +69,7 @@ public class TurnHandler : MonoBehaviour
 
     }
 
-    
+
 
 
     void moveCurrentUnit(Vector2 dir)
