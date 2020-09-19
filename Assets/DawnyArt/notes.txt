@@ -1,0 +1,2 @@
+Enemy animations:
+Idle R: 4-6
