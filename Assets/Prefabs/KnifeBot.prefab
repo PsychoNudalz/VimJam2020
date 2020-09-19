@@ -175,15 +175,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392e9656df7670d40be372cfcd205f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  rb: {fileID: 8319718293272291093}
   moveCircle: {fileID: 6659608116137141805}
   animator: {fileID: 6235350731365031543}
+  spriteRenderer: {fileID: 1093269148401063410}
   isPlayer: 0
   speed: 5
   health: 10
   movement: 1000
   health_current: 10
   movement_current: 5
+  targetUnit: {fileID: 0}
   moveDirection: {x: 0, y: 0}
 --- !u!1 &8742465736951282375
 GameObject:
@@ -235,7 +237,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 6369001f5b113a444b68e90e09ea5b57, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

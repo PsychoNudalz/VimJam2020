@@ -10,6 +10,7 @@ public class UnitScript : MonoBehaviour
     public Rigidbody2D rb;
     public GameObject moveCircle;
     public Animator animator;
+    public SpriteRenderer spriteRenderer;
 
     [Header("Base States")]
     public bool isPlayer = true;
@@ -20,6 +21,7 @@ public class UnitScript : MonoBehaviour
     [Header("Current States")]
     public int health_current;
     public float movement_current;
+    public UnitScript targetUnit;
 
     [Header("Other")]
     public Vector2 moveDirection;
