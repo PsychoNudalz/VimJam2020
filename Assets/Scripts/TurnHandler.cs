@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class TurnHandler : MonoBehaviour
 {
     public InputMaster controls;
-
+    public Camera camera;
     public UnitScript currentUnit;
     public TurnEnum currentState = TurnEnum.NONE;
 
@@ -33,6 +33,13 @@ public class TurnHandler : MonoBehaviour
     }
     public void setCurrentUnit(UnitScript unit)
     {
+        if (currentUnit != null)
+        {
+
+            currentUnit.endTurn();
+        }
+
+
         currentUnit = unit;
         currentUnit.newTurn();
     }
@@ -62,7 +69,7 @@ public class TurnHandler : MonoBehaviour
 
     }
 
-    
+
 
 
     void moveCurrentUnit(Vector2 dir)
