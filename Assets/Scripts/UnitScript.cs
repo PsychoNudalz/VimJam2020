@@ -9,6 +9,7 @@ public class UnitScript : MonoBehaviour
     [Header("Components")]
     public Rigidbody2D rb;
     public GameObject moveCircle;
+    public GameObject aimObject;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
 
@@ -16,12 +17,20 @@ public class UnitScript : MonoBehaviour
     public bool isPlayer = true;
     public float speed = 5f;
     public int health;
+    public int AC = 0;
     public float movement;
+
+    [Header("Weapon")]
+    public GameObject mainWeapon;
+    public List<GameObject> weaponList;
+    public int baseDamage;
+    public int toHit;
 
     [Header("Current States")]
     public int health_current;
     public float movement_current;
     public UnitScript targetUnit;
+    public Vector2 targetPosition;
 
     [Header("Other")]
     public Vector2 moveDirection;
@@ -91,8 +100,37 @@ public class UnitScript : MonoBehaviour
 
     }
 
+
+    public void weaponAttack()
+    {
+        GameObject tempWeapon = Instantiate(mainWeapon, transform.position, transform.rotation);
+        tempWeapon.GetComponent<WeaponScript>().attack(targetPosition,toHit,baseDamage);
+        weaponList.Add(tempWeapon);
+    }
+
     public void updateMoveRange(float size)
     {
         moveCircle.transform.localScale = new Vector3(size * 10, size * 10, 1);
+    }
+
+    public void updateAimPoint()
+    {
+        aimObject.SetActive(true);
+        aimObject.transform.position = targetPosition;
+    }
+
+    public void takeDamage(int damage)
+    {
+        health_current -= damage;
+        if (health_current <= 0)
+        {
+            die();
+        }
+        print(name + " damge " + damage + " HP " + health_current);
+    }
+
+    void die()
+    {
+        animator.SetBool("Dead", true);
     }
 }

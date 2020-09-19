@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8319718293272291098}
   m_Layer: 11
   m_Name: KnifeBot
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,15 +177,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 8319718293272291093}
   moveCircle: {fileID: 6659608116137141805}
+  aimObject: {fileID: 0}
   animator: {fileID: 6235350731365031543}
   spriteRenderer: {fileID: 1093269148401063410}
   isPlayer: 0
   speed: 5
   health: 10
+  AC: 0
   movement: 1000
+  mainWeapon: {fileID: 0}
+  weaponList: []
+  baseDamage: 0
+  toHit: 0
   health_current: 10
   movement_current: 5
   targetUnit: {fileID: 0}
+  targetPosition: {x: 0, y: 0}
   moveDirection: {x: 0, y: 0}
 --- !u!1 &8742465736951282375
 GameObject:
@@ -256,7 +263,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -246930361
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 4801227835787818748, guid: d22c6a581f75eea48baaf48eaf8ff834,
     type: 3}
