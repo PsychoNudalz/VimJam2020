@@ -7,15 +7,21 @@ using UnityEngine.InputSystem;
 public class TurnHandler : MonoBehaviour
 {
     public InputMaster controls;
-
+    private Mouse mouse;
+    public Camera camera;
     public UnitScript currentUnit;
     public TurnEnum currentState = TurnEnum.NONE;
+    [SerializeField] bool aiming = false;
 
 
     // Start is called before the first frame update
     private void Awake()
     {
+        mouse = InputSystem.GetDevice<Mouse>();
         controls = new InputMaster();
+        controls.Player.Aim.performed += _ => setAiming(true);
+        controls.Player.Aim.canceled += _ => setAiming(false);
+        
         controls.Player.Movement.performed += ctx => moveCurrentUnit(ctx.ReadValue<Vector2>());
         controls.Player.Movement.canceled += ctx => moveCurrentUnit(new Vector2());
 
@@ -28,11 +34,22 @@ public class TurnHandler : MonoBehaviour
         switch (currentState)
         {
             case TurnEnum.ACTION:
+                if (aiming)
+                {
+                    selectLocation();
+                }
                 break;
         }
     }
     public void setCurrentUnit(UnitScript unit)
     {
+        if (currentUnit != null)
+        {
+
+            currentUnit.endTurn();
+        }
+
+
         currentUnit = unit;
         currentUnit.newTurn();
     }
@@ -62,7 +79,11 @@ public class TurnHandler : MonoBehaviour
 
     }
 
-    
+    public void currentUnit_Attack()
+    {
+        currentUnit.weaponAttack();
+    }
+
 
 
     void moveCurrentUnit(Vector2 dir)
@@ -73,6 +94,22 @@ public class TurnHandler : MonoBehaviour
             currentUnit.moveUnit(dir);
         }
     }
+
+    void setAiming(bool b)
+    {
+        aiming = b;
+    }
+
+    void selectLocation()
+    {
+        if (currentState.Equals(TurnEnum.ACTION))
+        {
+            currentUnit.targetPosition = camera.ScreenToWorldPoint(mouse.position.ReadValue());
+            currentUnit.updateAimPoint();
+
+        }
+    }
+
 
     private void OnEnable()
     {

@@ -1,0 +1,53 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WeaponScript : MonoBehaviour
+{
+    [Header("Stats")]
+    public int damageDice = 4;
+    public float moveSpeed = 5f;
+
+    [Header("Rolled Values")]
+    public int toHit;
+    public int damageBonus;
+
+    public List<string> targetTag;
+    [SerializeField] List<GameObject> hitObjects;
+
+    [Header("Target")]
+    public Vector2 targetPosition;
+
+
+    private void Update()
+    {
+        moveToLocation();
+    }
+
+
+    void moveToLocation()
+    {
+        transform.position = Vector3.Lerp(transform.position, targetPosition, moveSpeed*Time.deltaTime);
+    }
+
+    public void attack(Vector2 pos,int t, int d)
+    {
+        targetPosition = pos;
+        toHit = t;
+        damageBonus = d;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        print(name + " hit " + collision);
+        if (targetTag.Contains(collision.tag)&&!hitObjects.Contains(collision.gameObject))
+        {
+            if (collision.tag.Equals("Enemy"))
+            {
+                int damage = Mathf.FloorToInt(Random.Range(1, damageDice)) + damageBonus;
+                collision.GetComponent<UnitScript>().takeDamage(damage);
+                hitObjects.Add(collision.gameObject);
+            }
+        }
+    }
+}
