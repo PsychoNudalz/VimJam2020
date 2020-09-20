@@ -64,8 +64,15 @@ public class ActionBarScript : MonoBehaviour
 
     public void resetBar()
     {
-        resetBarButtons();
         actionMenu.SetActive(false);
+        if (!turnHandler.currentUnit.isPlayer)
+        {
+            disableBarButton();
+        }
+        else
+        {
+            resetBarButtons();
+        }
 
     }
 
@@ -101,6 +108,15 @@ public class ActionBarScript : MonoBehaviour
         else
         {
             mainButtons[2].SetActive(false);
+        }
+        mainButtons[3].SetActive(true);
+    }
+
+    public void disableBarButton()
+    {
+        foreach(GameObject g in mainButtons)
+        {
+            g.SetActive(false);
         }
     }
 }

@@ -27,8 +27,9 @@ public class UnitScript : MonoBehaviour
     //public List<GameObject> weaponList;
     public int baseDamage;
     public int toHit;
-    [SerializeField] LayerMask layerMask;
+    public LayerMask layerMask_target;
     public List<string> targetTag;
+    public LayerMask layerMask_insight;
 
 
     [Header("Current States")]
@@ -38,8 +39,8 @@ public class UnitScript : MonoBehaviour
     public Vector2 targetPosition;
 
     [Header("Ranges")]
-    public float attackRange = 20;
-    public float abilityRange = 20;
+    public float attackRange = 1;
+    public float abilityRange = 1;
     public float interactionRange = 1;
 
     [Header("Action counter")]
@@ -52,6 +53,8 @@ public class UnitScript : MonoBehaviour
 
     [Header("Other")]
     public Vector2 moveDirection;
+    public Vector3 locationLastFrame;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,9 +70,11 @@ public class UnitScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (moveDirection.magnitude > 0.1f)
+        if (moveDirection.magnitude > 0.1f&&isPlayer)
         {
             move();
+            locationLastFrame = transform.position;
+
         }
 
         try
@@ -88,7 +93,7 @@ public class UnitScript : MonoBehaviour
 
     }
 
-    public void moveUnit(Vector2 dir)
+    public virtual void moveUnit(Vector2 dir)
     {
         moveDirection = dir;
         animator.SetFloat("Speed", moveDirection.magnitude);
@@ -96,7 +101,7 @@ public class UnitScript : MonoBehaviour
 
     }
 
-    private void move()
+    public virtual void move()
     {
         if (movement_current > 0)
         {
@@ -105,7 +110,7 @@ public class UnitScript : MonoBehaviour
             animator.SetFloat("H_Speed", moveDirection.x);
 
             rb.MovePosition(rb.position + moveDirection * speed * Time.fixedDeltaTime);
-            movement_current -= speed * Time.fixedDeltaTime;
+            movement_current -= (transform.position - locationLastFrame).magnitude;
             updateMoveRange(movement_current);
         }
         else
@@ -125,14 +130,20 @@ public class UnitScript : MonoBehaviour
 
     public void newTurn()
     {
-        movement_current = movement;
-        updateMoveRange(movement_current);
-        interactionCount = interactionMax;
-        actionCount = actionMax;
+        if (health_current > 0)
+        {
+
+            movement_current = movement;
+            updateMoveRange(movement_current);
+            interactionCount = interactionMax;
+            actionCount = actionMax;
+            locationLastFrame = transform.position;
+
+        }
     }
 
     //Attack
-    public void weaponAttack()
+    public virtual void weaponAttack()
     {
         if (ammo > 0)
         {
@@ -141,6 +152,8 @@ public class UnitScript : MonoBehaviour
             tempWeapon.GetComponent<WeaponScript>().attack(targetPosition, toHit, baseDamage);
             //weaponList.Add(tempWeapon);
             disableAimObject();
+            animator.SetTrigger("Attack");
+            highlightTargets_Off();
             ammo--;
             actionCount--;
         }
@@ -158,7 +171,7 @@ public class UnitScript : MonoBehaviour
         }
         else
         {
-            print("pos ion range");
+            //print("pos ion range");
             targetPosition = pos;
         }
 
@@ -169,10 +182,10 @@ public class UnitScript : MonoBehaviour
 
     void updateTargets(List<string> targetList)
     {
-        //highlightTargets_Off();
+        highlightTargets_Off();
         targetUnits = new List<UnitScript>();
         Vector2 dis = (targetPosition - (Vector2)transform.position);
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, dis.normalized, dis.magnitude, layerMask);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, dis.normalized, dis.magnitude, layerMask_target);
 
         foreach (RaycastHit2D h in hits)
         {
@@ -242,7 +255,16 @@ public class UnitScript : MonoBehaviour
     void die()
     {
         animator.SetBool("Dead", true);
-        Destroy(gameObject, animator.GetCurrentAnimatorClipInfo(0).Length);
+        if (!isPlayer)
+        {
+            Destroy(gameObject, animator.GetCurrentAnimatorClipInfo(0).Length);
+
+        }
+    }
+
+    public bool isDead()
+    {
+        return health_current <= 0;
     }
 
     //Range getters

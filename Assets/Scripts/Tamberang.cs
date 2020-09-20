@@ -9,7 +9,7 @@ public class Tamberang : AbilityClassScript
     public override void getEffectedList(float abilityRange)
     {
         effectedList = new List<GameObject>();
-        base.getEffectedList(abilityRange);
+        //base.getEffectedList(abilityRange);
         RaycastHit2D[] tempGO = Physics2D.CircleCastAll(transform.position, abilityRange, new Vector2(), 0, layerMask);
         foreach (RaycastHit2D r in tempGO)
         {

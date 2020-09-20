@@ -8,6 +8,7 @@ TagManager:
   - Weapon
   - Wall
   - HalfCover
+  - Map
   layers:
   - Default
   - TransparentFX
