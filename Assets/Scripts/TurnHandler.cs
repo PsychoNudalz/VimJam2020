@@ -9,6 +9,8 @@ public class TurnHandler : MonoBehaviour
     public InputMaster controls;
     private Mouse mouse;
     public Camera camera;
+    public GameObject rangeCircle;
+
     public UnitScript currentUnit;
     public TurnEnum currentState = TurnEnum.NONE;
     [SerializeField] bool aiming = false;
@@ -40,6 +42,7 @@ public class TurnHandler : MonoBehaviour
                 }
                 break;
         }
+        displayRange();
     }
     public void setCurrentUnit(UnitScript unit)
     {
@@ -62,12 +65,14 @@ public class TurnHandler : MonoBehaviour
 
     public void setCurrentState_Interation()
     {
+        currentUnit.disableAimObject();
         currentState = TurnEnum.INTERACTION;
         Debug.Log(currentUnit.name + " selected state Interaction");
 
     }
     public void setCurrentState_Movement()
     {
+        currentUnit.disableAimObject();
         currentState = TurnEnum.MOVEMENT;
         Debug.Log(currentUnit.name + " selected state Movement");
 
@@ -82,6 +87,11 @@ public class TurnHandler : MonoBehaviour
     public void currentUnit_Attack()
     {
         currentUnit.weaponAttack();
+    }
+
+    public void currentUnit_Ability()
+    {
+        currentUnit.useAbility();
     }
 
 
@@ -104,8 +114,8 @@ public class TurnHandler : MonoBehaviour
     {
         if (currentState.Equals(TurnEnum.ACTION))
         {
-            currentUnit.targetPosition = camera.ScreenToWorldPoint(mouse.position.ReadValue());
-            currentUnit.updateAimPoint();
+            //currentUnit.targetPosition = ;
+            currentUnit.updateAimPoint(camera.ScreenToWorldPoint(mouse.position.ReadValue()));
 
         }
     }
@@ -120,4 +130,45 @@ public class TurnHandler : MonoBehaviour
         controls.Disable();
     }
 
+
+
+    public void displayRange()
+    {
+        switch (currentState)
+        {
+            case (TurnEnum.ACTION):
+                updateRange(currentUnit.getRange_Attack());
+                break;
+            case (TurnEnum.INTERACTION):
+                updateRange(currentUnit.getRange_Interaction());
+                break;
+            case (TurnEnum.MOVEMENT):
+                updateRange(currentUnit.getRange_Movement());
+                break;
+            case (TurnEnum.NONE):
+                updateRange(0);
+                break;
+
+        }
+    }
+    public void updateRange(float size)
+    {
+        rangeCircle.transform.localScale = new Vector3(size * 10, size * 10, 1);
+        rangeCircle.transform.position = currentUnit.transform.position;
+    }
+
+
+    //Get Action and Interaction count
+    public bool canAction()
+    {
+        return currentUnit.canAction();
+    }
+    public bool canInteraction()
+    {
+        return currentUnit.canInteraction();
+    }
+    public bool canMove()
+    {
+        return currentUnit.canMove();
+    }
 }

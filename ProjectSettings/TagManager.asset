@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Weapon
+  - Wall
+  - HalfCover
   layers:
   - Default
   - TransparentFX
@@ -20,8 +22,8 @@ TagManager:
   - Obstacle
   - Character
   - Weapon
-  - 
-  - 
+  - PlayerCharacter
+  - HalfCover
   - 
   - 
   - 
@@ -57,4 +59,7 @@ TagManager:
     locked: 0
   - name: Object
     uniqueID: 3351279129
+    locked: 0
+  - name: Effect
+    uniqueID: 1579293883
     locked: 0

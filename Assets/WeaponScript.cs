@@ -18,10 +18,17 @@ public class WeaponScript : MonoBehaviour
     [Header("Target")]
     public Vector2 targetPosition;
 
+    [Header("Extra")]
+    public bool isRecall;
+
 
     private void Update()
     {
         moveToLocation();
+        if (isRecall && (targetPosition - (Vector2)transform.position).magnitude < 0.3f)
+        {
+            Destroy(gameObject);
+        }
     }
 
 
@@ -29,6 +36,15 @@ public class WeaponScript : MonoBehaviour
     {
         transform.position = Vector3.Lerp(transform.position, targetPosition, moveSpeed*Time.deltaTime);
     }
+
+    public void recallWeapon(Vector2 pos)
+    {
+        targetPosition = pos;
+        isRecall = true;
+        hitObjects = new List<GameObject>();
+    }
+
+    
 
     public void attack(Vector2 pos,int t, int d)
     {
@@ -39,10 +55,16 @@ public class WeaponScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print(name + " hit " + collision);
+        //print(name + " hit " + collision);
         if (targetTag.Contains(collision.tag)&&!hitObjects.Contains(collision.gameObject))
         {
             if (collision.tag.Equals("Enemy"))
+            {
+                int damage = Mathf.FloorToInt(Random.Range(1, damageDice)) + damageBonus;
+                collision.GetComponent<UnitScript>().takeDamage(damage);
+                hitObjects.Add(collision.gameObject);
+            }
+            if (collision.tag.Equals("Player"))
             {
                 int damage = Mathf.FloorToInt(Random.Range(1, damageDice)) + damageBonus;
                 collision.GetComponent<UnitScript>().takeDamage(damage);

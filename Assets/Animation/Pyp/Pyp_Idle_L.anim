@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pyp_Interact
+  m_Name: Pyp_Idle_L
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,13 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 1620249479658693272, guid: 2dab4526432a0d64aae44c6570e48abd,
+      value: {fileID: 3896613576672705465, guid: 2b40e4bd79e124d44b36128a30af1f2b,
         type: 3}
     - time: 0.16666667
-      value: {fileID: -4101866173272740074, guid: 2dab4526432a0d64aae44c6570e48abd,
+      value: {fileID: 8876806069980079314, guid: 2b40e4bd79e124d44b36128a30af1f2b,
         type: 3}
     - time: 0.33333334
-      value: {fileID: 3237985267090336237, guid: 2dab4526432a0d64aae44c6570e48abd,
+      value: {fileID: -9005682781771145057, guid: 2b40e4bd79e124d44b36128a30af1f2b,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -47,9 +47,9 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 1620249479658693272, guid: 2dab4526432a0d64aae44c6570e48abd, type: 3}
-    - {fileID: -4101866173272740074, guid: 2dab4526432a0d64aae44c6570e48abd, type: 3}
-    - {fileID: 3237985267090336237, guid: 2dab4526432a0d64aae44c6570e48abd, type: 3}
+    - {fileID: 3896613576672705465, guid: 2b40e4bd79e124d44b36128a30af1f2b, type: 3}
+    - {fileID: 8876806069980079314, guid: 2b40e4bd79e124d44b36128a30af1f2b, type: 3}
+    - {fileID: -9005682781771145057, guid: 2b40e4bd79e124d44b36128a30af1f2b, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
