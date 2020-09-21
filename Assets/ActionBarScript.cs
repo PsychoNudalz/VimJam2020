@@ -53,15 +53,26 @@ public class ActionBarScript : MonoBehaviour
     public void currentUnit_Attack()
     {
         turnHandler.currentUnit_Attack();
+        resetBar();
+    }
+
+    public void currentUnit_Ability()
+    {
+        turnHandler.currentUnit_Ability();
+        resetBar();
     }
 
     public void resetBar()
     {
-        foreach (GameObject g in mainButtons)
-        {
-            g.SetActive(true);
-        }
         actionMenu.SetActive(false);
+        if (!turnHandler.currentUnit.isPlayer)
+        {
+            disableBarButton();
+        }
+        else
+        {
+            resetBarButtons();
+        }
 
     }
 
@@ -69,6 +80,43 @@ public class ActionBarScript : MonoBehaviour
     {
         setCurrentState_None();
         battleSystem.nextTurn();
-        
+        resetBar();
+    }
+
+    public void resetBarButtons()
+    {
+        if (turnHandler.canAction())
+        {
+            mainButtons[0].SetActive(true);
+        }
+        else
+        {
+            mainButtons[0].SetActive(false);
+        }
+        if (turnHandler.canInteraction())
+        {
+            mainButtons[1].SetActive(true);
+        }
+        else
+        {
+            mainButtons[1].SetActive(false);
+        }
+        if (turnHandler.canMove())
+        {
+            mainButtons[2].SetActive(true);
+        }
+        else
+        {
+            mainButtons[2].SetActive(false);
+        }
+        mainButtons[3].SetActive(true);
+    }
+
+    public void disableBarButton()
+    {
+        foreach(GameObject g in mainButtons)
+        {
+            g.SetActive(false);
+        }
     }
 }

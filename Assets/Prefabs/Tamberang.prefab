@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageDice: 4
-  moveSpeed: 2
+  moveSpeed: 3
   toHit: 0
   damageBonus: 0
   targetTag:

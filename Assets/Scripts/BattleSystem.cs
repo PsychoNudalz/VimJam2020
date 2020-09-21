@@ -9,6 +9,7 @@ public class BattleSystem : MonoBehaviour
     public UnitScript currentTurn;
     public TurnHandler turnHandler;
     public Transform cameraFocusPoint;
+    public ActionBarScript actionBarScript;
     public Cinemachine.CinemachineVirtualCamera cinemachine;
 
     // Start is called before the first frame update
@@ -16,6 +17,7 @@ public class BattleSystem : MonoBehaviour
     {
         currentTurn = unitTurns[unitTurnsPointer];
         turnHandler.setCurrentUnit(currentTurn);
+        actionBarScript = GameObject.FindObjectOfType<ActionBarScript>();
     }
 
 
@@ -26,12 +28,33 @@ public class BattleSystem : MonoBehaviour
 
     public void nextTurn()
     {
+        if (unitTurns.Capacity == 0)
+        {
+            return;
+        }
         unitTurnsPointer++;
         unitTurnsPointer = unitTurnsPointer % unitTurns.Capacity;
         currentTurn = unitTurns[unitTurnsPointer];
+        if (currentTurn == null)
+        {
+            unitTurns.RemoveAt(unitTurnsPointer);
+            unitTurnsPointer--;
+            nextTurn();
+        }
+
         turnHandler.setCurrentUnit(currentTurn);
+        if (!currentTurn.isPlayer)
+        {
+            if (currentTurn.TryGetComponent<AIUnitScript>(out AIUnitScript aIUnitScript))
+            {
+                aIUnitScript.startAI();
+
+            }
+
+        }
+        actionBarScript.resetBar();
         //setCameraLockAt(currentTurn.transform);
-       
+
     }
 
     public void moveCamera(Vector3 position)
