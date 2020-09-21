@@ -33,13 +33,13 @@ public class BattleSystem : MonoBehaviour
             return;
         }
         unitTurnsPointer++;
-        unitTurnsPointer = unitTurnsPointer % unitTurns.Capacity;
+        unitTurnsPointer = unitTurnsPointer % unitTurns.Count;
         currentTurn = unitTurns[unitTurnsPointer];
         if (currentTurn == null)
         {
             unitTurns.RemoveAt(unitTurnsPointer);
-            unitTurnsPointer--;
-            nextTurn();
+            unitTurnsPointer = unitTurnsPointer % unitTurns.Count;
+            currentTurn = unitTurns[unitTurnsPointer];
         }
 
         turnHandler.setCurrentUnit(currentTurn);

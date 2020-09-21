@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UnitScript : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class UnitScript : MonoBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     public AbilityClassScript abilityClassScript;
+    public TextMeshPro healthTextBox;
 
     [Header("Base States")]
     public bool isPlayer = true;
@@ -65,6 +67,7 @@ public class UnitScript : MonoBehaviour
 
         health_current = health;
         movement_current = movement;
+        displayCurrentHealth();
     }
 
     // Update is called once per frame
@@ -130,6 +133,7 @@ public class UnitScript : MonoBehaviour
 
     public void newTurn()
     {
+        displayCurrentHealth();
         if (health_current > 0)
         {
 
@@ -248,12 +252,15 @@ public class UnitScript : MonoBehaviour
         if (health_current <= 0)
         {
             die();
+            
         }
+        displayCurrentHealth();
         print(name + " damge " + damage + " HP " + health_current);
     }
 
     void die()
     {
+        health_current = 0;
         animator.SetBool("Dead", true);
         if (!isPlayer)
         {
@@ -301,5 +308,11 @@ public class UnitScript : MonoBehaviour
     public bool canMove()
     {
         return movement_current > 0;
+    }
+
+    //Health Display
+    public void displayCurrentHealth()
+    {
+        healthTextBox.text = health_current + "/" + health;
     }
 }

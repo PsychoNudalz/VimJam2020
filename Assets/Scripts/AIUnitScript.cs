@@ -56,6 +56,14 @@ public class AIUnitScript : UnitScript
 
     public void AIBehavior()
     {
+        if (target != null && target.TryGetComponent<UnitScript>(out UnitScript u) && u.isDead())
+        {
+            stopMoveToTarget();
+            activateUnit = false;
+            target = null;
+        }
+
+
         if (!canMove())
         {
             stopMoveToTarget();
