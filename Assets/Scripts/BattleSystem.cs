@@ -23,6 +23,11 @@ public class BattleSystem : MonoBehaviour
 
     private void Update()
     {
+        if (currentTurn == null)
+        {
+            nextTurn();
+        }
+
         focusPointFollow(currentTurn.transform.position);
     }
 

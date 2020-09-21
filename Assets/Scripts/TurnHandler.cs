@@ -23,7 +23,7 @@ public class TurnHandler : MonoBehaviour
         controls = new InputMaster();
         controls.Player.Aim.performed += _ => setAiming(true);
         controls.Player.Aim.canceled += _ => setAiming(false);
-        
+
         controls.Player.Movement.performed += ctx => moveCurrentUnit(ctx.ReadValue<Vector2>());
         controls.Player.Movement.canceled += ctx => moveCurrentUnit(new Vector2());
 
@@ -163,8 +163,12 @@ public class TurnHandler : MonoBehaviour
     }
     public void updateRange(float size)
     {
-        rangeCircle.transform.localScale = new Vector3(size * 10, size * 10, 1);
-        rangeCircle.transform.position = currentUnit.transform.position;
+        if (currentUnit != null)
+        {
+
+            rangeCircle.transform.localScale = new Vector3(size * 10, size * 10, 1);
+            rangeCircle.transform.position = currentUnit.transform.position;
+        }
     }
 
 

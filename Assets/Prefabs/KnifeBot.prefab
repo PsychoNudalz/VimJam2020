@@ -1,5 +1,55 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1111420360668132327
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5681250086783186095}
+  - component: {fileID: 2138795856757215910}
+  m_Layer: 11
+  m_Name: Loot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5681250086783186095
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111420360668132327}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 692115776997170693}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2138795856757215910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111420360668132327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13622e3ca6f43e54abaf122463a7189b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootValue: 50
+  spawnZone: 1
+  potentialLoot:
+  - {fileID: 7656501773129702753, guid: f5839cbfc2c50b7439b2f7d1265c9302, type: 3}
+  - {fileID: 5307010655611184239, guid: 15c51b8d4ed61f34089bfd5e080088d2, type: 3}
+  - {fileID: 3649166128134985994, guid: 19c504cdda2be1f4e8c5813bc9b205e8, type: 3}
+  deathLoot: []
 --- !u!1 &1911398593046210719
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +294,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1579293883
-  m_SortingLayer: 4
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -293,6 +343,7 @@ Transform:
   - {fileID: 3069086212519927926}
   - {fileID: 5274251045959530457}
   - {fileID: 4118016544147063688}
+  - {fileID: 5681250086783186095}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -399,10 +450,11 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1093269148401063410}
   abilityClassScript: {fileID: 0}
   healthTextBox: {fileID: 293279106703391124}
+  damagePopUpManagerScript: {fileID: 0}
   isPlayer: 0
   speed: 3
-  health: 20
-  AC: 10
+  health: 15
+  AC: 8
   movement: 4
   mainWeapon: {fileID: 1489137629105577001, guid: 8d26a7e45dc53284d986e7c4ad2ae5fc,
     type: 3}
@@ -433,12 +485,15 @@ MonoBehaviour:
   activateUnit: 0
   runAI: 0
   isMoving: 0
+  pauseAction: 0
   turnHandler: {fileID: 0}
   battleSystem: {fileID: 0}
   targetList: []
   target: {fileID: 0}
   detectionRange: 50
-  endOfTurnWaitTime: 0.5
+  endOfTurnWaitTime: 1
+  timeBetweenAction: 0.2
+  randomLootSpawnScript: {fileID: 2138795856757215910}
   aIPath: {fileID: 40638842}
   aIDestinationSetter: {fileID: 40638845}
 --- !u!114 &40638845
@@ -540,7 +595,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -246930361
-  m_SortingLayer: 1
+  m_SortingLayer: -2
   m_SortingOrder: 10
   m_Sprite: {fileID: 4801227835787818748, guid: d22c6a581f75eea48baaf48eaf8ff834,
     type: 3}

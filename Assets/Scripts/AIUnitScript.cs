@@ -9,12 +9,18 @@ public class AIUnitScript : UnitScript
     public bool activateUnit = false;
     public bool runAI = false;
     public bool isMoving = false;
+    public bool pauseAction = false;
     public TurnHandler turnHandler;
     public BattleSystem battleSystem;
     [SerializeField] List<GameObject> targetList;
     public GameObject target;
     public float detectionRange = 50;
     public float endOfTurnWaitTime = 0.5f;
+    public float timeBetweenAction = 0.2f;
+
+    [Header("Loot")]
+    public RandomLootSpawnScript randomLootSpawnScript;
+
 
     [Header("Pathfinding")]
     public AIPath aIPath;
@@ -29,7 +35,7 @@ public class AIUnitScript : UnitScript
 
     private void FixedUpdate()
     {
-        if (runAI)
+        if (runAI && !pauseAction)
         {
             AIBehavior();
         }
@@ -52,6 +58,13 @@ public class AIUnitScript : UnitScript
         yield return new WaitForSeconds(endOfTurnWaitTime); 
         battleSystem.nextTurn();
 
+    }
+
+    IEnumerator pause()
+    {
+        pauseAction = true;
+        yield return new WaitForSeconds(timeBetweenAction);
+        pauseAction = false;
     }
 
 
@@ -77,6 +90,10 @@ public class AIUnitScript : UnitScript
                 stopMoveToTarget();
             }
             weaponAttack(targetList[0].transform.position);
+            if (canAction())
+            {
+                StartCoroutine(pause());
+            }
         }
         else if (!canAction())
         {
@@ -235,5 +252,18 @@ public class AIUnitScript : UnitScript
 
         disableAimObject();
         actionCount--;
+    }
+
+    public override void endTurn()
+    {
+        base.endTurn();
+        StopCoroutine(pause());
+        StopCoroutine(endAI());
+    }
+
+    public override void die()
+    {
+        randomLootSpawnScript.showerLoot();
+        base.die();
     }
 }

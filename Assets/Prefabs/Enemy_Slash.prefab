@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 9199542881531725865}
   - component: {fileID: 1172778442068526245}
   m_Layer: 12
-  m_Name: TamberangSprite
+  m_Name: SlashSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,9 +161,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -943688167
-  m_SortingLayer: 2
+  m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8385569592758133379, guid: b1f560a007cfa7d4f8371771cbc97ffc,
+  m_Sprite: {fileID: -4331181394123750778, guid: f4bbf44b507c60c4f838dfe188b535c5,
     type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -185,7 +185,7 @@ Animator:
   m_GameObject: {fileID: 5591614709949239205}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 93fc32239a8895544bd27f8a3fc55e07, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

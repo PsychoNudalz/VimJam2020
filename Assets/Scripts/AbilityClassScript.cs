@@ -9,14 +9,13 @@ public class AbilityClassScript : MonoBehaviour
     public List<string> targetTag;
     public List<GameObject> effectedList;
     
-    public virtual void getEffectedList(float abilityRange)
+    public virtual void getEffectedList(float abilityRange, LayerMask mask)
     {
         
     }
 
-    public virtual int useAbility(float abilityRange)
+    public virtual int useAbility(float abilityRange, LayerMask mask)
     {
-        print("used base");
         return effectedList.Capacity;
     }
 

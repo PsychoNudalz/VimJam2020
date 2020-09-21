@@ -105,13 +105,14 @@ public class UnitScript : MonoBehaviour
 
     //Turn control
 
-    public void endTurn()
+    public virtual void endTurn()
     {
         stopMove();
         disableAimObject();
+        highlightTargets_Off();
     }
 
-    public void newTurn()
+    public virtual void newTurn()
     {
         displayCurrentHealth();
         moveDirection = new Vector2();
@@ -144,6 +145,7 @@ public class UnitScript : MonoBehaviour
 
     public virtual void move()
     {
+        //abilityClassScript.getEffectedList(abilityRange, layerMask_insight);
         if (movement_current > 0)
         {
 
@@ -191,15 +193,22 @@ public class UnitScript : MonoBehaviour
     {
         pos.z = 0;
         aimObject.SetActive(true);
-        //print((pos - transform.position).magnitude);
-        if ((pos - transform.position).magnitude > attackRange)
+        Vector3 dir = pos - transform.position;
+        if (dir.magnitude > attackRange)
         {
-            targetPosition = (pos - transform.position).normalized * attackRange + transform.position;
+            targetPosition = dir.normalized * attackRange + transform.position;
         }
         else
         {
-            //print("pos ion range");
             targetPosition = pos;
+        }
+        dir = (Vector3)targetPosition - transform.position;
+
+        RaycastHit2D hit;
+        hit = Physics2D.Raycast(transform.position, dir.normalized, dir.magnitude, layerMask_insight);
+        if (hit)
+        {
+            targetPosition = hit.point;
         }
 
         aimObject.transform.position = targetPosition;
@@ -233,8 +242,13 @@ public class UnitScript : MonoBehaviour
     //Ability
     public void useAbility()
     {
-        ammo += abilityClassScript.useAbility(abilityRange);
-        actionCount--;
+        int amount = abilityClassScript.useAbility(abilityRange, layerMask_insight);
+        if (amount != 0)
+        {
+            ammo += amount;
+            actionCount--;
+        }
+
 
     }
 
@@ -249,7 +263,7 @@ public class UnitScript : MonoBehaviour
             if (r.collider.CompareTag("Loot") && r.collider.TryGetComponent<LootPickupScript>(out LootPickupScript w))
             {
                 tempRay = Physics2D.RaycastAll(w.transform.position, transform.position - w.transform.position, interactionRange, layerMask_insight);
-                print(tempRay.Length);
+                //print(tempRay.Length);
                 if (tempRay.Length == 0)
                 {
                     effectedList.Add(w);
@@ -279,14 +293,21 @@ public class UnitScript : MonoBehaviour
     {
         foreach (UnitScript t in targetUnits)
         {
-            t.OutlineSelf_On();
+            if (t != null && t.gameObject.activeSelf)
+            {
+                t.OutlineSelf_On();
+
+            }
         }
     }
     void highlightTargets_Off()
     {
         foreach (UnitScript t in targetUnits)
         {
-            t.OutlineSelf_Off();
+            if (t != null && t.gameObject.activeSelf)
+            {
+                t.OutlineSelf_Off();
+            }
         }
     }
 
@@ -303,8 +324,13 @@ public class UnitScript : MonoBehaviour
 
 
     //Damage
-    public void takeDamage(int damage)
+    public void takeDamage(int damage, int rollToHit)
     {
+        if (rollToHit < AC)
+        {
+            damage = 0;
+        }
+
         displayDamage(damage);
         health_current -= damage;
         if (health_current <= 0)
@@ -319,7 +345,7 @@ public class UnitScript : MonoBehaviour
     void displayDamage(int damage)
     {
         StartCoroutine(takeDamageHighLight());
-        float randomPos = 0.2f;
+        float randomPos = 0.7f;
         if (damage == 0)
         {
             damagePopUpManagerScript.newDamageText("MISS", transform.position + new Vector3(Random.Range(-randomPos, randomPos), Random.Range(-randomPos, randomPos)), Color.red);
@@ -339,7 +365,7 @@ public class UnitScript : MonoBehaviour
         OutlineSelf_Off();
     }
 
-    void die()
+    public virtual void die()
     {
         health_current = 0;
         animator.SetBool("Dead", true);

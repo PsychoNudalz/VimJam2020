@@ -165,8 +165,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerManagerScript: {fileID: 0}
+  damagePopUpManagerScript: {fileID: 0}
   lootType: 0
-  lootValue: 5
+  lootValue: 1
   lootRarity: 1
   isMoving: 0
   moveLocation: {x: 0, y: 0}

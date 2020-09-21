@@ -5,6 +5,7 @@ using UnityEngine;
 public class LootPickupScript : MonoBehaviour
 {
     [SerializeField] PlayerManagerScript playerManagerScript;
+    public DamagePopUpManagerScript damagePopUpManagerScript;
     public LootType lootType;
     public int lootValue;
     public float lootRarity = 1;
@@ -16,6 +17,8 @@ public class LootPickupScript : MonoBehaviour
     private void Awake()
     {
         playerManagerScript = GameObject.FindObjectOfType<PlayerManagerScript>();
+        damagePopUpManagerScript = GameObject.FindObjectOfType<DamagePopUpManagerScript>();
+
     }
 
     private void FixedUpdate()
@@ -43,13 +46,22 @@ public class LootPickupScript : MonoBehaviour
         {
             case (LootType.MONEY):
                 playerManagerScript.addMoney(lootValue);
+                displayLoot(lootValue.ToString());
                 Destroy(gameObject);
                 break;
             case (LootType.ITEM):
                 playerManagerScript.addLoot(gameObject);
+                displayLoot("LOOOOT!");
                 gameObject.SetActive(false);
                 break;
         }
+    }
+
+    void displayLoot(string text)
+    {
+        float randomPos = 0.2f;
+        damagePopUpManagerScript.newDamageText(text, transform.position + new Vector3(Random.Range(-randomPos, randomPos), Random.Range(-randomPos, randomPos)), Color.yellow);
+
     }
 
     public void moveToLocation(Vector2 pos)

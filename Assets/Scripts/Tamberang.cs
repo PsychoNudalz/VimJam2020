@@ -6,7 +6,7 @@ public class Tamberang : AbilityClassScript
 {
 
     // Start is called before the first frame update
-    public override void getEffectedList(float abilityRange)
+    public override void getEffectedList(float abilityRange, LayerMask mask)
     {
         effectedList = new List<GameObject>();
         //base.getEffectedList(abilityRange);
@@ -17,22 +17,19 @@ public class Tamberang : AbilityClassScript
             if (r.collider.TryGetComponent<WeaponScript>(out WeaponScript w))
             {
                 print(r.collider.name);
-                effectedList.Add(r.collider.gameObject);
 
-                /*
-                if (Physics2D.Raycast(r.transform.position, transform.position - r.transform.position, abilityRange, layerMask).collider.gameObject.Equals(gameObject))
+                if (!Physics2D.Raycast(r.transform.position, transform.position - r.transform.position, (transform.position - r.transform.position).magnitude, mask))
                 {
-                    print(r.collider.name+" added to list");
+                    effectedList.Add(r.collider.gameObject);
 
                 }
-                */
             }
         }
     }
-    public override int useAbility(float abilityRange)
+    public override int useAbility(float abilityRange, LayerMask mask)
     {
         print(name + " use recall ability");
-        getEffectedList(abilityRange);
+        getEffectedList(abilityRange,mask);
         foreach (GameObject g in effectedList)
         {
             if (g.TryGetComponent<WeaponScript>(out WeaponScript w))

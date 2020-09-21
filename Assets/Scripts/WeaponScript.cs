@@ -44,8 +44,6 @@ public class WeaponScript : MonoBehaviour
         hitObjects = new List<GameObject>();
     }
 
-    
-
     public void attack(Vector2 pos,int t, int d)
     {
         targetPosition = pos;
@@ -53,23 +51,33 @@ public class WeaponScript : MonoBehaviour
         damageBonus = d;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void damageBehaviour(Collider2D collision)
     {
         //print(name + " hit " + collision);
-        if (targetTag.Contains(collision.tag)&&!hitObjects.Contains(collision.gameObject))
+        if (targetTag.Contains(collision.tag) && !hitObjects.Contains(collision.gameObject))
         {
             if (collision.tag.Equals("Enemy"))
             {
                 int damage = Mathf.FloorToInt(Random.Range(1, damageDice)) + damageBonus;
-                collision.GetComponent<UnitScript>().takeDamage(damage);
+                collision.GetComponent<UnitScript>().takeDamage(damage,Mathf.FloorToInt(Random.RandomRange(1,21)+toHit));
                 hitObjects.Add(collision.gameObject);
             }
             if (collision.tag.Equals("Player"))
             {
                 int damage = Mathf.FloorToInt(Random.Range(1, damageDice)) + damageBonus;
-                collision.GetComponent<UnitScript>().takeDamage(damage);
+                collision.GetComponent<UnitScript>().takeDamage(damage, Mathf.FloorToInt(Random.RandomRange(1, 21) + toHit));
                 hitObjects.Add(collision.gameObject);
             }
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        damageBehaviour(collision);
+    }
+
+    private void OnTriggerExit2D (Collider2D collision)
+    {
+        damageBehaviour(collision);
     }
 }
