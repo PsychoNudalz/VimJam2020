@@ -49,9 +49,6 @@ TagManager:
   - name: Floorground
     uniqueID: 3104511233
     locked: 0
-  - name: Foregorund
-    uniqueID: 3990572129
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
@@ -60,6 +57,9 @@ TagManager:
     locked: 0
   - name: Object
     uniqueID: 3351279129
+    locked: 0
+  - name: Foregorund
+    uniqueID: 3990572129
     locked: 0
   - name: Effect
     uniqueID: 1579293883
