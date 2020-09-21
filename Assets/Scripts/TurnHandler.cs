@@ -60,6 +60,7 @@ public class TurnHandler : MonoBehaviour
     public void setCurrentState_Action()
     {
         currentState = TurnEnum.ACTION;
+        currentUnit.changeState();
         Debug.Log(currentUnit.name + " selected state Action");
     }
 
@@ -67,6 +68,8 @@ public class TurnHandler : MonoBehaviour
     {
         currentUnit.disableAimObject();
         currentState = TurnEnum.INTERACTION;
+        currentUnit.changeState();
+
         Debug.Log(currentUnit.name + " selected state Interaction");
 
     }
@@ -74,12 +77,14 @@ public class TurnHandler : MonoBehaviour
     {
         currentUnit.disableAimObject();
         currentState = TurnEnum.MOVEMENT;
+        currentUnit.changeState();
         Debug.Log(currentUnit.name + " selected state Movement");
 
     }
     public void setCurrentState_None()
     {
         currentState = TurnEnum.NONE;
+        currentUnit.changeState();
         Debug.Log(currentUnit.name + " selected state None");
 
     }
@@ -92,6 +97,11 @@ public class TurnHandler : MonoBehaviour
     public void currentUnit_Ability()
     {
         currentUnit.useAbility();
+    }
+
+    public void currentUnit_PickUp()
+    {
+        currentUnit.pickUpLoot();
     }
 
 

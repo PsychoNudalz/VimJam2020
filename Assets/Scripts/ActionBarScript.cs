@@ -8,6 +8,7 @@ public class ActionBarScript : MonoBehaviour
     public BattleSystem battleSystem;
     public List<GameObject> mainButtons;
     public GameObject actionMenu;
+    public GameObject interactionMenu;
 
 
     private void Awake()
@@ -28,6 +29,7 @@ public class ActionBarScript : MonoBehaviour
     {
         resetBar();
         turnHandler.setCurrentState_Interation();
+        setInteractionMenu_Active();
 
     }
     public void setCurrentState_Movement()
@@ -49,6 +51,12 @@ public class ActionBarScript : MonoBehaviour
 
     }
 
+    public void setInteractionMenu_Active()
+    {
+        interactionMenu.SetActive(true);
+
+    }
+
 
     public void currentUnit_Attack()
     {
@@ -62,9 +70,24 @@ public class ActionBarScript : MonoBehaviour
         resetBar();
     }
 
+    public void currentUnit_PickUp()
+    {
+        turnHandler.currentUnit_PickUp();
+        resetBar();
+    }
+
+    public void currentUnit_Use()
+    {
+        resetBar();
+    }
+
+
+
+
     public void resetBar()
     {
         actionMenu.SetActive(false);
+        interactionMenu.SetActive(false);
         if (!turnHandler.currentUnit.isPlayer)
         {
             disableBarButton();

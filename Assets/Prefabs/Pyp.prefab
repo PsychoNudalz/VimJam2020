@@ -221,7 +221,7 @@ MonoBehaviour:
   - Enemy
   layerMask_insight:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16896
   health_current: 25
   movement_current: 5
   targetUnits: []

@@ -22,6 +22,7 @@ public class AIUnitScript : UnitScript
 
     private void Awake()
     {
+        damagePopUpManagerScript = GameObject.FindObjectOfType<DamagePopUpManagerScript>();
         turnHandler = GameObject.FindObjectOfType<TurnHandler>();
         battleSystem = GameObject.FindObjectOfType<BattleSystem>();
     }
@@ -211,14 +212,11 @@ public class AIUnitScript : UnitScript
             animator.SetFloat("Speed", moveDirection.magnitude*100f);
             animator.SetFloat("H_Speed", moveDirection.x*100f);
             movement_current -= dir.magnitude;
-            updateMoveRange(movement_current);
 
         }
         else
         {
-            updateMoveRange(0);
-            animator.SetFloat("Speed", 0);
-            animator.SetFloat("H_Speed", 0);
+            stopMove();
             stopMoveToTarget();
         }
 

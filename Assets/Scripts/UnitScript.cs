@@ -14,6 +14,7 @@ public class UnitScript : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public AbilityClassScript abilityClassScript;
     public TextMeshPro healthTextBox;
+    public DamagePopUpManagerScript damagePopUpManagerScript;
 
     [Header("Base States")]
     public bool isPlayer = true;
@@ -43,7 +44,7 @@ public class UnitScript : MonoBehaviour
     [Header("Ranges")]
     public float attackRange = 1;
     public float abilityRange = 1;
-    public float interactionRange = 1;
+    public float interactionRange = 2;
 
     [Header("Action counter")]
     public int actionMax = 1;
@@ -58,6 +59,12 @@ public class UnitScript : MonoBehaviour
     public Vector3 locationLastFrame;
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        damagePopUpManagerScript = GameObject.FindObjectOfType<DamagePopUpManagerScript>();
+    }
+
+
     void Start()
     {
         if (rb == null)
@@ -73,7 +80,7 @@ public class UnitScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (moveDirection.magnitude > 0.1f&&isPlayer)
+        if (moveDirection.magnitude > 0.1f && isPlayer)
         {
             move();
             locationLastFrame = transform.position;
@@ -96,6 +103,37 @@ public class UnitScript : MonoBehaviour
 
     }
 
+    //Turn control
+
+    public void endTurn()
+    {
+        stopMove();
+        disableAimObject();
+    }
+
+    public void newTurn()
+    {
+        displayCurrentHealth();
+        moveDirection = new Vector2();
+        targetUnits = new List<UnitScript>();
+
+        if (health_current > 0)
+        {
+
+            movement_current = movement;
+            interactionCount = interactionMax;
+            actionCount = actionMax;
+            locationLastFrame = transform.position;
+
+        }
+    }
+
+    public void changeState()
+    {
+        stopMove();
+    }
+
+    //Movement
     public virtual void moveUnit(Vector2 dir)
     {
         moveDirection = dir;
@@ -114,37 +152,22 @@ public class UnitScript : MonoBehaviour
 
             rb.MovePosition(rb.position + moveDirection * speed * Time.fixedDeltaTime);
             movement_current -= (transform.position - locationLastFrame).magnitude;
-            updateMoveRange(movement_current);
         }
         else
         {
-            updateMoveRange(0);
-            animator.SetFloat("Speed", 0);
-            animator.SetFloat("H_Speed", 0);
-
-
+            stopMove();
         }
     }
 
-    public void endTurn()
+    public void stopMove()
     {
+        moveDirection = new Vector2();
 
+        animator.SetFloat("Speed", 0);
+        animator.SetFloat("H_Speed", 0);
     }
 
-    public void newTurn()
-    {
-        displayCurrentHealth();
-        if (health_current > 0)
-        {
 
-            movement_current = movement;
-            updateMoveRange(movement_current);
-            interactionCount = interactionMax;
-            actionCount = actionMax;
-            locationLastFrame = transform.position;
-
-        }
-    }
 
     //Attack
     public virtual void weaponAttack()
@@ -215,6 +238,40 @@ public class UnitScript : MonoBehaviour
 
     }
 
+    //Pick up loot
+    public void pickUpLoot()
+    {
+        List<LootPickupScript> effectedList = new List<LootPickupScript>();
+        RaycastHit2D[] tempGO = Physics2D.CircleCastAll(transform.position, interactionRange, new Vector2(), 0);
+        RaycastHit2D[] tempRay;
+        foreach (RaycastHit2D r in tempGO)
+        {
+            if (r.collider.CompareTag("Loot") && r.collider.TryGetComponent<LootPickupScript>(out LootPickupScript w))
+            {
+                tempRay = Physics2D.RaycastAll(w.transform.position, transform.position - w.transform.position, interactionRange, layerMask_insight);
+                print(tempRay.Length);
+                if (tempRay.Length == 0)
+                {
+                    effectedList.Add(w);
+                }
+            }
+        }
+
+        foreach (LootPickupScript l in effectedList)
+        {
+            l.moveToLocation(transform.position);
+        }
+
+        if (effectedList.Count > 0)
+        {
+            interactionCount--;
+        }
+
+        return;
+    }
+
+
+
 
 
     //Highlight
@@ -222,22 +279,22 @@ public class UnitScript : MonoBehaviour
     {
         foreach (UnitScript t in targetUnits)
         {
-            t._OutlineSelf_On();
+            t.OutlineSelf_On();
         }
     }
     void highlightTargets_Off()
     {
         foreach (UnitScript t in targetUnits)
         {
-            t._OutlineSelf_Off();
+            t.OutlineSelf_Off();
         }
     }
 
-    public void _OutlineSelf_On()
+    public void OutlineSelf_On()
     {
         spriteRenderer.material.SetFloat("_Outline", 1);
     }
-    public void _OutlineSelf_Off()
+    public void OutlineSelf_Off()
     {
         spriteRenderer.material.SetFloat("_Outline", 0);
     }
@@ -248,14 +305,38 @@ public class UnitScript : MonoBehaviour
     //Damage
     public void takeDamage(int damage)
     {
+        displayDamage(damage);
         health_current -= damage;
         if (health_current <= 0)
         {
             die();
-            
+
         }
         displayCurrentHealth();
         print(name + " damge " + damage + " HP " + health_current);
+    }
+
+    void displayDamage(int damage)
+    {
+        StartCoroutine(takeDamageHighLight());
+        float randomPos = 0.2f;
+        if (damage == 0)
+        {
+            damagePopUpManagerScript.newDamageText("MISS", transform.position + new Vector3(Random.Range(-randomPos, randomPos), Random.Range(-randomPos, randomPos)), Color.red);
+        }
+        else
+        {
+            damage = -damage;
+            damagePopUpManagerScript.newDamageText(damage.ToString(), transform.position + new Vector3(Random.Range(-randomPos, randomPos), Random.Range(-randomPos, randomPos)), Color.red);
+
+        }
+    }
+
+    IEnumerator takeDamageHighLight()
+    {
+        OutlineSelf_On();
+        yield return new WaitForSeconds(0.5f);
+        OutlineSelf_Off();
     }
 
     void die()
@@ -291,10 +372,7 @@ public class UnitScript : MonoBehaviour
     {
         return movement_current;
     }
-    public void updateMoveRange(float size)
-    {
-        //rangeCircle.transform.localScale = new Vector3(size * 10, size * 10, 1);
-    }
+
 
     //Get Action and Interaction count
     public bool canAction()
