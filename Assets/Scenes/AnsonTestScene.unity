@@ -5078,7 +5078,7 @@ MonoBehaviour:
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
     cacheStartup: 0
-  showNavGraphs: 1
+  showNavGraphs: 0
   showUnwalkableNodes: 1
   debugMode: 0
   debugFloor: 0
@@ -5758,6 +5758,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.6499999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276168158497232549, guid: 9bf72aa35b01d6249a98d6552ff4803a,
+        type: 3}
+      propertyPath: m_Name
+      value: Doggo
       objectReference: {fileID: 0}
     - target: {fileID: 4656324553542500299, guid: 9bf72aa35b01d6249a98d6552ff4803a,
         type: 3}
