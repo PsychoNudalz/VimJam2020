@@ -27,13 +27,17 @@ public class UnitScript : MonoBehaviour
     //public int isRange;
     public GameObject mainWeapon;
     public int ammo;
-    //public List<GameObject> weaponList;
     public int baseDamage;
     public int toHit;
+    public int weaponDamage;
     public LayerMask layerMask_target;
     public List<string> targetTag;
     public LayerMask layerMask_insight;
 
+    [Header("Ranges")]
+    public float attackRange = 1;
+    public float abilityRange = 1;
+    public float interactionRange = 2;
 
     [Header("Current States")]
     public int health_current;
@@ -41,10 +45,6 @@ public class UnitScript : MonoBehaviour
     public List<UnitScript> targetUnits;
     public Vector2 targetPosition;
 
-    [Header("Ranges")]
-    public float attackRange = 1;
-    public float abilityRange = 1;
-    public float interactionRange = 2;
 
     [Header("Action counter")]
     public int actionMax = 1;
@@ -178,7 +178,7 @@ public class UnitScript : MonoBehaviour
         {
 
             GameObject tempWeapon = Instantiate(mainWeapon, transform.position, transform.rotation);
-            tempWeapon.GetComponent<WeaponScript>().attack(targetPosition, toHit, baseDamage);
+            tempWeapon.GetComponent<WeaponScript>().attack(targetPosition, toHit, baseDamage, weaponDamage);
             //weaponList.Add(tempWeapon);
             disableAimObject();
             animator.SetTrigger("Attack");
@@ -418,5 +418,56 @@ public class UnitScript : MonoBehaviour
     public void displayCurrentHealth()
     {
         healthTextBox.text = health_current + "/" + health;
+    }
+
+
+    //Converts States to saveData
+    public int[] statesToSaveData()
+    {
+        /*
+          
+        [Header("Base States")]
+        public int health;
+        public int AC = 0;
+        public float movement;
+
+        [Header("Weapon")]
+        public int ammo;
+        public int baseDamage;
+        public int toHit;
+        public int weaponDamage;
+
+
+        [Header("Action counter")]
+        public int actionMax = 1;
+        public int interactionMax = 1;
+        */
+
+        int[] returnStates = { health, AC, Mathf.FloorToInt(movement), ammo, baseDamage, toHit, weaponDamage, actionMax, interactionMax };
+
+        return returnStates;
+
+    }
+
+
+    public bool saveDataToStates(int[] saveData)
+    {
+        try
+        {
+            health = saveData[0];
+            AC = saveData[1];
+            movement = saveData[2];
+            ammo = saveData[3];
+            baseDamage = saveData[4];
+            toHit = saveData[5];
+            weaponDamage = saveData[6];
+            actionMax = saveData[7];
+            interactionMax = saveData[8];
+            return true;
+        } catch (System.Exception e)
+        {
+            Debug.LogError(name + " failed to load data");
+            return false;
+        }
     }
 }

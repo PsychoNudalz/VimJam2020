@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class PlayerManagerScript : MonoBehaviour
 {
+    [Header("Components")]
+    public InventoryUIScript inventoryUIScript;
+
+    [Header("Loot")]
     public int money = 0;
     public List<GameObject> loot;
+
+    [Header("Units")]
     public List<UnitScript> units;
 
     public static PlayerManagerScript instance;
@@ -20,29 +26,31 @@ public class PlayerManagerScript : MonoBehaviour
         {
             Destroy(instance);
         }
-
+        //inventoryUIScript = GameObject.FindObjectOfType<InventoryUIScript>();
 
         DontDestroyOnLoad(gameObject);
         LoadPlayer();
     }
+
     private void OnApplicationQuit()
     {
         SavePlayer();
     }
 
 
-
-
     //Modifying Loot
     public int addMoney(int value)
     {
         money += value;
+        updateLootDisplay();
         return money;
     }
 
     public List<GameObject> addLoot(GameObject newLoot)
     {
         loot.Add(newLoot);
+        updateLootDisplay();
+        newLoot.transform.SetParent(transform);
         return loot;
     }
 
@@ -51,6 +59,7 @@ public class PlayerManagerScript : MonoBehaviour
         if (money < value)
         {
             money -= value;
+            updateLootDisplay();
             return true;
 
         }
@@ -58,11 +67,24 @@ public class PlayerManagerScript : MonoBehaviour
         return false;
     }
 
+    //Update UI
+
+    public void setInventoryUI(InventoryUIScript i)
+    {
+        inventoryUIScript = i;
+    }
+
+    public void updateLootDisplay()
+    {
+        inventoryUIScript.updateLootDisplay(money, loot);
+    }
+
+
 
     //Activating Units
     public void activateUnits()
     {
-        foreach(UnitScript u in units)
+        foreach (UnitScript u in units)
         {
             u.gameObject.SetActive(true);
         }
@@ -88,6 +110,10 @@ public class PlayerManagerScript : MonoBehaviour
     {
         PlayerData data = SaveSystem.LoadPlayer();
         money = data.money;
+        for (int i = 0; i < units.Count; i++)
+        {
+            units[i].saveDataToStates(data.unitStates[i]);
+        }
     }
 
 }

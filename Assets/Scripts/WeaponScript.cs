@@ -44,11 +44,12 @@ public class WeaponScript : MonoBehaviour
         hitObjects = new List<GameObject>();
     }
 
-    public void attack(Vector2 pos,int t, int d)
+    public void attack(Vector2 pos,int t, int b, int d)
     {
         targetPosition = pos;
         toHit = t;
-        damageBonus = d;
+        damageBonus = b;
+        damageDice = d;
     }
 
     void damageBehaviour(Collider2D collision)

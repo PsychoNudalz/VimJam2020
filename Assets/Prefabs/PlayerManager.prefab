@@ -49,7 +49,7 @@ MonoBehaviour:
   loot: []
   units:
   - {fileID: 3140369368333496624}
-  - {fileID: 0}
+  - {fileID: 4211400659399345876}
 --- !u!1001 &1260737922078962829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -212,3 +212,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4451667323698568653}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4211400659399345876 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 555800166345235225, guid: d1de7b9f3a2162e42884c1ac4376c3fc,
+    type: 3}
+  m_PrefabInstance: {fileID: 4451667323698568653}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 392e9656df7670d40be372cfcd205f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

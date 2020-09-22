@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6835504053120424954
+--- !u!1001 &3189200677699204757
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,27 +8,41 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 744450302, guid: b6a378fc75841bc4dbcf95e78903e50f, type: 3}
-      propertyPath: lootRarity
-      value: 5
+      propertyPath: lootType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 744450302, guid: b6a378fc75841bc4dbcf95e78903e50f, type: 3}
       propertyPath: lootValue
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 744450302, guid: b6a378fc75841bc4dbcf95e78903e50f, type: 3}
+      propertyPath: lootRarity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 744450302, guid: b6a378fc75841bc4dbcf95e78903e50f, type: 3}
+      propertyPath: animationName
+      value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065651816108540455, guid: b6a378fc75841bc4dbcf95e78903e50f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1279192267849297478, guid: e03637b73e5e6f4498b4be711bb8bfc5,
+        type: 3}
     - target: {fileID: 7816252214416229104, guid: b6a378fc75841bc4dbcf95e78903e50f,
         type: 3}
       propertyPath: m_Name
-      value: Coin_5
+      value: Loot_Sword
       objectReference: {fileID: 0}
     - target: {fileID: 8179921240134589063, guid: b6a378fc75841bc4dbcf95e78903e50f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.7773667
+      value: 1.43
       objectReference: {fileID: 0}
     - target: {fileID: 8179921240134589063, guid: b6a378fc75841bc4dbcf95e78903e50f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.2341957
+      value: 1.17
       objectReference: {fileID: 0}
     - target: {fileID: 8179921240134589063, guid: b6a378fc75841bc4dbcf95e78903e50f,
         type: 3}

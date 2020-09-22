@@ -113,6 +113,7 @@ MonoBehaviour:
   ammo: 9999
   baseDamage: 3
   toHit: 3
+  weaponDamage: 8
   layerMask_target:
     serializedVersion: 2
     m_Bits: 2048
@@ -121,13 +122,13 @@ MonoBehaviour:
   layerMask_insight:
     serializedVersion: 2
     m_Bits: 512
+  attackRange: 1
+  abilityRange: 1
+  interactionRange: 2
   health_current: 25
   movement_current: 5
   targetUnits: []
   targetPosition: {x: 0, y: 0}
-  attackRange: 1
-  abilityRange: 1
-  interactionRange: 2
   actionMax: 1
   actionCount: 0
   interactionMax: 1
@@ -290,7 +291,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0.771}
-  m_SizeDelta: {x: 1, y: 0.5}
+  m_SizeDelta: {x: 2, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &4314809090226423731
 MeshRenderer:
@@ -386,8 +387,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 2
-  m_fontSizeBase: 2
+  m_fontSize: 2.5
+  m_fontSizeBase: 2.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -440,7 +441,6 @@ GameObject:
   m_Component:
   - component: {fileID: 181426219670406020}
   - component: {fileID: 2737188885984489438}
-  - component: {fileID: 2486956297888489223}
   m_Layer: 13
   m_Name: TamberangSprite
   m_TagString: Untagged
@@ -501,8 +501,7 @@ SpriteRenderer:
   m_SortingLayerID: -943688167
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8385569592758133379, guid: b1f560a007cfa7d4f8371771cbc97ffc,
-    type: 3}
+  m_Sprite: {fileID: 482950171266426514, guid: f4bbf44b507c60c4f838dfe188b535c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.31764707}
   m_FlipX: 0
   m_FlipY: 0
@@ -513,25 +512,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &2486956297888489223
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6884808035839918995}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 93fc32239a8895544bd27f8a3fc55e07, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7733610163797721868
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,12 @@ public class LootPickupScript : MonoBehaviour
     public int lootValue;
     public float lootRarity = 1;
 
-    [Header("movement")]
+    [Header("Animator")]
+    public Animator animator;
+    public string animationName = "LootItem_NA";
+
+
+    [Header("Movement")]
     [SerializeField] bool isMoving = false;
     public Vector2 moveLocation;
 
@@ -18,6 +23,11 @@ public class LootPickupScript : MonoBehaviour
     {
         playerManagerScript = GameObject.FindObjectOfType<PlayerManagerScript>();
         damagePopUpManagerScript = GameObject.FindObjectOfType<DamagePopUpManagerScript>();
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
+        animator.Play(animationName);
 
     }
 
@@ -29,6 +39,12 @@ public class LootPickupScript : MonoBehaviour
             moveToLocation();
         }
     }
+    private void OnEnable()
+    {
+        animator.Play(animationName);
+
+    }
+
 
 
     private void OnTriggerEnter2D(Collider2D collision)

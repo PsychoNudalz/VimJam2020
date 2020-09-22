@@ -246,7 +246,7 @@ public class AIUnitScript : UnitScript
         isMoving = false;
         targetPosition = pos;
         GameObject tempWeapon = Instantiate(mainWeapon, transform.position, transform.rotation);
-        tempWeapon.GetComponent<WeaponScript>().attack(targetPosition, toHit, baseDamage);
+        tempWeapon.GetComponent<WeaponScript>().attack(targetPosition, toHit, baseDamage, weaponDamage);
         //weaponList.Add(tempWeapon);
         animator.SetTrigger("Attack");
 
