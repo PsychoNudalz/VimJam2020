@@ -17,6 +17,7 @@ public class UnitScript : MonoBehaviour
     public DamagePopUpManagerScript damagePopUpManagerScript;
 
     [Header("Base States")]
+    public string unitName;
     public bool isPlayer = true;
     public float speed = 5f;
     public int health;
@@ -469,5 +470,49 @@ public class UnitScript : MonoBehaviour
             Debug.LogError(name + " failed to load data");
             return false;
         }
+    }
+
+
+    //States To Display
+
+    public string ToString_Health()
+    {
+        string t = health.ToString();
+        return t;
+    }
+    public string ToString_AC()
+    {
+        string t = AC.ToString();
+        return t;
+    }
+    public string ToString_Moevement()
+    {
+        string t = (movement*5).ToString()+"ft";
+        return t;
+    }
+    public virtual string ToString_Ability()
+    {
+        string t = "Ability";
+        return t;
+    }
+    public string ToString_Damage()
+    {
+        string t = "1d" +weaponDamage.ToString();
+        return t;
+    }
+    public string ToString_ToHit()
+    {
+        string t ="+"+toHit;
+        return t;
+    }
+
+    public Sprite ToDisplay_Character()
+    {
+        return spriteRenderer.sprite;
+    }
+
+    public Sprite ToDisplay_Weapon()
+    {
+        return mainWeapon.GetComponentInChildren<SpriteRenderer>().sprite;
     }
 }

@@ -6,7 +6,10 @@ public class LootPickupScript : MonoBehaviour
 {
     [SerializeField] PlayerManagerScript playerManagerScript;
     public DamagePopUpManagerScript damagePopUpManagerScript;
+
+    [Header("Loot States")]
     public LootType lootType;
+    public string lootID;
     public int lootValue;
     public float lootRarity = 1;
 

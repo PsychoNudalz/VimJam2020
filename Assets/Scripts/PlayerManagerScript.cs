@@ -67,6 +67,34 @@ public class PlayerManagerScript : MonoBehaviour
         return false;
     }
 
+    public int checkHasLoot(string id)
+    {
+        for (int i = 0; i<loot.Count;i++)
+        {
+            LootPickupScript tempLoot = loot[i].GetComponent<LootPickupScript>();
+            if (tempLoot.lootID.Contains(id) || id.Contains(tempLoot.lootID))
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public bool removeLoot(string id)
+    {
+        int indexL = checkHasLoot(id);
+        if (indexL != -1 && money >= loot[indexL].GetComponent<LootPickupScript>().lootValue)
+        {
+            loot.RemoveAt(indexL);
+            money -= loot[indexL].GetComponent<LootPickupScript>().lootValue;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     //Update UI
 
     public void setInventoryUI(InventoryUIScript i)

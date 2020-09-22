@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/CyperPop_White_1.unity
+    guid: 4113de0412211ef4fa5804380948d500
   m_configObjects: {}
