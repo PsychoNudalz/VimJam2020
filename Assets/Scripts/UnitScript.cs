@@ -18,6 +18,7 @@ public class UnitScript : MonoBehaviour
 
     [Header("Base States")]
     public string unitName;
+    public int level;
     public bool isPlayer = true;
     public float speed = 5f;
     public int health;
@@ -442,9 +443,12 @@ public class UnitScript : MonoBehaviour
         [Header("Action counter")]
         public int actionMax = 1;
         public int interactionMax = 1;
+
+
+        Level
         */
 
-        int[] returnStates = { health, AC, Mathf.FloorToInt(movement), ammo, baseDamage, toHit, weaponDamage, actionMax, interactionMax };
+        int[] returnStates = { health, AC, Mathf.FloorToInt(movement), ammo, baseDamage, toHit, weaponDamage, actionMax, interactionMax, level };
 
         return returnStates;
 
@@ -464,6 +468,7 @@ public class UnitScript : MonoBehaviour
             weaponDamage = saveData[6];
             actionMax = saveData[7];
             interactionMax = saveData[8];
+            level = saveData[9];
             return true;
         } catch (System.Exception e)
         {
@@ -490,6 +495,12 @@ public class UnitScript : MonoBehaviour
         string t = (movement*5).ToString()+"ft";
         return t;
     }
+    public virtual string ToString_Level()
+    {
+        string t = level.ToString();
+        return t;
+    }
+
     public virtual string ToString_Ability()
     {
         string t = "Ability";
