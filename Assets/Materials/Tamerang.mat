@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Doggo
-  m_Shader: {fileID: -6465566751694194690, guid: 6479cfa2ed7a15240b05b415483ff67c,
+  m_Name: Tamerang
+  m_Shader: {fileID: -6465566751694194690, guid: 819c4e253d0a44746bf76f4d85975ecf,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -21,11 +21,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainText:
-        m_Texture: {fileID: 2800000, guid: 781e63f356dcd6e4590fe51456e423fd, type: 3}
+        m_Texture: {fileID: 2800000, guid: b1f560a007cfa7d4f8371771cbc97ffc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Outline: 0
-    - _Outline_Size: 3
+    - _Outline_Size: 10
     m_Colors:
-    - _Colour: {r: 0, g: 1, b: 0, a: 1}
+    - _Colour: {r: 1, g: 0.6261432, b: 0, a: 1}

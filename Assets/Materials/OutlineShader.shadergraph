@@ -4,7 +4,7 @@
             "typeInfo": {
                 "fullName": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty"
             },
-            "JSONnodeData": "{\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"f0d46ceb-3948-43c0-8d95-ed1e29e50c33\"\n    },\n    \"m_Name\": \"OutlineSize\",\n    \"m_DefaultReferenceName\": \"Vector1_86648A63\",\n    \"m_OverrideReferenceName\": \"_Outline_Size\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Precision\": 0,\n    \"m_GPUInstanced\": false,\n    \"m_Hidden\": false,\n    \"m_Value\": 1.0,\n    \"m_FloatType\": 1,\n    \"m_RangeValues\": {\n        \"x\": 0.0,\n        \"y\": 5.0\n    }\n}"
+            "JSONnodeData": "{\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"f0d46ceb-3948-43c0-8d95-ed1e29e50c33\"\n    },\n    \"m_Name\": \"OutlineSize\",\n    \"m_DefaultReferenceName\": \"Vector1_86648A63\",\n    \"m_OverrideReferenceName\": \"_Outline_Size\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Precision\": 0,\n    \"m_GPUInstanced\": false,\n    \"m_Hidden\": false,\n    \"m_Value\": 1.0,\n    \"m_FloatType\": 1,\n    \"m_RangeValues\": {\n        \"x\": 0.0,\n        \"y\": 10.0\n    }\n}"
         },
         {
             "typeInfo": {

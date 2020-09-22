@@ -22,6 +22,7 @@ public class UnitScript : MonoBehaviour
     public int health;
     public int AC = 0;
     public float movement;
+    public int abilityLevel = 4;
 
     [Header("Weapon")]
     //public int isRange;
@@ -42,6 +43,7 @@ public class UnitScript : MonoBehaviour
     [Header("Current States")]
     public int health_current;
     public float movement_current;
+    public int ammo_Current;
     public int temp_AC = 0;
     public List<UnitScript> targetUnits;
     public Vector2 targetPosition;
@@ -62,9 +64,10 @@ public class UnitScript : MonoBehaviour
     public int upgrade_Ability = 1;
 
     [Header("Other")]
+    public bool isTurn = false;
     public Vector2 moveDirection;
     public Vector3 locationLastFrame;
-    [Header("health, AC, speed, ammo, bDmg, toHit, wDmg, a, i, Lv")]
+    [Header("health, AC, speed, ammo, bDmg, toHit, wDmg, a, i, Lv. ab")]
     //{ health, AC, movement, ammo, baseDamage, toHit, weaponDamage, actionMax, interactionMax, level };
     public int[] BASESTATS;
 
@@ -82,8 +85,7 @@ public class UnitScript : MonoBehaviour
             rb = GetComponent<Rigidbody2D>();
         }
 
-        health_current = health;
-        movement_current = movement;
+        resetCurrentStats();
         displayCurrentHealth();
     }
 
@@ -105,25 +107,54 @@ public class UnitScript : MonoBehaviour
                 spriteRenderer.material.SetFloat("_Outline", spriteRenderer.material.GetFloat("_Outline") - Time.fixedDeltaTime * 2f);
             }
         }
-        catch (System.Exception e)
+        catch (System.Exception _)
         {
 
         }
 
+        if (isTurn)
+        {
+            showEffectedList();
+        }
 
     }
 
     //Turn control
+
+    public void resetCurrentStats()
+    {
+        endTurn();
+        health_current = health;
+        movement_current = movement;
+        ammo_Current = ammo;
+        displayCurrentHealth();
+        moveDirection = new Vector2();
+        targetUnits = new List<UnitScript>();
+        temp_AC = 0;
+        if (health_current > 0)
+        {
+
+            movement_current = movement;
+            interactionCount = interactionMax;
+            actionCount = actionMax;
+            locationLastFrame = transform.position;
+
+        }
+        //newTurn();
+    }
+
 
     public virtual void endTurn()
     {
         stopMove();
         disableAimObject();
         highlightTargets_Off();
+        isTurn = false;
     }
 
     public virtual void newTurn()
     {
+        isTurn = true;
         displayCurrentHealth();
         moveDirection = new Vector2();
         targetUnits = new List<UnitScript>();
@@ -142,6 +173,7 @@ public class UnitScript : MonoBehaviour
     public void changeState()
     {
         stopMove();
+        isTurn = true;
     }
 
     //Movement
@@ -184,18 +216,14 @@ public class UnitScript : MonoBehaviour
     //Attack
     public virtual void weaponAttack()
     {
-        if (ammo > 0)
-        {
 
-            GameObject tempWeapon = Instantiate(mainWeapon, transform.position, transform.rotation);
-            tempWeapon.GetComponent<WeaponScript>().attack(targetPosition, toHit, baseDamage, weaponDamage);
-            //weaponList.Add(tempWeapon);
-            disableAimObject();
-            animator.SetTrigger("Attack");
-            highlightTargets_Off();
-            ammo--;
-            actionCount--;
-        }
+        GameObject tempWeapon = Instantiate(mainWeapon, transform.position, transform.rotation);
+        tempWeapon.GetComponent<WeaponScript>().attack(targetPosition, toHit, baseDamage, weaponDamage);
+        //weaponList.Add(tempWeapon);
+        disableAimObject();
+        animator.SetTrigger("Attack");
+        highlightTargets_Off();
+        actionCount--;
     }
 
 
@@ -240,26 +268,33 @@ public class UnitScript : MonoBehaviour
                 targetUnits.Add(h.collider.GetComponent<UnitScript>());
             }
         }
-        highlightTargets_On();
+        highlightTargets_On(Color.red);
     }
 
     public void disableAimObject()
     {
+        updateAimPoint(transform.position);
         aimObject.SetActive(false);
-
     }
 
     //Ability
-    public void useAbility()
+    public virtual void useAbility()
     {
-        int amount = abilityClassScript.useAbility(abilityRange, layerMask_insight);
-        if (amount != 0)
+        animator.SetTrigger("Ability");
+
+    }
+
+    public void showEffectedList()
+    {
+        if (canAction())
         {
-            ammo += amount;
-            actionCount--;
+            abilityClassScript.displayEffectedList(abilityRange, layerMask_insight);
         }
+        else
+        {
+            abilityClassScript.displayEffectedList(0, layerMask_insight);
 
-
+        }
     }
 
     //Pick up loot
@@ -299,13 +334,13 @@ public class UnitScript : MonoBehaviour
 
 
     //Highlight
-    void highlightTargets_On()
+    void highlightTargets_On(Color c)
     {
         foreach (UnitScript t in targetUnits)
         {
             if (t != null && t.gameObject.activeSelf)
             {
-                t.OutlineSelf_On();
+                t.OutlineSelf_On(c);
 
             }
         }
@@ -321,13 +356,16 @@ public class UnitScript : MonoBehaviour
         }
     }
 
-    public void OutlineSelf_On()
+    public void OutlineSelf_On(Color c)
     {
         spriteRenderer.material.SetFloat("_Outline", 1);
+        spriteRenderer.material.SetColor("_Colour", c);
     }
     public void OutlineSelf_Off()
     {
         spriteRenderer.material.SetFloat("_Outline", 0);
+        
+
     }
 
 
@@ -336,7 +374,8 @@ public class UnitScript : MonoBehaviour
     //Damage
     public void takeDamage(int damage, int rollToHit)
     {
-        if (rollToHit < AC+temp_AC)
+        animator.SetTrigger("TakeDamage");
+        if (rollToHit < AC + temp_AC)
         {
             damage = 0;
         }
@@ -370,7 +409,7 @@ public class UnitScript : MonoBehaviour
 
     IEnumerator takeDamageHighLight()
     {
-        OutlineSelf_On();
+        OutlineSelf_On(Color.red);
         yield return new WaitForSeconds(0.5f);
         OutlineSelf_Off();
     }
@@ -389,6 +428,24 @@ public class UnitScript : MonoBehaviour
     public bool isDead()
     {
         return health_current <= 0;
+    }
+
+
+    //Heal
+    public void healUnit(int amount)
+    {
+        float randomPos = 0.5f;
+        health_current = Mathf.Clamp(health_current + amount, 1, health);
+        damagePopUpManagerScript.newDamageText(amount.ToString(), transform.position + new Vector3(Random.Range(-randomPos, randomPos), Random.Range(-randomPos, randomPos)), Color.green);
+        animator.SetBool("Dead", false);
+        displayCurrentHealth();
+    }
+
+    public void tempACBuff(int amount)
+    {
+        float randomPos = 0.5f;
+        temp_AC = amount;
+        damagePopUpManagerScript.newDamageText(amount.ToString(), transform.position + new Vector3(Random.Range(-randomPos, randomPos), Random.Range(-randomPos, randomPos)), Color.grey);
     }
 
     //Range getters
@@ -456,7 +513,7 @@ public class UnitScript : MonoBehaviour
         Level
         */
 
-        int[] returnStates = { health, AC, Mathf.FloorToInt(movement), ammo, baseDamage, toHit, weaponDamage, actionMax, interactionMax, level };
+        int[] returnStates = { health, AC, Mathf.FloorToInt(movement), ammo, baseDamage, toHit, weaponDamage, actionMax, interactionMax, level, abilityLevel };
 
         return returnStates;
 
@@ -477,8 +534,10 @@ public class UnitScript : MonoBehaviour
             actionMax = saveData[7];
             interactionMax = saveData[8];
             level = saveData[9];
+            abilityLevel = saveData[10];
             return true;
-        } catch (System.Exception e)
+        }
+        catch (System.Exception _)
         {
             Debug.LogError(name + " failed to load data");
             return false;
@@ -505,7 +564,7 @@ public class UnitScript : MonoBehaviour
     }
     public string ToString_Moevement()
     {
-        string t = (movement*5).ToString()+"ft";
+        string t = (movement * 5).ToString() + "ft";
         return t;
     }
     public virtual string ToString_Level()
@@ -521,12 +580,12 @@ public class UnitScript : MonoBehaviour
     }
     public string ToString_Damage()
     {
-        string t = "1d" +weaponDamage.ToString();
+        string t = "1d" + weaponDamage.ToString();
         return t;
     }
     public string ToString_ToHit()
     {
-        string t ="+"+toHit;
+        string t = "+" + toHit;
         return t;
     }
 
@@ -576,8 +635,7 @@ public class UnitScript : MonoBehaviour
     }
     public virtual int Upgrade_Ability()
     {
-        ammo += upgrade_Ability;
-        level++;
-        return ammo;
+        
+        return 0;
     }
 }

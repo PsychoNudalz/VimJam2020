@@ -54,7 +54,9 @@ public class TurnHandler : MonoBehaviour
 
 
         currentUnit = unit;
+
         currentUnit.newTurn();
+        currentUnit.isTurn = true;
     }
 
     public void setCurrentState_Action()

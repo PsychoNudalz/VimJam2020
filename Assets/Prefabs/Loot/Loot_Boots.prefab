@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3189200677699204757
+--- !u!1001 &1002823537359664730
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -12,8 +12,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 744450302, guid: b6a378fc75841bc4dbcf95e78903e50f, type: 3}
+      propertyPath: lootID
+      value: Boots
+      objectReference: {fileID: 0}
+    - target: {fileID: 744450302, guid: b6a378fc75841bc4dbcf95e78903e50f, type: 3}
       propertyPath: lootValue
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 744450302, guid: b6a378fc75841bc4dbcf95e78903e50f, type: 3}
       propertyPath: lootRarity
@@ -21,32 +25,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 744450302, guid: b6a378fc75841bc4dbcf95e78903e50f, type: 3}
       propertyPath: animationName
-      value: Sword
-      objectReference: {fileID: 0}
-    - target: {fileID: 744450302, guid: b6a378fc75841bc4dbcf95e78903e50f, type: 3}
-      propertyPath: lootID
-      value: Sword
+      value: Boots
       objectReference: {fileID: 0}
     - target: {fileID: 5065651816108540455, guid: b6a378fc75841bc4dbcf95e78903e50f,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -4972545676305993524, guid: e03637b73e5e6f4498b4be711bb8bfc5,
+      objectReference: {fileID: 8750945478180280141, guid: e03637b73e5e6f4498b4be711bb8bfc5,
         type: 3}
     - target: {fileID: 7816252214416229104, guid: b6a378fc75841bc4dbcf95e78903e50f,
         type: 3}
       propertyPath: m_Name
-      value: Loot_Sword
+      value: Loot_Boots
       objectReference: {fileID: 0}
     - target: {fileID: 8179921240134589063, guid: b6a378fc75841bc4dbcf95e78903e50f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.43
+      value: -3.4516127
       objectReference: {fileID: 0}
     - target: {fileID: 8179921240134589063, guid: b6a378fc75841bc4dbcf95e78903e50f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.17
+      value: 3.6736455
       objectReference: {fileID: 0}
     - target: {fileID: 8179921240134589063, guid: b6a378fc75841bc4dbcf95e78903e50f,
         type: 3}

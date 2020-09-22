@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tamberang : AbilityClassScript
+public class HealAbility : AbilityClassScript
 {
-
-    // Start is called before the first frame update
     public override void getEffectedList(float abilityRange, LayerMask mask)
     {
         effectedList = new List<GameObject>();
@@ -13,25 +11,23 @@ public class Tamberang : AbilityClassScript
         RaycastHit2D[] tempGO = Physics2D.CircleCastAll(transform.position, abilityRange, new Vector2(), 0, layerMask);
         foreach (RaycastHit2D r in tempGO)
         {
-            if (r.collider.TryGetComponent<WeaponScript>(out WeaponScript w))
+            if (r.collider.TryGetComponent<UnitScript>(out UnitScript w))
             {
-
-                if (!Physics2D.Raycast(r.transform.position, transform.position - r.transform.position, (transform.position - r.transform.position).magnitude, mask))
+                if (r.collider.CompareTag("Player")&& !Physics2D.Raycast(r.transform.position, transform.position - r.transform.position, (transform.position - r.transform.position).magnitude, mask))
                 {
                     effectedList.Add(r.collider.gameObject);
-
                 }
             }
         }
     }
     public override int useAbility(float abilityRange, LayerMask mask, int amount = 0)
     {
-        getEffectedList(abilityRange,mask);
+        getEffectedList(abilityRange, mask);
         foreach (GameObject g in effectedList)
         {
-            if (g.TryGetComponent<WeaponScript>(out WeaponScript w))
+            if (g.TryGetComponent<UnitScript>(out UnitScript w))
             {
-                w.recallWeapon(transform.position);
+                w.healUnit(Mathf.RoundToInt(Random.Range(1, amount)) + Mathf.RoundToInt(amount/2f));
             }
 
         }
@@ -46,11 +42,12 @@ public class Tamberang : AbilityClassScript
             {
                 try
                 {
-                    if (g.TryGetComponent<WeaponScript>(out WeaponScript w))
+                    if (g.TryGetComponent<UnitScript>(out UnitScript w))
                     {
-                        w.highLight(false);
+                        w.OutlineSelf_Off();
                     }
-                } catch(System.Exception e)
+                }
+                catch (System.Exception e)
                 {
                     Debug.LogWarning(e);
                 }
@@ -63,9 +60,10 @@ public class Tamberang : AbilityClassScript
             {
                 try
                 {
-                    if (g.TryGetComponent<WeaponScript>(out WeaponScript w))
+                    if (g.TryGetComponent<UnitScript>(out UnitScript w))
                     {
-                        w.highLight(true);
+                        w.OutlineSelf_On(Color.green);
+
                     }
                 }
                 catch (System.Exception e)

@@ -28,4 +28,4 @@ Material:
     - _Outline: 0
     - _Outline_Size: 3
     m_Colors:
-    - _Colour: {r: 1, g: 0, b: 0, a: 1}
+    - _Colour: {r: 0, g: 1, b: 0, a: 1}

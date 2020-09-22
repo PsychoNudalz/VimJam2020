@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WeaponScript : MonoBehaviour
 {
+    public SpriteRenderer spriteRenderer;
     [Header("Stats")]
     public int damageDice = 4;
     public float moveSpeed = 5f;
@@ -34,7 +35,7 @@ public class WeaponScript : MonoBehaviour
 
     void moveToLocation()
     {
-        transform.position = Vector3.Lerp(transform.position, targetPosition, moveSpeed*Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, moveSpeed * Time.deltaTime);
     }
 
     public void recallWeapon(Vector2 pos)
@@ -44,7 +45,7 @@ public class WeaponScript : MonoBehaviour
         hitObjects = new List<GameObject>();
     }
 
-    public void attack(Vector2 pos,int t, int b, int d)
+    public void attack(Vector2 pos, int t, int b, int d)
     {
         targetPosition = pos;
         toHit = t;
@@ -60,7 +61,7 @@ public class WeaponScript : MonoBehaviour
             if (collision.tag.Equals("Enemy"))
             {
                 int damage = Mathf.FloorToInt(Random.Range(1, damageDice)) + damageBonus;
-                collision.GetComponent<UnitScript>().takeDamage(damage,Mathf.FloorToInt(Random.RandomRange(1,21)+toHit));
+                collision.GetComponent<UnitScript>().takeDamage(damage, Mathf.FloorToInt(Random.RandomRange(1, 21) + toHit));
                 hitObjects.Add(collision.gameObject);
             }
             if (collision.tag.Equals("Player"))
@@ -77,8 +78,26 @@ public class WeaponScript : MonoBehaviour
         damageBehaviour(collision);
     }
 
-    private void OnTriggerExit2D (Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         damageBehaviour(collision);
+    }
+
+    public void highLight(bool b)
+    {
+        if (b)
+        {
+            spriteRenderer.material.SetFloat("_Outline", 1f);
+
+        }
+        else
+        {
+            spriteRenderer.material.SetFloat("_Outline", 0f);
+        }
+    }
+
+    void removeHiglight()
+    {
+        //if (priteRenderer.material.getF)
     }
 }

@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8660b76103d9644a67940e500a60e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 5524699519355770811}
   damageDice: 4
   moveSpeed: 3
   toHit: 0
@@ -54,6 +55,7 @@ MonoBehaviour:
   - Enemy
   hitObjects: []
   targetPosition: {x: 0, y: 0}
+  isRecall: 0
 --- !u!58 &3059960043566932867
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -141,7 +143,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: cffecb81812922f49a765cddb3b84ecf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -160,7 +162,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -943688167
-  m_SortingLayer: 2
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: -8385569592758133379, guid: b1f560a007cfa7d4f8371771cbc97ffc,
     type: 3}
