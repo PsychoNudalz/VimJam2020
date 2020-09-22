@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392e9656df7670d40be372cfcd205f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  rb: {fileID: 4245732508415051186}
   aimObject: {fileID: 6200905895903731112}
   animator: {fileID: 2240020718677146832}
   spriteRenderer: {fileID: 5094238522134427477}
@@ -206,6 +206,7 @@ MonoBehaviour:
   healthTextBox: {fileID: 3815575149481016521}
   damagePopUpManagerScript: {fileID: 0}
   unitName: Pyp
+  level: 1
   isPlayer: 1
   speed: 3
   health: 25
@@ -216,7 +217,7 @@ MonoBehaviour:
   ammo: 2
   baseDamage: 1
   toHit: 1
-  weaponDamage: 6
+  weaponDamage: 4
   layerMask_target:
     serializedVersion: 2
     m_Bits: 2048
@@ -230,14 +231,22 @@ MonoBehaviour:
   interactionRange: 2
   health_current: 25
   movement_current: 5
+  temp_AC: 0
   targetUnits: []
   targetPosition: {x: 0, y: 0}
   actionMax: 2
   actionCount: 0
   interactionMax: 1
   interactionCount: 0
+  upgrade_Health: 5
+  upgrade_AC: 1
+  upgrade_Movement: 1
+  upgrade_AttackBonus: 1
+  upgrade_WeaponDamage: 2
+  upgrade_Ability: 1
   moveDirection: {x: 0, y: 0}
   locationLastFrame: {x: 0, y: 0, z: 0}
+  BASESTATS: 190000000c0000000600000002000000010000000100000004000000020000000100000001000000
 --- !u!114 &7147898318147428025
 MonoBehaviour:
   m_ObjectHideFlags: 0

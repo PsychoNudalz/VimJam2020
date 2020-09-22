@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392e9656df7670d40be372cfcd205f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  rb: {fileID: 555800166345235222}
   aimObject: {fileID: 7733610163797721868}
   animator: {fileID: 2471174989788750452}
   spriteRenderer: {fileID: 8930383544645773809}
@@ -104,6 +104,7 @@ MonoBehaviour:
   healthTextBox: {fileID: 697744681167725165}
   damagePopUpManagerScript: {fileID: 0}
   unitName: Knight
+  level: 1
   isPlayer: 1
   speed: 3
   health: 40
@@ -112,8 +113,8 @@ MonoBehaviour:
   mainWeapon: {fileID: 4861063818852878050, guid: fdd01d28d388aea45ab8646a4ed4b99f,
     type: 3}
   ammo: 9999
-  baseDamage: 3
-  toHit: 3
+  baseDamage: 2
+  toHit: 2
   weaponDamage: 8
   layerMask_target:
     serializedVersion: 2
@@ -128,14 +129,22 @@ MonoBehaviour:
   interactionRange: 2
   health_current: 25
   movement_current: 5
+  temp_AC: 0
   targetUnits: []
   targetPosition: {x: 0, y: 0}
   actionMax: 1
   actionCount: 0
   interactionMax: 1
   interactionCount: 0
+  upgrade_Health: 5
+  upgrade_AC: 1
+  upgrade_Movement: 1
+  upgrade_AttackBonus: 1
+  upgrade_WeaponDamage: 2
+  upgrade_Ability: 1
   moveDirection: {x: 0, y: 0}
   locationLastFrame: {x: 0, y: 0, z: 0}
+  BASESTATS: 280000000f00000007000000e7030000020000000200000008000000010000000100000001000000
 --- !u!114 &6804703539097370653
 MonoBehaviour:
   m_ObjectHideFlags: 0

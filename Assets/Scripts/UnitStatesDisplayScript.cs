@@ -21,13 +21,21 @@ public class UnitStatesDisplayScript : MonoBehaviour
     public TextMeshProUGUI ToHit;
     public TextMeshProUGUI Ability;
 
-    [Header("Upgrade")]
-    public bool isUpgradeMode;
-    public GameObject upgradMenu;
+
+
+    private void OnEnable()
+    {
+        
+    }
 
     public void updateStates(UnitScript c)
     {
         currentUnit = c;
+        updateStates();
+
+    }
+    public void updateStates()
+    {
         NameText.text = currentUnit.unitName;
         HP.text = currentUnit.ToString_Health();
         AC.text = currentUnit.ToString_AC();

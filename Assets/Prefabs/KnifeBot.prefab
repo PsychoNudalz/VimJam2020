@@ -451,6 +451,8 @@ MonoBehaviour:
   abilityClassScript: {fileID: 0}
   healthTextBox: {fileID: 293279106703391124}
   damagePopUpManagerScript: {fileID: 0}
+  unitName: KnifeBot
+  level: 2
   isPlayer: 0
   speed: 3
   health: 15
@@ -475,14 +477,22 @@ MonoBehaviour:
   interactionRange: 1
   health_current: 0
   movement_current: 0
+  temp_AC: 0
   targetUnits: []
   targetPosition: {x: 0, y: 0}
   actionMax: 1
   actionCount: 0
   interactionMax: 1
   interactionCount: 0
+  upgrade_Health: 5
+  upgrade_AC: 1
+  upgrade_Movement: 1
+  upgrade_AttackBonus: 1
+  upgrade_WeaponDamage: 2
+  upgrade_Ability: 1
   moveDirection: {x: 0, y: 0}
   locationLastFrame: {x: 0, y: 0, z: 0}
+  BASESTATS: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   activateUnit: 0
   runAI: 0
   isMoving: 0

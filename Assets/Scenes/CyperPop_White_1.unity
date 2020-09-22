@@ -40970,6 +40970,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1748135015334394833, guid: 0903639c8b0e7804490602faca04164d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5160315040806165054, guid: 0903639c8b0e7804490602faca04164d,
         type: 3}
       propertyPath: m_IsActive
@@ -41089,6 +41094,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316094241024938261, guid: 0903639c8b0e7804490602faca04164d,
+        type: 3}
+      propertyPath: m_Name
+      value: UpgradeMenuButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0903639c8b0e7804490602faca04164d, type: 3}

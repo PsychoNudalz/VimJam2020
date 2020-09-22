@@ -23,6 +23,10 @@ PrefabInstance:
       propertyPath: lootRarity
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 744450302, guid: b6a378fc75841bc4dbcf95e78903e50f, type: 3}
+      propertyPath: lootID
+      value: Lute
+      objectReference: {fileID: 0}
     - target: {fileID: 5065651816108540455, guid: b6a378fc75841bc4dbcf95e78903e50f,
         type: 3}
       propertyPath: m_Sprite

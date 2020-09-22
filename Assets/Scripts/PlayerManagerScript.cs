@@ -80,13 +80,13 @@ public class PlayerManagerScript : MonoBehaviour
         return -1;
     }
 
-    public bool removeLoot(string id)
+    public bool removeLoot(int c, string id)
     {
         int indexL = checkHasLoot(id);
-        if (indexL != -1 && money >= loot[indexL].GetComponent<LootPickupScript>().lootValue)
+        if (indexL != -1 && money >= c)
         {
             loot.RemoveAt(indexL);
-            money -= loot[indexL].GetComponent<LootPickupScript>().lootValue;
+            money -= c;
             return true;
         }
         else

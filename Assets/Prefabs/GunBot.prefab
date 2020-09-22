@@ -553,6 +553,8 @@ MonoBehaviour:
   abilityClassScript: {fileID: 0}
   healthTextBox: {fileID: 1877894688274509218}
   damagePopUpManagerScript: {fileID: 0}
+  unitName: GunBot
+  level: 2
   isPlayer: 0
   speed: 3
   health: 10

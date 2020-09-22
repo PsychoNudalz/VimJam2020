@@ -5,8 +5,6 @@ using TMPro;
 
 public class UnitScript : MonoBehaviour
 {
-
-
     [Header("Components")]
     public Rigidbody2D rb;
     public GameObject aimObject;
@@ -44,6 +42,7 @@ public class UnitScript : MonoBehaviour
     [Header("Current States")]
     public int health_current;
     public float movement_current;
+    public int temp_AC = 0;
     public List<UnitScript> targetUnits;
     public Vector2 targetPosition;
 
@@ -54,11 +53,20 @@ public class UnitScript : MonoBehaviour
     public int interactionMax = 1;
     public int interactionCount;
 
-
+    [Header("Upgrade Values")]
+    public int upgrade_Health = 5;
+    public int upgrade_AC = 1;
+    public int upgrade_Movement = 1;
+    public int upgrade_AttackBonus = 1;
+    public int upgrade_WeaponDamage = 2;
+    public int upgrade_Ability = 1;
 
     [Header("Other")]
     public Vector2 moveDirection;
     public Vector3 locationLastFrame;
+    [Header("health, AC, speed, ammo, bDmg, toHit, wDmg, a, i, Lv")]
+    //{ health, AC, movement, ammo, baseDamage, toHit, weaponDamage, actionMax, interactionMax, level };
+    public int[] BASESTATS;
 
     // Start is called before the first frame update
     private void Awake()
@@ -119,7 +127,7 @@ public class UnitScript : MonoBehaviour
         displayCurrentHealth();
         moveDirection = new Vector2();
         targetUnits = new List<UnitScript>();
-
+        temp_AC = 0;
         if (health_current > 0)
         {
 
@@ -328,7 +336,7 @@ public class UnitScript : MonoBehaviour
     //Damage
     public void takeDamage(int damage, int rollToHit)
     {
-        if (rollToHit < AC)
+        if (rollToHit < AC+temp_AC)
         {
             damage = 0;
         }
@@ -477,6 +485,11 @@ public class UnitScript : MonoBehaviour
         }
     }
 
+    public void RESET_UNIT()
+    {
+        saveDataToStates(BASESTATS);
+    }
+
 
     //States To Display
 
@@ -525,5 +538,46 @@ public class UnitScript : MonoBehaviour
     public Sprite ToDisplay_Weapon()
     {
         return mainWeapon.GetComponentInChildren<SpriteRenderer>().sprite;
+    }
+
+    //Upgrades
+
+    public int Upgrade_HP()
+    {
+        health += upgrade_Health;
+        level++;
+        return health;
+    }
+    public int Upgrade_AC()
+    {
+        AC += upgrade_AC;
+        level++;
+        return AC;
+    }
+
+    public int Upgrade_Movement()
+    {
+        movement += upgrade_Movement;
+        level++;
+        return Mathf.RoundToInt(movement);
+    }
+    public int Upgrade_AttackBonus()
+    {
+        toHit += upgrade_AttackBonus;
+        baseDamage += upgrade_AttackBonus;
+        level++;
+        return toHit;
+    }
+    public int Upgrade_WeaponDamage()
+    {
+        weaponDamage += upgrade_WeaponDamage;
+        level++;
+        return weaponDamage;
+    }
+    public virtual int Upgrade_Ability()
+    {
+        ammo += upgrade_Ability;
+        level++;
+        return ammo;
     }
 }
