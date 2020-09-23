@@ -14,7 +14,7 @@ public class LootManager : MonoBehaviour
     [Header("Loot Spawn")]
     public SpawnZonesHandler_Loot spawnZonesHandler_Loot;
 
-    private void Start()
+    private void Awake()
     {
         spawnZonesHandler_Loot = FindObjectOfType<SpawnZonesHandler_Loot>();
     }
@@ -51,7 +51,16 @@ public class LootManager : MonoBehaviour
         {
             for(int i = 0; i < sq.amount; i++)
             {
+                try
+                {
                 generatedLoot.Add(Instantiate(sq.spawnObject, spawnZonesHandler_Loot.getRandomPos(), Quaternion.identity, transform));
+
+                } catch(System.NullReferenceException _)
+                {
+                    spawnZonesHandler_Loot.getAllSpawnZones();
+                    generatedLoot.Add(Instantiate(sq.spawnObject, spawnZonesHandler_Loot.getRandomPos(), Quaternion.identity, transform));
+
+                }
             }
         }
     }

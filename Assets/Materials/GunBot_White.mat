@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Knight
+  m_Name: GunBot_White
   m_Shader: {fileID: -6465566751694194690, guid: 6479cfa2ed7a15240b05b415483ff67c,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
@@ -21,15 +21,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainText:
-        m_Texture: {fileID: 2800000, guid: 88cd4928b374b074f8ae27be95ec0d51, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0f0aa2b9d2183604a82fad0719c2a0fc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_3834D9E4: 0
     - Vector1_5F05D276: 0
     - _Outline: 0
-    - _Outline_Size: 3
+    - _Outline_Size: 3.05
     m_Colors:
-    - _Colour: {r: 0, g: 1, b: 0, a: 1}
+    - _Colour: {r: 1, g: 0, b: 0, a: 1}
     - _ReplaceColourFrom: {r: 1, g: 1, b: 1, a: 1}
     - _ReplaceColourTo: {r: 1, g: 1, b: 1, a: 1}

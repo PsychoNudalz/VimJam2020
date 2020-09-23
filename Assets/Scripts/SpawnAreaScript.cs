@@ -8,7 +8,7 @@ public class SpawnAreaScript : MonoBehaviour
 
     private void Start()
     {
-        print(getRandomPos());
+        //print(getRandomPos());
     }
 
     public virtual Vector2 getRandomPos()

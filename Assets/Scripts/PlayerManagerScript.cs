@@ -69,7 +69,7 @@ public class PlayerManagerScript : MonoBehaviour
 
     public int checkHasLoot(string id)
     {
-        for (int i = 0; i<loot.Count;i++)
+        for (int i = 0; i < loot.Count; i++)
         {
             LootPickupScript tempLoot = loot[i].GetComponent<LootPickupScript>();
             if (tempLoot.lootID.Contains(id) || id.Contains(tempLoot.lootID))
@@ -137,10 +137,21 @@ public class PlayerManagerScript : MonoBehaviour
     public void LoadPlayer()
     {
         PlayerData data = SaveSystem.LoadPlayer();
-        money = data.money;
-        for (int i = 0; i < units.Count; i++)
+        if (data == null)
         {
-            units[i].saveDataToStates(data.unitStates[i]);
+            money = 0;
+            foreach(UnitScript u in units)
+            {
+                u.RESET_UNIT();
+            }
+        }
+        else
+        {
+            money = data.money;
+            for (int i = 0; i < units.Count; i++)
+            {
+                units[i].saveDataToStates(data.unitStates[i]);
+            }
         }
     }
 

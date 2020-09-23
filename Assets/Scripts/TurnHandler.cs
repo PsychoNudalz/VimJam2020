@@ -8,7 +8,7 @@ public class TurnHandler : MonoBehaviour
 {
     public InputMaster controls;
     private Mouse mouse;
-    public Camera camera;
+    //public Camera camera;
     public GameObject rangeCircle;
 
     public UnitScript currentUnit;

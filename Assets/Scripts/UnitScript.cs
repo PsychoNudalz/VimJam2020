@@ -349,7 +349,6 @@ public class UnitScript : MonoBehaviour
             if (t != null && t.gameObject.activeSelf)
             {
                 t.OutlineSelf_On(c);
-
             }
         }
     }

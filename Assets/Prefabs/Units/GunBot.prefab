@@ -454,7 +454,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1fcbff5eab6795f4d9d842ab2b258df8, type: 2}
+  - {fileID: 2100000, guid: 42455b7f0d2f9b04baa45f6604271cca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -709,7 +709,7 @@ MonoBehaviour:
   targetList: []
   target: {fileID: 0}
   detectionRange: 100
-  endOfTurnWaitTime: 0.5
+  endOfTurnWaitTime: 0.4
   timeBetweenAction: 0.2
   randomLootSpawnScript: {fileID: -4186072825237687447}
   aIPath: {fileID: 2170295833432722764}

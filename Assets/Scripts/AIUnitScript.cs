@@ -31,6 +31,7 @@ public class AIUnitScript : UnitScript
         damagePopUpManagerScript = GameObject.FindObjectOfType<DamagePopUpManagerScript>();
         turnHandler = GameObject.FindObjectOfType<TurnHandler>();
         battleSystem = GameObject.FindObjectOfType<BattleSystem>();
+        randomLootSpawnScript = GetComponent<RandomLootSpawnScript>();
     }
 
     private void FixedUpdate()

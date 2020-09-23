@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BattleSystem : MonoBehaviour
 {
-    public List<UnitScript> unitTurns;
-    public int unitTurnsPointer = 0;
+    public List<UnitScript> turnOrder;
+    public int turnOrderPointer = 0;
     public UnitScript currentTurn;
     public TurnHandler turnHandler;
     public Transform cameraFocusPoint;
@@ -15,9 +15,17 @@ public class BattleSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentTurn = unitTurns[unitTurnsPointer];
+        currentTurn = turnOrder[turnOrderPointer];
         turnHandler.setCurrentUnit(currentTurn);
         actionBarScript = GameObject.FindObjectOfType<ActionBarScript>();
+        if(actionBarScript == null)
+        {
+            actionBarScript = FindObjectOfType<ActionBarScript>();
+        }
+        if(cinemachine == null)
+        {
+            cinemachine = FindObjectOfType<Cinemachine.CinemachineVirtualCamera>();
+        }
     }
 
 
@@ -27,24 +35,31 @@ public class BattleSystem : MonoBehaviour
         {
             nextTurn();
         }
+        else
+        {
+            focusPointFollow(currentTurn.transform.position);
 
-        focusPointFollow(currentTurn.transform.position);
+        }
+
     }
 
+
+    //turn Control
     public void nextTurn()
     {
-        if (unitTurns.Capacity == 0)
+        if (turnOrder.Capacity == 0)
         {
             return;
         }
-        unitTurnsPointer++;
-        unitTurnsPointer = unitTurnsPointer % unitTurns.Count;
-        currentTurn = unitTurns[unitTurnsPointer];
+        cleanTurnOrder();
+        turnOrderPointer++;
+        turnOrderPointer = turnOrderPointer % turnOrder.Count;
+        currentTurn = turnOrder[turnOrderPointer];
         if (currentTurn == null)
         {
-            unitTurns.RemoveAt(unitTurnsPointer);
-            unitTurnsPointer = unitTurnsPointer % unitTurns.Count;
-            currentTurn = unitTurns[unitTurnsPointer];
+            turnOrder.RemoveAt(turnOrderPointer);
+            turnOrderPointer = turnOrderPointer % turnOrder.Count;
+            currentTurn = turnOrder[turnOrderPointer];
         }
 
         turnHandler.setCurrentUnit(currentTurn);
@@ -59,8 +74,30 @@ public class BattleSystem : MonoBehaviour
         }
         actionBarScript.resetBar();
         //setCameraLockAt(currentTurn.transform);
-
     }
+
+    public void addTurn(UnitScript u)
+    {
+        cleanTurnOrder();
+        if (!turnOrder.Contains(u))
+        {
+            turnOrder.Add(u);
+        }
+    }
+
+
+    void cleanTurnOrder()
+    {
+        foreach(UnitScript u in turnOrder)
+        {
+            if (u == null)
+            {
+                turnOrder.Remove(u);
+            }
+        }
+    }
+
+    //Camera control
 
     public void moveCamera(Vector3 position)
     {

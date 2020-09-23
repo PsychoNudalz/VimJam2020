@@ -25,7 +25,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_3834D9E4: 0
+    - Vector1_5F05D276: 0
     - _Outline: 0
     - _Outline_Size: 3
     m_Colors:
     - _Colour: {r: 0, g: 1, b: 0, a: 1}
+    - _ReplaceColourFrom: {r: 1, g: 1, b: 1, a: 1}
+    - _ReplaceColourTo: {r: 1, g: 1, b: 1, a: 1}

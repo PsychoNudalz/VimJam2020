@@ -66,7 +66,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5681250086783186095}
-  - component: {fileID: 2138795856757215910}
   m_Layer: 11
   m_Name: Loot
   m_TagString: Untagged
@@ -88,25 +87,6 @@ Transform:
   m_Father: {fileID: 692115776997170693}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2138795856757215910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1111420360668132327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13622e3ca6f43e54abaf122463a7189b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lootValue: 50
-  spawnZone: 1
-  potentialLoot:
-  - {fileID: 7656501773129702753, guid: f5839cbfc2c50b7439b2f7d1265c9302, type: 3}
-  - {fileID: 5307010655611184239, guid: 15c51b8d4ed61f34089bfd5e080088d2, type: 3}
-  - {fileID: 3649166128134985994, guid: 19c504cdda2be1f4e8c5813bc9b205e8, type: 3}
-  deathLoot: []
 --- !u!1 &1580242194166545923
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +506,7 @@ GameObject:
   - component: {fileID: 40638844}
   - component: {fileID: 40638845}
   - component: {fileID: 7734064848043104818}
+  - component: {fileID: 4319565161812417069}
   m_Layer: 11
   m_Name: KnifeBot
   m_TagString: Enemy
@@ -714,9 +695,9 @@ MonoBehaviour:
   targetList: []
   target: {fileID: 0}
   detectionRange: 50
-  endOfTurnWaitTime: 1
+  endOfTurnWaitTime: 0.4
   timeBetweenAction: 0.2
-  randomLootSpawnScript: {fileID: 2138795856757215910}
+  randomLootSpawnScript: {fileID: 4319565161812417069}
   aIPath: {fileID: 40638842}
   aIDestinationSetter: {fileID: 40638845}
 --- !u!114 &40638845
@@ -749,6 +730,25 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &4319565161812417069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8240590523767207787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13622e3ca6f43e54abaf122463a7189b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootValue: 50
+  spawnZone: 1
+  potentialLoot:
+  - {fileID: 7656501773129702753, guid: f5839cbfc2c50b7439b2f7d1265c9302, type: 3}
+  - {fileID: 5307010655611184239, guid: 15c51b8d4ed61f34089bfd5e080088d2, type: 3}
+  - {fileID: 3649166128134985994, guid: 19c504cdda2be1f4e8c5813bc9b205e8, type: 3}
+  deathLoot: []
 --- !u!1 &8742465736951282375
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,11 +5,10 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
     [Header("Enemy Spawns")]
-    public List<GameObject> potentialEnemies;
+    public EnemyManager enemyManager;
     public int totalEnemyCost = 10;
     public int waveAmount = 3;
     public int maxCost = 3;
-    public List<SpawnRequest> enemySpawnRequestList;
 
     [Header("Loot Spawns")]
     public LootManager lootManager;
@@ -50,5 +49,11 @@ public class QuestManager : MonoBehaviour
         }
         lootManager.generateLoot(Mathf.RoundToInt(targetValue * 1.5f));
         lootManager.spawnLoot();
+
+        if (enemyManager == null)
+        {
+            enemyManager = FindObjectOfType<EnemyManager>();
+        }
+        enemyManager.setEnemyManager(totalEnemyCost, waveAmount, maxCost);
     }
 }

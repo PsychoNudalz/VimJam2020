@@ -19,6 +19,26 @@ public class SpawnZonesHandler : MonoBehaviour
     }
     */
 
+    private void Start()
+    {
+        if (spawnZones.Count == 0)
+        {
+            getAllSpawnZones();
+        }
+    }
+
+    public void getAllSpawnZones()
+    {
+        spawnZones = new List<SpawnZoneScript>();
+        foreach (SpawnZoneScript g in transform.GetComponentsInChildren<SpawnZoneScript>())
+        {
+            spawnZones.Add(g);
+        }
+        return ;
+    }
+
+
+    //Get Random Spawn
     public virtual Vector2 getRandomPos()
     {
         zonePTR = zonePTR % spawnZones.Count;
@@ -26,6 +46,20 @@ public class SpawnZonesHandler : MonoBehaviour
         zonePTR++;
         return pos;
     }
+
+    public virtual Vector2 getRandomPos(int ptr)
+    {
+        zonePTR = ptr;
+        return getRandomPos();
+    }
+
+    //Get Selected Zones
+    public virtual SpawnZoneScript getZone(int ptr)
+    {
+        zonePTR = ptr % spawnZones.Count;
+        return spawnZones[zonePTR];
+    }
+
 
 
 }
