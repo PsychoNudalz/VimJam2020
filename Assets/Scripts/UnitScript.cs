@@ -63,6 +63,12 @@ public class UnitScript : MonoBehaviour
     public int upgrade_WeaponDamage = 2;
     public int upgrade_Ability = 1;
 
+    [Header("Sounds")]
+    public SoundManager soundManager;
+    public Sound sound_Move;
+    public Sound sound_Hit;
+    public Sound sound_Ability;
+
     [Header("Other")]
     public bool isTurn = false;
     public Vector2 moveDirection;
@@ -75,6 +81,7 @@ public class UnitScript : MonoBehaviour
     private void Awake()
     {
         damagePopUpManagerScript = GameObject.FindObjectOfType<DamagePopUpManagerScript>();
+        soundManager = GameObject.FindObjectOfType<SoundManager>();
     }
 
 
@@ -84,6 +91,7 @@ public class UnitScript : MonoBehaviour
         {
             rb = GetComponent<Rigidbody2D>();
         }
+        soundManager = GameObject.FindObjectOfType<SoundManager>();
 
         resetCurrentStats();
         displayCurrentHealth();
@@ -364,7 +372,7 @@ public class UnitScript : MonoBehaviour
     public void OutlineSelf_Off()
     {
         spriteRenderer.material.SetFloat("_Outline", 0);
-        
+
 
     }
 
@@ -375,6 +383,7 @@ public class UnitScript : MonoBehaviour
     public void takeDamage(int damage, int rollToHit)
     {
         animator.SetTrigger("TakeDamage");
+        PlaySound_Hit();
         if (rollToHit < AC + temp_AC)
         {
             damage = 0;
@@ -635,7 +644,39 @@ public class UnitScript : MonoBehaviour
     }
     public virtual int Upgrade_Ability()
     {
-        
+
         return 0;
+    }
+
+
+
+    //Sound
+
+    public void PlaySound_Move()
+    {
+        if (sound_Move.source.isPlaying == false)
+        {
+            print(name + " Play move sound");
+            soundManager.Play(sound_Move);
+        }
+    }
+
+    public void StopSound_Move()
+    {
+        if (sound_Move.source.isPlaying == true)
+        {
+
+            print(name + " stop move sound");
+            soundManager.Stop(sound_Move);
+        }
+    }
+
+    public void PlaySound_Hit()
+    {
+        soundManager.Play(sound_Hit);
+    }
+    public void PlaySound_Ability()
+    {
+        soundManager.Play(sound_Ability);
     }
 }

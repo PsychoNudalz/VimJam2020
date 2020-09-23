@@ -22,6 +22,7 @@ public class UnitScript_Pyp : UnitScript
         {
             ammo_Current += amount;
             actionCount--;
+            PlaySound_Ability();
         }
 
     }

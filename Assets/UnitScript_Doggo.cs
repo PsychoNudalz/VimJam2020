@@ -15,6 +15,8 @@ public class UnitScript_Doggo : UnitScript
             {
                 ammo_Current--;
                 actionCount--;
+                PlaySound_Ability();
+
             }
         }
 

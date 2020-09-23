@@ -136,6 +136,7 @@ Transform:
   - {fileID: 889668522739008066}
   - {fileID: 49447152503379326}
   - {fileID: 1189365052736975865}
+  - {fileID: 1577408991509089099}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -264,10 +265,104 @@ MonoBehaviour:
   upgrade_AttackBonus: 1
   upgrade_WeaponDamage: 2
   upgrade_Ability: 1
+  soundManager: {fileID: 0}
+  sound_Move: {fileID: 1584919358983025550}
+  sound_Hit: {fileID: 3849631061238629703}
+  sound_Ability: {fileID: 3327906723022244213}
   isTurn: 0
   moveDirection: {x: 0, y: 0}
   locationLastFrame: {x: 0, y: 0, z: 0}
   BASESTATS: 190000000c000000060000000200000001000000010000000400000002000000010000000100000002000000
+--- !u!1 &5042486367528643780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1577408991509089099}
+  m_Layer: 0
+  m_Name: Sound_Unit_Bundle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1577408991509089099
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5042486367528643780}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.01944242, y: 0.5404908, z: -3.7452316}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 9114812792336836609}
+  - {fileID: 6839896078940020424}
+  - {fileID: 5021385745149907706}
+  m_Father: {fileID: 4613004523422891170}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5140680798464700195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5021385745149907706}
+  - component: {fileID: 3327906723022244213}
+  m_Layer: 0
+  m_Name: Ability Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5021385745149907706
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5140680798464700195}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1577408991509089099}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3327906723022244213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5140680798464700195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Ability
+  isUnique: 1
+  clip: {fileID: 8300000, guid: b8155bfaed0820c4cbb122eb537153c1, type: 3}
+  volume: 0.75
+  volumeVariance: 0.1
+  pitch: 1
+  pitchVariance: 0.1
+  spatialBlend: 1
+  reverbZoneMix: 0
+  minDistance: 10
+  maxDistance: 20
+  loop: 0
+  playOnAwake: 0
+  source: {fileID: 0}
 --- !u!1 &6200905895903731112
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,6 +394,63 @@ Transform:
   m_Father: {fileID: 4613004523422891170}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6635182647804470033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6839896078940020424}
+  - component: {fileID: 3849631061238629703}
+  m_Layer: 0
+  m_Name: TakeDamage Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6839896078940020424
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6635182647804470033}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1577408991509089099}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3849631061238629703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6635182647804470033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: TakeDamage
+  isUnique: 1
+  clip: {fileID: 8300000, guid: 31906dddf6ffd9245a240b9269c6461e, type: 3}
+  volume: 0.75
+  volumeVariance: 0.1
+  pitch: 1
+  pitchVariance: 0.1
+  spatialBlend: 1
+  reverbZoneMix: 0
+  minDistance: 10
+  maxDistance: 20
+  loop: 0
+  playOnAwake: 0
+  source: {fileID: 0}
 --- !u!1 &6995737639349579018
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,3 +709,60 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &8973008536398878168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9114812792336836609}
+  - component: {fileID: 1584919358983025550}
+  m_Layer: 0
+  m_Name: Moving Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9114812792336836609
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8973008536398878168}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1577408991509089099}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1584919358983025550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8973008536398878168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: MovingSound
+  isUnique: 0
+  clip: {fileID: 8300000, guid: 44e7c3255bfcb9a42bf5a4919d2d6993, type: 3}
+  volume: 0.75
+  volumeVariance: 0.1
+  pitch: 1
+  pitchVariance: 0.1
+  spatialBlend: 1
+  reverbZoneMix: 0
+  minDistance: 10
+  maxDistance: 20
+  loop: 0
+  playOnAwake: 0
+  source: {fileID: 0}

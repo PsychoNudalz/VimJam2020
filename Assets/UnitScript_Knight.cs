@@ -14,6 +14,8 @@ public class UnitScript_Knight : UnitScript
             {
                 ammo_Current--;
                 actionCount--;
+                PlaySound_Ability();
+
             }
         }
 
