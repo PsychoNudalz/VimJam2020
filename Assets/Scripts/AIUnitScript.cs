@@ -251,7 +251,7 @@ public class AIUnitScript : UnitScript
         //weaponList.Add(tempWeapon);
         animator.SetTrigger("Attack");
 
-        disableAimObject();
+        disableAimObject_Attack();
         actionCount--;
     }
 

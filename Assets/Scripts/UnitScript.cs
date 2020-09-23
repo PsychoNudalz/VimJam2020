@@ -7,7 +7,7 @@ public class UnitScript : MonoBehaviour
 {
     [Header("Components")]
     public Rigidbody2D rb;
-    public GameObject aimObject;
+    public GameObject aimObject_Attack;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     public AbilityClassScript abilityClassScript;
@@ -47,6 +47,12 @@ public class UnitScript : MonoBehaviour
     public int temp_AC = 0;
     public List<UnitScript> targetUnits;
     public Vector2 targetPosition;
+
+    [Header("Interaction")]
+    public LayerMask layerMask_interactable;
+    public InteractableObjectScript interactTarget;
+    public GameObject aimObject_Interactable;
+    //public List<InteractableObjectScript> targetInteractable;
 
 
     [Header("Action counter")]
@@ -155,7 +161,8 @@ public class UnitScript : MonoBehaviour
     public virtual void endTurn()
     {
         stopMove();
-        disableAimObject();
+        disableAimObject_Attack();
+        disableAimObject_Interactable();
         highlightTargets_Off();
         isTurn = false;
     }
@@ -228,17 +235,17 @@ public class UnitScript : MonoBehaviour
         GameObject tempWeapon = Instantiate(mainWeapon, transform.position, transform.rotation);
         tempWeapon.GetComponent<WeaponScript>().attack(targetPosition, toHit, baseDamage, weaponDamage);
         //weaponList.Add(tempWeapon);
-        disableAimObject();
+        disableAimObject_Attack();
         animator.SetTrigger("Attack");
         highlightTargets_Off();
         actionCount--;
     }
 
 
-    public void updateAimPoint(Vector3 pos)
+    public void updateAimPoint_Attack(Vector3 pos)
     {
         pos.z = 0;
-        aimObject.SetActive(true);
+        aimObject_Attack.SetActive(true);
         Vector3 dir = pos - transform.position;
         if (dir.magnitude > attackRange)
         {
@@ -257,12 +264,12 @@ public class UnitScript : MonoBehaviour
             targetPosition = hit.point;
         }
 
-        aimObject.transform.position = targetPosition;
-        updateTargets(targetTag);
+        aimObject_Attack.transform.position = targetPosition;
+        updateTargets_Attack(targetTag);
     }
 
 
-    void updateTargets(List<string> targetList)
+    void updateTargets_Attack(List<string> targetList)
     {
         highlightTargets_Off();
         targetUnits = new List<UnitScript>();
@@ -279,10 +286,10 @@ public class UnitScript : MonoBehaviour
         highlightTargets_On(Color.red);
     }
 
-    public void disableAimObject()
+    public void disableAimObject_Attack()
     {
-        updateAimPoint(transform.position);
-        aimObject.SetActive(false);
+        updateAimPoint_Attack(transform.position);
+        aimObject_Attack.SetActive(false);
     }
 
     //Ability
@@ -337,8 +344,90 @@ public class UnitScript : MonoBehaviour
         return;
     }
 
+    //Interact
+    public void updateAimPoint_Interactable(Vector3 pos)
+    {
+        pos.z = 0;
+        aimObject_Interactable.SetActive(true);
+        Vector3 dir = pos - transform.position;
+        if (dir.magnitude > interactionRange)
+        {
+            targetPosition = dir.normalized * interactionRange + transform.position;
+        }
+        else
+        {
+            targetPosition = pos;
+        }
+        dir = (Vector3)targetPosition - transform.position;
 
 
+
+        aimObject_Interactable.transform.position = targetPosition;
+        List<string> interactableList = new List<string>();
+        interactableList.Add("Interactable");
+        updateTargets_Interactable(interactableList);
+    }
+
+
+    void updateTargets_Interactable(List<string> targetList)
+    {
+        /*
+        foreach(InteractableObjectScript i in targetInteractable)
+        {
+            i.setOutline(0f, Color.white);
+        }
+        targetInteractable = new List<InteractableObjectScript>();
+        */
+        if (interactTarget != null)
+        {
+            interactTarget.setOutline(0f, Color.white);
+
+        }
+        interactTarget = null;
+        Vector2 dis = (targetPosition - (Vector2)transform.position);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dis.normalized, dis.magnitude, layerMask_interactable);
+
+        if (hit)
+        {
+
+            interactTarget = hit.collider.GetComponent<InteractableObjectScript>();
+            interactTarget.setOutline(1f, Color.white);
+
+        }
+        /*
+        foreach (RaycastHit2D h in hits)
+        {
+            if (targetList.Contains(h.collider.tag))
+            {
+                targetInteractable.Add(h.collider.GetComponent<InteractableObjectScript>());
+            }
+        }
+        foreach (InteractableObjectScript i in targetInteractable)
+        {
+            i.setOutline(1f, Color.white);
+        }
+        */
+    }
+
+    public void disableAimObject_Interactable()
+    {
+        updateAimPoint_Interactable(transform.position);
+        aimObject_Interactable.SetActive(false);
+    }
+
+
+
+    public void useInteractable()
+    {
+        if (interactTarget != null)
+        {
+            if (interactTarget.activeObject())
+            {
+
+                interactionCount--;
+            }
+        }
+    }
 
 
     //Highlight

@@ -8,7 +8,7 @@ public class TurnHandler : MonoBehaviour
 {
     public InputMaster controls;
     private Mouse mouse;
-    //public Camera camera;
+    public Camera camera;
     public GameObject rangeCircle;
 
     public UnitScript currentUnit;
@@ -20,6 +20,7 @@ public class TurnHandler : MonoBehaviour
     private void Awake()
     {
         mouse = InputSystem.GetDevice<Mouse>();
+        camera = FindObjectOfType<Camera>();
         controls = new InputMaster();
         controls.Player.Aim.performed += _ => setAiming(true);
         controls.Player.Aim.canceled += _ => setAiming(false);
@@ -39,6 +40,13 @@ public class TurnHandler : MonoBehaviour
                 if (aiming)
                 {
                     selectLocation();
+                }
+                break;
+            case TurnEnum.INTERACTION:
+                if(aiming)
+                {
+                    selectLocation();
+
                 }
                 break;
         }
@@ -61,6 +69,7 @@ public class TurnHandler : MonoBehaviour
 
     public void setCurrentState_Action()
     {
+        currentUnit.disableAimObject_Interactable();
         currentState = TurnEnum.ACTION;
         currentUnit.changeState();
         Debug.Log(currentUnit.name + " selected state Action");
@@ -68,7 +77,7 @@ public class TurnHandler : MonoBehaviour
 
     public void setCurrentState_Interation()
     {
-        currentUnit.disableAimObject();
+        currentUnit.disableAimObject_Attack();
         currentState = TurnEnum.INTERACTION;
         currentUnit.changeState();
 
@@ -77,7 +86,8 @@ public class TurnHandler : MonoBehaviour
     }
     public void setCurrentState_Movement()
     {
-        currentUnit.disableAimObject();
+        currentUnit.disableAimObject_Interactable();
+        currentUnit.disableAimObject_Attack();
         currentState = TurnEnum.MOVEMENT;
         currentUnit.changeState();
         Debug.Log(currentUnit.name + " selected state Movement");
@@ -106,6 +116,11 @@ public class TurnHandler : MonoBehaviour
         currentUnit.pickUpLoot();
     }
 
+    public void currentUnit_Use()
+    {
+        currentUnit.useInteractable();
+    }
+
 
 
     void moveCurrentUnit(Vector2 dir)
@@ -127,8 +142,11 @@ public class TurnHandler : MonoBehaviour
         if (currentState.Equals(TurnEnum.ACTION))
         {
             //currentUnit.targetPosition = ;
-            currentUnit.updateAimPoint(camera.ScreenToWorldPoint(mouse.position.ReadValue()));
+            currentUnit.updateAimPoint_Attack(camera.ScreenToWorldPoint(mouse.position.ReadValue()));
 
+        } else if (currentState.Equals(TurnEnum.INTERACTION))
+        {
+            currentUnit.updateAimPoint_Interactable(camera.ScreenToWorldPoint(mouse.position.ReadValue()));
         }
     }
 

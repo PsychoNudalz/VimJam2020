@@ -78,6 +78,7 @@ public class ActionBarScript : MonoBehaviour
 
     public void currentUnit_Use()
     {
+        turnHandler.currentUnit_Use();
         resetBar();
     }
 

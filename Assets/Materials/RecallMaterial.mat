@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Tamerang
+  m_Name: RecallMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 819c4e253d0a44746bf76f4d85975ecf,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
@@ -21,16 +21,16 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: b1f560a007cfa7d4f8371771cbc97ffc, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainText:
-        m_Texture: {fileID: 2800000, guid: b1f560a007cfa7d4f8371771cbc97ffc, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8152c3b34afe8c74ab62724f10d1a620, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _ActiveOutline: 0
     - _Outline: 0
-    - _Outline_Size: 10
+    - _Outline_Size: 1.46
     m_Colors:
-    - _Colour: {r: 1, g: 0.6261432, b: 0, a: 1}
+    - _Colour: {r: 1, g: 1, b: 1, a: 1}

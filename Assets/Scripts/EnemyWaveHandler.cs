@@ -51,7 +51,7 @@ public class EnemyWaveHandler : MonoBehaviour
     public void addEnemiesToTurnOrder()
     {
         BattleSystem b = FindObjectOfType<BattleSystem>();
-        foreach(GameObject u in enemyList)
+        foreach (GameObject u in enemyList)
         {
             b.addTurn(u.GetComponent<UnitScript>());
         }
@@ -62,8 +62,12 @@ public class EnemyWaveHandler : MonoBehaviour
     {
         if (enemyWaveTriggerType == EnemyWaveTriggerType.ZONE && !spawnWave)
         {
-            spawnEnemies();
-            spawnWave = true;
+            if (collision.CompareTag("Player"))
+            {
+
+                spawnEnemies();
+                spawnWave = true;
+            }
         }
     }
 }

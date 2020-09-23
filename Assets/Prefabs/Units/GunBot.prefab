@@ -645,7 +645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7884645414899086115}
-  aimObject: {fileID: 6805052908644035940}
+  aimObject_Attack: {fileID: 6805052908644035940}
   animator: {fileID: 5230397686398880321}
   spriteRenderer: {fileID: 1239161631779209668}
   abilityClassScript: {fileID: 0}
@@ -682,6 +682,11 @@ MonoBehaviour:
   temp_AC: 0
   targetUnits: []
   targetPosition: {x: 0, y: 0}
+  layerMask_interactable:
+    serializedVersion: 2
+    m_Bits: 0
+  interactTarget: {fileID: 0}
+  aimObject_Interactable: {fileID: 6805052908644035940}
   actionMax: 3
   actionCount: 0
   interactionMax: 1

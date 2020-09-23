@@ -15,8 +15,10 @@ public class QuestManager : MonoBehaviour
 
 
     [Header("Objective")]
+    public PlayerManagerScript player;
     public ObjectiveEnum objectiveEnum = ObjectiveEnum.COLLECTION;
     public int targetValue = 3;
+
 
 
     private void Awake()
@@ -25,6 +27,8 @@ public class QuestManager : MonoBehaviour
         {
             lootManager = FindObjectOfType<LootManager>();
         }
+
+        player = FindObjectOfType<PlayerManagerScript>();
     }
 
     private void Start()
@@ -55,5 +59,16 @@ public class QuestManager : MonoBehaviour
             enemyManager = FindObjectOfType<EnemyManager>();
         }
         enemyManager.setEnemyManager(totalEnemyCost, waveAmount, maxCost);
+    }
+
+    public bool checkPlayerComplete()
+    {
+        switch (objectiveEnum)
+        {
+            case (ObjectiveEnum.COLLECTION):
+                return player.loot.Count >= targetValue;
+        }
+
+        return false;
     }
 }

@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class BattleSystem : MonoBehaviour
 {
+    [Header("Turn")]
     public List<UnitScript> turnOrder;
     public int turnOrderPointer = 0;
     public UnitScript currentTurn;
     public TurnHandler turnHandler;
+    [Header("Camera")]
     public Transform cameraFocusPoint;
-    public ActionBarScript actionBarScript;
     public Cinemachine.CinemachineVirtualCamera cinemachine;
+    [Header("UI")]
+    public ActionBarScript actionBarScript;
+    public BattleUIScript battleUIScript;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +30,11 @@ public class BattleSystem : MonoBehaviour
         {
             cinemachine = FindObjectOfType<Cinemachine.CinemachineVirtualCamera>();
         }
+        if (battleUIScript == null)
+        {
+            battleUIScript = FindObjectOfType<BattleUIScript>();
+        }
+        UIUpdate();
     }
 
 
@@ -73,7 +82,8 @@ public class BattleSystem : MonoBehaviour
 
         }
         actionBarScript.resetBar();
-        //setCameraLockAt(currentTurn.transform);
+
+        UIUpdate();
     }
 
     public void addTurn(UnitScript u)
@@ -88,13 +98,15 @@ public class BattleSystem : MonoBehaviour
 
     void cleanTurnOrder()
     {
+        List<UnitScript> temp = new List<UnitScript>();
         foreach(UnitScript u in turnOrder)
         {
-            if (u == null)
+            if (u != null)
             {
-                turnOrder.Remove(u);
+                temp.Add(u);
             }
         }
+        turnOrder = temp;
     }
 
     //Camera control
@@ -122,5 +134,20 @@ public class BattleSystem : MonoBehaviour
     public void setCameraLockAt(Transform t)
     {
         cinemachine.Follow = t;
+    }
+
+    //UI
+    public void UIUpdate()
+    {
+        print("Update UI");
+
+        //Turn Order
+        List<UnitScript> nextFewTurns = new List<UnitScript>();
+        for(int i = 0; i < 7; i++)
+        {
+            nextFewTurns.Add(turnOrder[(turnOrderPointer + i) % turnOrder.Count]);
+        }
+
+        battleUIScript.updateTurnOrder(nextFewTurns);
     }
 }

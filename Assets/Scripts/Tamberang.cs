@@ -70,7 +70,7 @@ public class Tamberang : AbilityClassScript
                 }
                 catch (System.Exception e)
                 {
-                    Debug.LogWarning(e);
+                    //Debug.LogWarning(e);
 
                 }
             }

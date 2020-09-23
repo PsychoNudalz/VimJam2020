@@ -107,8 +107,9 @@ MonoBehaviour:
   waveAmount: 3
   maxCost: 3
   lootManager: {fileID: 1310682978367092186}
+  player: {fileID: 0}
   objectiveEnum: 0
-  targetValue: 10
+  targetValue: 3
 --- !u!114 &8398270894344079192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,8 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f46bcfae3b057c94fa41bfbb7008373b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitTurns: []
-  unitTurnsPointer: 0
+  turnOrder: []
+  turnOrderPointer: 0
   currentTurn: {fileID: 0}
   turnHandler: {fileID: 8101148635956379644}
   cameraFocusPoint: {fileID: 6343608181654353933}
@@ -269,10 +270,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d74c5c948c3cf8242945ee39b13a1c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  potentialEnemies: []
-  totalEnemyCost: 10
+  potentialEnemies:
+  - {fileID: 6213967510402884447, guid: dc9c9d27a3496074d914f57582374606, type: 3}
+  - {fileID: 4136397647053283328, guid: 5a5165b7775f4b74395f727312cca049, type: 3}
+  - {fileID: 6775119135966845148, guid: 55127a8904a5be442810e9156c97c3f8, type: 3}
+  - {fileID: 204136361399561454, guid: f33aead77aa064f40befba5d03fd35fd, type: 3}
+  - {fileID: 2714902563577545288, guid: 55db8cd442fce194494da9958db10620, type: 3}
+  - {fileID: 3904428611490522458, guid: c8bab2cc1af6e3c45aeb470244ae2484, type: 3}
+  totalEnemyCost: 20
   waveAmount: 3
-  maxCost: 3
+  maxCost: 6
   cost_Current: 0
   spawnZonesHandler_Enemy: {fileID: 0}
   enemyWaveHandlers: []

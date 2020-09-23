@@ -137,7 +137,7 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    public void Play(string sound)
+    public bool Play(string sound)
     {
         //Sound s = Array.Find(sounds, item => item.name == sound);
         Sound s = findSound(sound);
@@ -151,7 +151,7 @@ public class SoundManager : MonoBehaviour
             if (s == null)
             {
                 Debug.LogWarning("Sound: " + sound + " not found!");
-                return;
+                return false;
 
             }
         }
@@ -160,10 +160,24 @@ public class SoundManager : MonoBehaviour
         s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
 
         s.source.Play();
+        return true;
     }
 
     public void Play(Sound s)
     {
-        Play(s.name);
+        if (!Play(s.name))
+        {
+            print("Sound " + s.name+" Not found, Force playing");
+            sounds.Add(s);
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.loop = s.loop;
+            s.source.playOnAwake = s.playOnAwake;
+            s.source.spatialBlend = s.spatialBlend;
+            s.source.reverbZoneMix = s.reverbZoneMix;
+            s.source.minDistance = s.minDistance;
+            s.source.maxDistance = s.maxDistance;
+            s.source.Play();
+        }
     }
 }
