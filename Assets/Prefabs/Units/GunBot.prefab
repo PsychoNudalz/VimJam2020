@@ -521,6 +521,7 @@ GameObject:
   - component: {fileID: 2170295833432722762}
   - component: {fileID: 2170295833432722763}
   - component: {fileID: 8451738691115240964}
+  - component: {fileID: -4186072825237687447}
   m_Layer: 11
   m_Name: GunBot
   m_TagString: Enemy
@@ -710,7 +711,7 @@ MonoBehaviour:
   detectionRange: 100
   endOfTurnWaitTime: 0.5
   timeBetweenAction: 0.2
-  randomLootSpawnScript: {fileID: 0}
+  randomLootSpawnScript: {fileID: -4186072825237687447}
   aIPath: {fileID: 2170295833432722764}
   aIDestinationSetter: {fileID: 2170295833432722763}
 --- !u!114 &2170295833432722763
@@ -743,6 +744,25 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-4186072825237687447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7800803983243649885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13622e3ca6f43e54abaf122463a7189b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootValue: 50
+  spawnZone: 1
+  potentialLoot:
+  - {fileID: 7656501773129702753, guid: f5839cbfc2c50b7439b2f7d1265c9302, type: 3}
+  - {fileID: 5307010655611184239, guid: 15c51b8d4ed61f34089bfd5e080088d2, type: 3}
+  - {fileID: 3649166128134985994, guid: 19c504cdda2be1f4e8c5813bc9b205e8, type: 3}
+  deathLoot: []
 --- !u!1 &7941067058640369392
 GameObject:
   m_ObjectHideFlags: 0

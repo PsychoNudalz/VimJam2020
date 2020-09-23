@@ -10,6 +10,7 @@ TagManager:
   - HalfCover
   - Map
   - Loot
+  - SpawnArea
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - PlayerCharacter
   - HalfCover
   - Loot
-  - 
+  - SpawnArea
   - 
   - 
   - 
@@ -49,6 +50,9 @@ TagManager:
     locked: 0
   - name: Floorground
     uniqueID: 3104511233
+    locked: 0
+  - name: SpawnAreaDebug
+    uniqueID: 3297835475
     locked: 0
   - name: Character
     uniqueID: 4048036935
