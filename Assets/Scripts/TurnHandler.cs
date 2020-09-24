@@ -15,6 +15,9 @@ public class TurnHandler : MonoBehaviour
     public TurnEnum currentState = TurnEnum.NONE;
     [SerializeField] bool aiming = false;
 
+    [Header("Circle")]
+    public float size;
+    
 
     // Start is called before the first frame update
     private void Awake()

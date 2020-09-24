@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 40638844, guid: ed7bfaa4936c7d0459dbac8b5423f702, type: 3}
       propertyPath: AC
-      value: 17
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 40638844, guid: ed7bfaa4936c7d0459dbac8b5423f702, type: 3}
       propertyPath: level
@@ -30,6 +30,10 @@ PrefabInstance:
     - target: {fileID: 40638844, guid: ed7bfaa4936c7d0459dbac8b5423f702, type: 3}
       propertyPath: actionMax
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 40638844, guid: ed7bfaa4936c7d0459dbac8b5423f702, type: 3}
+      propertyPath: health
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 692115776997170693, guid: ed7bfaa4936c7d0459dbac8b5423f702,
         type: 3}
@@ -91,6 +95,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5ec30b901cef6024d96c4a5117b60147, type: 2}
+    - target: {fileID: 4319565161812417069, guid: ed7bfaa4936c7d0459dbac8b5423f702,
+        type: 3}
+      propertyPath: lootValue
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 8240590523767207787, guid: ed7bfaa4936c7d0459dbac8b5423f702,
         type: 3}
       propertyPath: m_Name

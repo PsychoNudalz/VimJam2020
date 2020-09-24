@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 40638844, guid: ed7bfaa4936c7d0459dbac8b5423f702, type: 3}
       propertyPath: health
-      value: 30
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 40638844, guid: ed7bfaa4936c7d0459dbac8b5423f702, type: 3}
       propertyPath: AC
@@ -106,6 +106,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 192968e6844194c4cb5aa01193fcc2e2, type: 2}
+    - target: {fileID: 4319565161812417069, guid: ed7bfaa4936c7d0459dbac8b5423f702,
+        type: 3}
+      propertyPath: lootValue
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 8240590523767207787, guid: ed7bfaa4936c7d0459dbac8b5423f702,
         type: 3}
       propertyPath: m_Name

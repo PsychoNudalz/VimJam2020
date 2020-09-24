@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BattleSystem : MonoBehaviour
 {
+    [Header("Component")]
+    public QuestManager questManager;
+    public PlayerManagerScript playerManager;
+
     [Header("Turn")]
     public List<UnitScript> turnOrder;
     public int turnOrderPointer = 0;
@@ -16,6 +20,7 @@ public class BattleSystem : MonoBehaviour
     public ActionBarScript actionBarScript;
     public BattleUIScript battleUIScript;
     public UIHandlerScript uIHandlerScript;
+     
 
     // Start is called before the first frame update
     void Start()
@@ -39,11 +44,20 @@ public class BattleSystem : MonoBehaviour
         {
             uIHandlerScript = FindObjectOfType<UIHandlerScript>();
         }
+        if(questManager == null)
+        {
+            questManager = GetComponent<QuestManager>();
+        }
+        if (playerManager == null)
+        {
+            playerManager = FindObjectOfType<PlayerManagerScript>();
+        }
+
         UIUpdate();
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (currentTurn == null)
         {
@@ -54,6 +68,7 @@ public class BattleSystem : MonoBehaviour
             focusPointFollow(currentTurn.transform.position);
 
         }
+        updateObjectiveText();
 
     }
 
@@ -159,5 +174,10 @@ public class BattleSystem : MonoBehaviour
     public void showGameOver()
     {
         uIHandlerScript.showGameOver();
+    }
+
+    public void updateObjectiveText()
+    {
+        battleUIScript.updateObjectiveText(questManager.getMissionObjective());
     }
 }
