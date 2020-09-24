@@ -26,14 +26,26 @@ public class QuestManager : MonoBehaviour
         if (lootManager == null)
         {
             lootManager = FindObjectOfType<LootManager>();
+        } if (enemyManager == null)
+        {
+            enemyManager = FindObjectOfType<EnemyManager>();
         }
 
-        player = FindObjectOfType<PlayerManagerScript>();
     }
 
     private void Start()
     {
-        StartLevel();
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (player == null)
+        {
+            player = FindObjectOfType<PlayerManagerScript>();
+            StartLevel(player.questType);
+
+        }
     }
 
     public void StartLevel(QuestType q = null)

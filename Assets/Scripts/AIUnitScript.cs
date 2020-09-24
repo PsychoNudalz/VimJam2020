@@ -51,12 +51,12 @@ public class AIUnitScript : UnitScript
         }
     }
 
-    IEnumerator  endAI()
+    IEnumerator endAI()
     {
         runAI = false;
         isMoving = false;
         animator.SetFloat("Speed", 0);
-        yield return new WaitForSeconds(endOfTurnWaitTime); 
+        yield return new WaitForSeconds(endOfTurnWaitTime);
         battleSystem.nextTurn();
 
     }
@@ -79,8 +79,10 @@ public class AIUnitScript : UnitScript
         }
 
 
+
         if (!canMove())
         {
+
             stopMoveToTarget();
         }
 
@@ -96,13 +98,26 @@ public class AIUnitScript : UnitScript
                 StartCoroutine(pause());
             }
         }
-        else if (!canAction())
+        if (checkTargetInAttackRange() && !canAction() && canMove())
         {
+            stopMoveToTarget();
             StartCoroutine(endAI());
         }
+
         else if (isMoving && canMove())
         {
             moveUnit(transform.position - locationLastFrame);
+            if (checkTargetInAttackRange() && !canAction())
+            {
+                stopMoveToTarget();
+                StartCoroutine(endAI());
+            }
+        }
+        else if (!canMove() && canAction())
+        {
+            print(name + "AI dashing");
+            dash();
+            startMoveToTarget();
         }
         else if (canMove())
         {
@@ -114,6 +129,7 @@ public class AIUnitScript : UnitScript
         }
         else
         {
+            stopMoveToTarget();
             StartCoroutine(endAI());
 
         }
@@ -133,7 +149,7 @@ public class AIUnitScript : UnitScript
             {
                 //print(r.collider.name);
 
-                if (!w.isDead()&& Physics2D.Raycast(r.transform.position, transform.position - r.transform.position, attackRange, layerMask_insight).collider == null)
+                if (!w.isDead() && Physics2D.Raycast(r.transform.position, transform.position - r.transform.position, attackRange, layerMask_insight).collider == null)
                 {
                     //print(r.collider.name + " added to list");
                     targetList.Add(r.collider.gameObject);
@@ -153,7 +169,7 @@ public class AIUnitScript : UnitScript
         RaycastHit2D[] tempGO = Physics2D.CircleCastAll(transform.position, detectionRange * 10f, new Vector2(), 0, base.layerMask_target);
         foreach (RaycastHit2D r in tempGO)
         {
-            if (r.collider.TryGetComponent<UnitScript>(out UnitScript w)&& !w.isDead())
+            if (r.collider.TryGetComponent<UnitScript>(out UnitScript w) && !w.isDead())
             {
                 targetList.Add(r.collider.gameObject);
 
@@ -227,8 +243,8 @@ public class AIUnitScript : UnitScript
         if (canMove())
         {
             moveDirection = dir;
-            animator.SetFloat("Speed", moveDirection.magnitude*100f);
-            animator.SetFloat("H_Speed", moveDirection.x*100f);
+            animator.SetFloat("Speed", moveDirection.magnitude * 100f);
+            animator.SetFloat("H_Speed", moveDirection.x * 100f);
             movement_current -= dir.magnitude;
 
         }

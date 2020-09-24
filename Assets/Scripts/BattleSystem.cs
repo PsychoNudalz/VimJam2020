@@ -15,6 +15,7 @@ public class BattleSystem : MonoBehaviour
     [Header("UI")]
     public ActionBarScript actionBarScript;
     public BattleUIScript battleUIScript;
+    public UIHandlerScript uIHandlerScript;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,10 @@ public class BattleSystem : MonoBehaviour
         if (battleUIScript == null)
         {
             battleUIScript = FindObjectOfType<BattleUIScript>();
+        }
+        if (uIHandlerScript == null)
+        {
+            uIHandlerScript = FindObjectOfType<UIHandlerScript>();
         }
         UIUpdate();
     }
@@ -149,5 +154,10 @@ public class BattleSystem : MonoBehaviour
         }
 
         battleUIScript.updateTurnOrder(nextFewTurns);
+    }
+
+    public void showGameOver()
+    {
+        uIHandlerScript.showGameOver();
     }
 }

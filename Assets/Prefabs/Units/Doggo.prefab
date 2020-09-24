@@ -664,7 +664,7 @@ MonoBehaviour:
   unitName: Doggo
   level: 1
   isPlayer: 1
-  speed: 3
+  speed: 4
   health: 20
   AC: 13
   movement: 7

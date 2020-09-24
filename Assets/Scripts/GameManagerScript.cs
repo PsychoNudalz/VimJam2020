@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public PlayerManagerScript playerManagerScript;
+    public BattleSystem battleSystem;
+
+    private void Start()
     {
-        
+        if (playerManagerScript == null)
+        {
+            playerManagerScript = FindObjectOfType<PlayerManagerScript>();
+        }
+        playerManagerScript.activateUnits();
+        if (battleSystem == null)
+        {
+            battleSystem = FindObjectOfType<BattleSystem>();
+        }
+
+        if(playerManagerScript!= null)
+        {
+        foreach(UnitScript u in playerManagerScript.units)
+            {
+                battleSystem.addTurn(u);
+            }
+
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (playerManagerScript.isPlayersDead())
+        {
+            battleSystem.showGameOver();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

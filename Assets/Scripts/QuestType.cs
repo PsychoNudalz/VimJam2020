@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class QuestType 
 {
     public ObjectiveEnum objectiveEnum = ObjectiveEnum.COLLECTION;
@@ -17,5 +18,35 @@ public class QuestType
         this.totalEnemyCost = totalEnemyCost;
         this.waveAmount = waveAmount;
         this.maxCost = maxCost;
+    }
+
+    public override string ToString()
+    {
+        string tempS = getObjectiveDescription() + "\n\n" +
+            "Potential Number Of Enemies: " + potentialNumberOfEnemies() + "\n\n" +
+            "Max Enemy Level: "+maxCost;
+        return tempS;
+    }
+
+    public  string getObjectiveDescription()
+    {
+        string tempS = "Objective: ";
+        switch (objectiveEnum)
+        {
+            case (ObjectiveEnum.COLLECTION):
+                tempS += " Collect Loot Pieces\n0/" + targetValue;
+                break;
+        }
+        return tempS;
+    }
+
+    public int potentialNumberOfEnemies()
+    {
+        return Mathf.FloorToInt(totalEnemyCost / Mathf.RoundToInt(maxCost+.2f / 2f));
+    }
+
+    public float getQuestScore()
+    {
+        return (totalEnemyCost * targetValue) / 10f;
     }
 }

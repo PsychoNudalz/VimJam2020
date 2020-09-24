@@ -7,6 +7,7 @@ public class UIHandlerScript : MonoBehaviour
     public BattleUIScript battleUIScript;
     public StatesMenuUIScript statesMenuUIScript;
     public InventoryUIScript inventoryUIScript;
+    public GameOverUIScript gameOverUIScript;
 
     public void disableAllMenu()
     {
@@ -14,6 +15,7 @@ public class UIHandlerScript : MonoBehaviour
         statesMenuUIScript.gameObject.SetActive(false);
         inventoryUIScript.gameObject.SetActive(false);
         statesMenuUIScript.upgrade_SetActive(false);
+        gameOverUIScript.gameObject.SetActive(false);
     }
 
     public void battleMode()
@@ -51,4 +53,10 @@ public class UIHandlerScript : MonoBehaviour
             upradeMode();
         }
     }
+
+    public void showGameOver()
+    {
+        gameOverUIScript.gameObject.SetActive(true);
+    }
+
 }

@@ -114,6 +114,13 @@ public class TurnHandler : MonoBehaviour
         currentState = TurnEnum.NONE;
 
     }
+    public void currentUnit_Dash()
+    {
+        currentUnit.dash();
+        currentState = TurnEnum.NONE;
+
+    }
+
 
     public void currentUnit_PickUp()
     {

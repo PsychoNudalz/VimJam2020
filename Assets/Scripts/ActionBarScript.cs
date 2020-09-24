@@ -22,6 +22,11 @@ public class ActionBarScript : MonoBehaviour
         turnHandler = GameObject.FindObjectOfType<TurnHandler>();
         battleSystem = GameObject.FindObjectOfType<BattleSystem>();
     }
+
+    private void Start()
+    {
+        
+    }
     private void FixedUpdate()
     {
         updateCounters();
@@ -77,6 +82,12 @@ public class ActionBarScript : MonoBehaviour
     public void currentUnit_Ability()
     {
         turnHandler.currentUnit_Ability();
+        resetBar();
+    }
+
+    public void currentUnit_Dash()
+    {
+        turnHandler.currentUnit_Dash();
         resetBar();
     }
 
@@ -158,8 +169,12 @@ public class ActionBarScript : MonoBehaviour
     public void updateCounters()
     {
         UnitScript temp = turnHandler.currentUnit;
+        if (temp != null)
+        {
+
         actionCounterText.text = temp.actionCount.ToString();
         interactionCounterText.text = temp.interactionCount.ToString();
         movementCounterText.text = (temp.getRange_Movement()*5f).ToString("0");
+        }
     }
 }

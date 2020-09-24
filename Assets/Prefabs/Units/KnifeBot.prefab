@@ -572,7 +572,7 @@ MonoBehaviour:
   repathRate: 1
   canSearch: 0
   canMove: 1
-  maxSpeed: 3
+  maxSpeed: 5
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -636,11 +636,12 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1093269148401063410}
   abilityClassScript: {fileID: 0}
   healthTextBox: {fileID: 293279106703391124}
+  ammoTextBox: {fileID: 0}
   damagePopUpManagerScript: {fileID: 0}
   unitName: KnifeBot
   level: 2
   isPlayer: 0
-  speed: 3
+  speed: 5
   health: 15
   AC: 8
   movement: 4

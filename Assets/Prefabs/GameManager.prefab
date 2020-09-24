@@ -127,8 +127,10 @@ MonoBehaviour:
   currentTurn: {fileID: 0}
   turnHandler: {fileID: 8101148635956379644}
   cameraFocusPoint: {fileID: 6343608181654353933}
-  actionBarScript: {fileID: 0}
   cinemachine: {fileID: 0}
+  actionBarScript: {fileID: 0}
+  battleUIScript: {fileID: 0}
+  uIHandlerScript: {fileID: 0}
 --- !u!114 &8101148635956379644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,6 +364,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210495b75fa11d84ebc756b52ee61939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerManagerScript: {fileID: 0}
+  battleSystem: {fileID: 0}
 --- !u!114 &6343608182109879556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,7 +381,7 @@ MonoBehaviour:
   damagePopUpPF: {fileID: 3461549868637641109, guid: 70a60d1bc892acb4c965bbea7c383230,
     type: 3}
   pool: []
-  poolSize: 10
+  poolSize: 50
   poolPointer: -1
 --- !u!1 &9133651253108215340
 GameObject:

@@ -133,6 +133,15 @@ public class UnitScript : MonoBehaviour
             displayCurrentStates();
         }
 
+        if(soundManager == null)
+        {
+            soundManager = FindObjectOfType<SoundManager>();
+        }
+        if (damagePopUpManagerScript == null)
+        {
+            damagePopUpManagerScript = FindObjectOfType<DamagePopUpManagerScript>();
+        }
+
     }
 
     //Turn control
@@ -185,6 +194,12 @@ public class UnitScript : MonoBehaviour
             locationLastFrame = transform.position;
 
         }
+        else
+        {
+            movement_current = 0;
+            interactionCount = 0;
+            actionCount = 0;
+        }
     }
 
     public void changeState()
@@ -226,6 +241,16 @@ public class UnitScript : MonoBehaviour
 
         animator.SetFloat("Speed", 0);
         animator.SetFloat("H_Speed", 0);
+    }
+
+
+    public void dash()
+    {
+        if (canAction())
+        {
+            movement_current += movement;
+            actionCount--;
+        }
     }
 
 
@@ -315,6 +340,11 @@ public class UnitScript : MonoBehaviour
 
         }
     }
+
+
+
+
+
 
     //Pick up loot
     public void pickUpLoot()
@@ -481,13 +511,13 @@ public class UnitScript : MonoBehaviour
             damage = 0;
         }
 
-        displayDamage(damage);
         health_current -= damage;
         if (health_current <= 0)
         {
             die();
 
         }
+        displayDamage(damage);
         displayCurrentStates();
         print(name + " damge " + damage + " HP " + health_current);
     }

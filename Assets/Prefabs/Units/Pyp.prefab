@@ -406,7 +406,7 @@ MonoBehaviour:
   unitName: Pyp
   level: 1
   isPlayer: 1
-  speed: 3
+  speed: 4
   health: 25
   AC: 12
   movement: 6
@@ -425,7 +425,7 @@ MonoBehaviour:
   layerMask_insight:
     serializedVersion: 2
     m_Bits: 512
-  attackRange: 10
+  attackRange: 9
   abilityRange: 10
   interactionRange: 2
   health_current: 0

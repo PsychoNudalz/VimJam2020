@@ -14,6 +14,9 @@ public class PlayerManagerScript : MonoBehaviour
     [Header("Units")]
     public List<UnitScript> units;
 
+    [Header("Current Quest")]
+    public QuestType questType;
+
     public static PlayerManagerScript instance;
 
     private void Awake()
@@ -24,7 +27,8 @@ public class PlayerManagerScript : MonoBehaviour
         }
         else
         {
-            Destroy(instance);
+            questType = instance.questType;
+            Destroy(instance.gameObject);
         }
         //inventoryUIScript = GameObject.FindObjectOfType<InventoryUIScript>();
 
@@ -67,6 +71,8 @@ public class PlayerManagerScript : MonoBehaviour
         return false;
     }
 
+
+
     public int checkHasLoot(string id)
     {
         for (int i = 0; i < loot.Count; i++)
@@ -95,6 +101,38 @@ public class PlayerManagerScript : MonoBehaviour
         }
     }
 
+    public (int, string) getLoot(int i)
+    {
+        if (i < loot.Count)
+        {
+            LootPickupScript tempLoot = loot[i].GetComponent<LootPickupScript>();
+            return (tempLoot.lootValue, tempLoot.lootID);
+        }
+        else
+        {
+            return (0, null);
+        }
+    }
+
+    public void sellLoot(int i)
+    {
+        if (getLoot(i).Item2 != null)
+        {
+            LootPickupScript tempLoot = loot[i].GetComponent<LootPickupScript>();
+
+            removeLoot(-1, tempLoot.lootID);
+            addMoney(tempLoot.lootValue);
+        }
+    }
+
+    public void sellAllLoot()
+    {
+        for (int i = 0; i < loot.Count; i++)
+        {
+            sellLoot(i);
+        }
+    }
+
     //Update UI
 
     public void setInventoryUI(InventoryUIScript i)
@@ -106,6 +144,25 @@ public class PlayerManagerScript : MonoBehaviour
     {
         inventoryUIScript.updateLootDisplay(money, loot);
     }
+    public float getAverageLevel()
+    {
+        int tempI = 0;
+        foreach(UnitScript u in units)
+        {
+            tempI += u.level;
+        }
+        return tempI / units.Count;
+    }
+
+    public float getTotalLevel()
+    {
+        int tempI = 0;
+        foreach (UnitScript u in units)
+        {
+            tempI += u.level;
+        }
+        return tempI;
+    }
 
 
 
@@ -115,11 +172,14 @@ public class PlayerManagerScript : MonoBehaviour
         foreach (UnitScript u in units)
         {
             u.gameObject.SetActive(true);
+            //FindObjectOfType<BattleSystem>().addTurn(u);
         }
+
     }
 
     public void deactiveUnits()
     {
+        SavePlayer();
         foreach (UnitScript u in units)
         {
             u.gameObject.SetActive(false);
@@ -153,6 +213,32 @@ public class PlayerManagerScript : MonoBehaviour
                 units[i].saveDataToStates(data.unitStates[i]);
             }
         }
+    }
+
+   
+
+    //Displaying stats
+
+    public override string ToString()
+    {
+        string returnS =
+            "Current Party \n" +
+            "Avg. Level: "+(Mathf.RoundToInt(getAverageLevel()))+"\n" +
+            "Party Gold: "+money.ToString();
+        return returnS;
+    }
+
+    //Check game over
+    public bool isPlayersDead()
+    {
+        foreach(UnitScript u in units)
+        {
+            if (!u.isDead())
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

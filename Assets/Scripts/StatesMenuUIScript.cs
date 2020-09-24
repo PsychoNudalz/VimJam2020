@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
+
 
 public class StatesMenuUIScript : MonoBehaviour
 {
@@ -18,6 +21,12 @@ public class StatesMenuUIScript : MonoBehaviour
     [Header("Upgrade")]
     public bool isUpgradeMode;
     public GameObject upgradMenu;
+
+    [Header("Sell")]
+    //public List<Button> sellButtons;
+    public List<TextMeshProUGUI> sellButtonTexts;
+
+
     private void OnEnable()
     {
         if (playerManagerScript == null)
@@ -35,7 +44,11 @@ public class StatesMenuUIScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        updateButtons();
+        if (gameObject.activeSelf)
+        {
+            updateButtons();
+            updateSellCost();
+        }
     }
 
     public void displayUnit(int i)
@@ -102,4 +115,22 @@ public class StatesMenuUIScript : MonoBehaviour
         unitStatesDisplayScript.updateStates();
     }
 
+
+
+
+    public void sellItem(int i)
+    {
+        playerManagerScript.sellLoot(i);
+    }
+
+    public void updateSellCost()
+    {
+        (int, string) returnValues;
+        for (int i = 0; i < sellButtonTexts.Count; i++)
+        {
+            returnValues = playerManagerScript.getLoot(i);
+            print(returnValues.Item2);
+            sellButtonTexts[i].text = "G:"+returnValues.Item1.ToString();
+        }
+    }
 }
