@@ -35,7 +35,7 @@ public class Tamberang : AbilityClassScript
             }
 
         }
-        return effectedList.Capacity;
+        return effectedList.Count;
     }
 
     public override void displayEffectedList(float abilityRange, LayerMask mask)
@@ -52,7 +52,7 @@ public class Tamberang : AbilityClassScript
                     }
                 } catch(System.Exception e)
                 {
-                    Debug.LogWarning(e);
+                    //Debug.LogWarning(e);
                 }
             }
         }

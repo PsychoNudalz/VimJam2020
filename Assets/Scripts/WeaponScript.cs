@@ -8,6 +8,7 @@ public class WeaponScript : MonoBehaviour
     [Header("Stats")]
     public int damageDice = 4;
     public float moveSpeed = 5f;
+    public bool destryOnTouch = false;
 
     [Header("Rolled Values")]
     public int toHit;
@@ -63,12 +64,20 @@ public class WeaponScript : MonoBehaviour
                 int damage = Mathf.FloorToInt(Random.Range(1, damageDice)) + damageBonus;
                 collision.GetComponent<UnitScript>().takeDamage(damage, Mathf.FloorToInt(Random.RandomRange(1, 21) + toHit));
                 hitObjects.Add(collision.gameObject);
+                if (destryOnTouch)
+                {
+                    Destroy(gameObject);
+                }
             }
             if (collision.tag.Equals("Player"))
             {
                 int damage = Mathf.FloorToInt(Random.Range(1, damageDice)) + damageBonus;
                 collision.GetComponent<UnitScript>().takeDamage(damage, Mathf.FloorToInt(Random.RandomRange(1, 21) + toHit));
                 hitObjects.Add(collision.gameObject);
+                if (destryOnTouch)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }

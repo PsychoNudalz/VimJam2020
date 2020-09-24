@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ActionBarScript : MonoBehaviour
 {
@@ -10,13 +11,22 @@ public class ActionBarScript : MonoBehaviour
     public GameObject actionMenu;
     public GameObject interactionMenu;
 
+    [Header("Counters")]
+    public TextMeshProUGUI actionCounterText;
+    public TextMeshProUGUI interactionCounterText;
+    public TextMeshProUGUI movementCounterText;
+
 
     private void Awake()
     {
         turnHandler = GameObject.FindObjectOfType<TurnHandler>();
         battleSystem = GameObject.FindObjectOfType<BattleSystem>();
     }
+    private void FixedUpdate()
+    {
+        updateCounters();
 
+    }
 
     public void setCurrentState_Action()
     {
@@ -142,5 +152,14 @@ public class ActionBarScript : MonoBehaviour
         {
             g.SetActive(false);
         }
+    }
+
+
+    public void updateCounters()
+    {
+        UnitScript temp = turnHandler.currentUnit;
+        actionCounterText.text = temp.actionCount.ToString();
+        interactionCounterText.text = temp.interactionCount.ToString();
+        movementCounterText.text = (temp.getRange_Movement()*5f).ToString("0");
     }
 }

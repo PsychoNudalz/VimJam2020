@@ -104,21 +104,29 @@ public class TurnHandler : MonoBehaviour
     public void currentUnit_Attack()
     {
         currentUnit.weaponAttack();
+        currentState = TurnEnum.NONE;
+
     }
 
     public void currentUnit_Ability()
     {
         currentUnit.useAbility();
+        currentState = TurnEnum.NONE;
+
     }
 
     public void currentUnit_PickUp()
     {
         currentUnit.pickUpLoot();
+        currentState = TurnEnum.NONE;
+
     }
 
     public void currentUnit_Use()
     {
         currentUnit.useInteractable();
+        currentState = TurnEnum.NONE;
+
     }
 
 

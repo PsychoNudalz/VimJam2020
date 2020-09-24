@@ -12,6 +12,7 @@ public class UnitScript : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public AbilityClassScript abilityClassScript;
     public TextMeshPro healthTextBox;
+    public TextMeshPro ammoTextBox;
     public DamagePopUpManagerScript damagePopUpManagerScript;
 
     [Header("Base States")]
@@ -100,7 +101,7 @@ public class UnitScript : MonoBehaviour
         soundManager = GameObject.FindObjectOfType<SoundManager>();
 
         resetCurrentStats();
-        displayCurrentHealth();
+        displayCurrentStates();
     }
 
     // Update is called once per frame
@@ -129,6 +130,7 @@ public class UnitScript : MonoBehaviour
         if (isTurn)
         {
             showEffectedList();
+            displayCurrentStates();
         }
 
     }
@@ -141,7 +143,7 @@ public class UnitScript : MonoBehaviour
         health_current = health;
         movement_current = movement;
         ammo_Current = ammo;
-        displayCurrentHealth();
+        displayCurrentStates();
         moveDirection = new Vector2();
         targetUnits = new List<UnitScript>();
         temp_AC = 0;
@@ -170,7 +172,7 @@ public class UnitScript : MonoBehaviour
     public virtual void newTurn()
     {
         isTurn = true;
-        displayCurrentHealth();
+        displayCurrentStates();
         moveDirection = new Vector2();
         targetUnits = new List<UnitScript>();
         temp_AC = 0;
@@ -239,6 +241,7 @@ public class UnitScript : MonoBehaviour
         animator.SetTrigger("Attack");
         highlightTargets_Off();
         actionCount--;
+        displayCurrentStates();
     }
 
 
@@ -296,6 +299,7 @@ public class UnitScript : MonoBehaviour
     public virtual void useAbility()
     {
         animator.SetTrigger("Ability");
+        displayCurrentStates();
 
     }
 
@@ -484,7 +488,7 @@ public class UnitScript : MonoBehaviour
             die();
 
         }
-        displayCurrentHealth();
+        displayCurrentStates();
         print(name + " damge " + damage + " HP " + health_current);
     }
 
@@ -535,7 +539,7 @@ public class UnitScript : MonoBehaviour
         health_current = Mathf.Clamp(health_current + amount, 1, health);
         damagePopUpManagerScript.newDamageText(amount.ToString(), transform.position + new Vector3(Random.Range(-randomPos, randomPos), Random.Range(-randomPos, randomPos)), Color.green);
         animator.SetBool("Dead", false);
-        displayCurrentHealth();
+        displayCurrentStates();
     }
 
     public void tempACBuff(int amount)
@@ -579,9 +583,13 @@ public class UnitScript : MonoBehaviour
     }
 
     //Health Display
-    public void displayCurrentHealth()
+    public void displayCurrentStates()
     {
         healthTextBox.text = health_current + "/" + health;
+        if (ammoTextBox != null)
+        {
+            ammoTextBox.text = ammo_Current + "/" + ammo;
+        }
     }
 
 

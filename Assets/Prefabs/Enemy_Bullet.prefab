@@ -147,8 +147,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8660b76103d9644a67940e500a60e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
   damageDice: 4
   moveSpeed: 3
+  destryOnTouch: 1
   toHit: 1
   damageBonus: 1
   targetTag:

@@ -7,7 +7,6 @@ public class UnitScript_Doggo : UnitScript
 
     public override void useAbility()
     {
-        base.useAbility();
         if (ammo_Current > 0)
         {
             int amount = abilityClassScript.useAbility(abilityRange, layerMask_insight, abilityLevel);
@@ -19,6 +18,7 @@ public class UnitScript_Doggo : UnitScript
 
             }
         }
+        base.useAbility();
 
     }
 
