@@ -169,10 +169,14 @@ public class PlayerManagerScript : MonoBehaviour
     //Activating Units
     public void activateUnits()
     {
+        float i = -units.Count / 2f;
         foreach (UnitScript u in units)
         {
+            
             u.gameObject.SetActive(true);
             u.resetCurrentStats();
+            u.transform.position = new Vector2(i, 0);
+            i++;
             //FindObjectOfType<BattleSystem>().addTurn(u);
         }
 

@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: ClickSound
+  soundName: ButtonSound
   isUnique: 0
   clip: {fileID: 8300000, guid: 6d25e66132f44924997040fcf4bcdd48, type: 3}
   volume: 0.75

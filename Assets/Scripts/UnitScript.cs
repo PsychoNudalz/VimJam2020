@@ -75,6 +75,7 @@ public class UnitScript : MonoBehaviour
     public Sound sound_Move;
     public Sound sound_Hit;
     public Sound sound_Ability;
+    public Sound sound_Attack;
 
     [Header("Other")]
     public bool isTurn = false;
@@ -267,6 +268,7 @@ public class UnitScript : MonoBehaviour
         highlightTargets_Off();
         actionCount--;
         displayCurrentStates();
+        PlaySound_Attack();
     }
 
 
@@ -804,5 +806,9 @@ public class UnitScript : MonoBehaviour
     public void PlaySound_Ability()
     {
         soundManager.Play(sound_Ability);
+    }
+    public void PlaySound_Attack()
+    {
+        soundManager.Play(sound_Attack);
     }
 }

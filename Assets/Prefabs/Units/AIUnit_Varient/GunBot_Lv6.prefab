@@ -90,7 +90,7 @@ PrefabInstance:
     - target: {fileID: 2170295833432722762, guid: 8ce6ce914fdf1b04a8e0496455ca5c73,
         type: 3}
       propertyPath: AC
-      value: 13
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2170295833432722762, guid: 8ce6ce914fdf1b04a8e0496455ca5c73,
         type: 3}
@@ -101,6 +101,11 @@ PrefabInstance:
         type: 3}
       propertyPath: actionMax
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170295833432722762, guid: 8ce6ce914fdf1b04a8e0496455ca5c73,
+        type: 3}
+      propertyPath: movement
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7800803983243649885, guid: 8ce6ce914fdf1b04a8e0496455ca5c73,
         type: 3}

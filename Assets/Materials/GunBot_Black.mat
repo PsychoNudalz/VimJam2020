@@ -20,6 +20,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainText:
         m_Texture: {fileID: 2800000, guid: 0f0aa2b9d2183604a82fad0719c2a0fc, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -28,7 +32,7 @@ Material:
     - Vector1_3834D9E4: -2.31
     - Vector1_5F05D276: 0.635
     - _Outline: 0
-    - _Outline_Size: 1
+    - _Outline_Size: 3
     m_Colors:
     - _Colour: {r: 1, g: 0, b: 0, a: 1}
     - _ReplaceColourFrom: {r: 1, g: 1, b: 1, a: 1}

@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 40638844, guid: ed7bfaa4936c7d0459dbac8b5423f702, type: 3}
       propertyPath: AC
-      value: 12
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 40638844, guid: ed7bfaa4936c7d0459dbac8b5423f702, type: 3}
       propertyPath: baseDamage
@@ -30,6 +30,10 @@ PrefabInstance:
     - target: {fileID: 40638844, guid: ed7bfaa4936c7d0459dbac8b5423f702, type: 3}
       propertyPath: weaponDamage
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 40638844, guid: ed7bfaa4936c7d0459dbac8b5423f702, type: 3}
+      propertyPath: movement
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 692115776997170693, guid: ed7bfaa4936c7d0459dbac8b5423f702,
         type: 3}

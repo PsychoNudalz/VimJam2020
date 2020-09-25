@@ -45,7 +45,7 @@ public class UnitStatesDisplayScript : MonoBehaviour
         ToHit.text = currentUnit.ToString_ToHit();
         CharacterImage.sprite = currentUnit.ToDisplay_Character();
         WeaponImage.sprite = currentUnit.ToDisplay_Weapon();
-        //Ability.text = currentUnit.ToString_Ability();
+        Ability.text = currentUnit.ToString_Ability();
 
     }
 

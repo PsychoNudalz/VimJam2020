@@ -1,5 +1,62 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &38115828639119053
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7641506261942645937}
+  - component: {fileID: 8076094624623007277}
+  m_Layer: 0
+  m_Name: Attack Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7641506261942645937
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38115828639119053}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1577408991509089099}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8076094624623007277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38115828639119053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: AttackSound
+  isUnique: 1
+  clip: {fileID: 8300000, guid: 937290aaa600f8b4eb01dc00840982c0, type: 3}
+  volume: 0.75
+  volumeVariance: 0.1
+  pitch: 1
+  pitchVariance: 0.1
+  spatialBlend: 1
+  reverbZoneMix: 0
+  minDistance: 10
+  maxDistance: 20
+  loop: 0
+  playOnAwake: 0
+  source: {fileID: 0}
 --- !u!1 &1580273402203430367
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,6 +510,7 @@ MonoBehaviour:
   sound_Move: {fileID: 1584919358983025550}
   sound_Hit: {fileID: 3849631061238629703}
   sound_Ability: {fileID: 3327906723022244213}
+  sound_Attack: {fileID: 8076094624623007277}
   isTurn: 0
   moveDirection: {x: 0, y: 0}
   locationLastFrame: {x: 0, y: 0, z: 0}
@@ -487,6 +545,7 @@ Transform:
   - {fileID: 9114812792336836609}
   - {fileID: 6839896078940020424}
   - {fileID: 5021385745149907706}
+  - {fileID: 7641506261942645937}
   m_Father: {fileID: 4613004523422891170}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -533,7 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Ability
+  soundName: 
   isUnique: 1
   clip: {fileID: 8300000, guid: b8155bfaed0820c4cbb122eb537153c1, type: 3}
   volume: 0.75
@@ -621,7 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: TakeDamage
+  soundName: 
   isUnique: 1
   clip: {fileID: 8300000, guid: 31906dddf6ffd9245a240b9269c6461e, type: 3}
   volume: 0.75
@@ -936,7 +995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: MovingSound
+  soundName: 
   isUnique: 0
   clip: {fileID: 8300000, guid: 44e7c3255bfcb9a42bf5a4919d2d6993, type: 3}
   volume: 0.75
@@ -1019,15 +1078,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 121626edbca6fda459b0fb07ad46fa81, type: 3}
---- !u!1 &622337956145808932 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3998395664554285094, guid: 121626edbca6fda459b0fb07ad46fa81,
-    type: 3}
-  m_PrefabInstance: {fileID: 4602637857254284802}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7275391361219273074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6568706059123539824, guid: 121626edbca6fda459b0fb07ad46fa81,
+    type: 3}
+  m_PrefabInstance: {fileID: 4602637857254284802}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &622337956145808932 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3998395664554285094, guid: 121626edbca6fda459b0fb07ad46fa81,
     type: 3}
   m_PrefabInstance: {fileID: 4602637857254284802}
   m_PrefabAsset: {fileID: 0}

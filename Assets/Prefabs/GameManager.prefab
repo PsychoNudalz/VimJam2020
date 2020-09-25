@@ -87,6 +87,7 @@ Transform:
   m_Children:
   - {fileID: 6003132437600682671}
   - {fileID: 2543202221238133540}
+  - {fileID: 5710747176471226061}
   m_Father: {fileID: 6343608182109879555}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -133,6 +134,8 @@ MonoBehaviour:
   actionBarScript: {fileID: 0}
   battleUIScript: {fileID: 0}
   uIHandlerScript: {fileID: 0}
+  soundManager: {fileID: 0}
+  nextTurnSound: {fileID: 174424656831436753}
 --- !u!114 &8101148635956379644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,6 +390,63 @@ MonoBehaviour:
   pool: []
   poolSize: 50
   poolPointer: -1
+--- !u!1 &6761102928433372250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5710747176471226061}
+  - component: {fileID: 174424656831436753}
+  m_Layer: 0
+  m_Name: Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5710747176471226061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6761102928433372250}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8795497323389156966}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &174424656831436753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6761102928433372250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: NextTurnSound
+  isUnique: 0
+  clip: {fileID: 8300000, guid: 64852aec736741c44b34dcfe0cab5366, type: 3}
+  volume: 0.75
+  volumeVariance: 0
+  pitch: 1
+  pitchVariance: 0.05
+  spatialBlend: 1
+  reverbZoneMix: 0
+  minDistance: 10
+  maxDistance: 20
+  loop: 0
+  playOnAwake: 0
+  source: {fileID: 0}
 --- !u!1 &8029405935686790040
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Theme
+  soundName: 
   isUnique: 0
   clip: {fileID: 8300000, guid: 45fd90ade944df449b1d2e63af429cf6, type: 3}
   volume: 0.75

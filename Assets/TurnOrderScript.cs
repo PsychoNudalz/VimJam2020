@@ -21,7 +21,7 @@ public class TurnOrderScript : MonoBehaviour
         yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length);
         for (int i = 0; i < turnOrderPieceScripts.Count && i < turnOrder.Count; i++)
         {
-            turnOrderPieceScripts[i].setTurn(turnOrder[i].spriteRenderer, turnOrder[i].unitName + " Lv." + turnOrder[i].level);
+            turnOrderPieceScripts[i].setTurn(turnOrder[i].spriteRenderer, turnOrder[i].unitName + " HP:" + turnOrder[i].health_current);
         }
         animator.Play("TurnOrder_Idle");
 

@@ -64,7 +64,7 @@ public class QuestManager : MonoBehaviour
         {
             lootManager = FindObjectOfType<LootManager>();
         }
-        lootManager.generateLoot(Mathf.RoundToInt(targetValue * 1.5f));
+        lootManager.generateLoot(Mathf.RoundToInt((targetValue+1) * 1.5f));
         lootManager.spawnLoot();
 
         if (enemyManager == null)

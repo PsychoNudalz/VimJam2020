@@ -20,6 +20,10 @@ public class BattleSystem : MonoBehaviour
     public ActionBarScript actionBarScript;
     public BattleUIScript battleUIScript;
     public UIHandlerScript uIHandlerScript;
+
+    [Header("Sound")]
+    public SoundManager soundManager;
+    public Sound nextTurnSound;
      
 
     // Start is called before the first frame update
@@ -52,7 +56,7 @@ public class BattleSystem : MonoBehaviour
         {
             playerManager = FindObjectOfType<PlayerManagerScript>();
         }
-
+        soundManager = FindObjectOfType<SoundManager>();
         UIUpdate();
     }
 
@@ -69,6 +73,7 @@ public class BattleSystem : MonoBehaviour
 
         }
         updateObjectiveText();
+        updateCompass();
 
     }
 
@@ -101,6 +106,7 @@ public class BattleSystem : MonoBehaviour
             }
 
         }
+        PlaySound_NextTurn();
         actionBarScript.resetBar();
 
         UIUpdate();
@@ -179,5 +185,17 @@ public class BattleSystem : MonoBehaviour
     public void updateObjectiveText()
     {
         battleUIScript.updateObjectiveText(questManager.getMissionObjective());
+    }
+
+    public void updateCompass()
+    {
+        battleUIScript.updateCompass(currentTurn.transform.position,questManager.lootManager.generatedLoot);
+    }
+
+    //sound play
+
+    public void PlaySound_NextTurn()
+    {
+        soundManager.Play(nextTurnSound);
     }
 }

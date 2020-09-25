@@ -32,7 +32,7 @@ Material:
     - Vector1_3834D9E4: 0.64
     - Vector1_5F05D276: 0.4
     - _Outline: 0
-    - _Outline_Size: 1
+    - _Outline_Size: 3
     m_Colors:
     - _Colour: {r: 1, g: 0, b: 0, a: 1}
     - _ReplaceColourFrom: {r: 1, g: 1, b: 1, a: 1}

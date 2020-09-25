@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: TakeDamage
+  soundName: 
   isUnique: 1
   clip: {fileID: 8300000, guid: 31906dddf6ffd9245a240b9269c6461e, type: 3}
   volume: 0.75
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Ability
+  soundName: 
   isUnique: 1
   clip: {fileID: 8300000, guid: b8155bfaed0820c4cbb122eb537153c1, type: 3}
   volume: 0.75
@@ -174,6 +174,7 @@ Transform:
   - {fileID: 3226593722282408225}
   - {fileID: 888696948486770664}
   - {fileID: 1663785045331493850}
+  - {fileID: 3234651567650957352}
   m_Father: {fileID: 692115776997170693}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -353,6 +354,63 @@ MonoBehaviour:
   m_maskType: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+--- !u!1 &2233899866463922203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3234651567650957352}
+  - component: {fileID: 6999287960026104927}
+  m_Layer: 0
+  m_Name: Attack Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3234651567650957352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2233899866463922203}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5142386242970819179}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6999287960026104927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2233899866463922203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: AttackSound
+  isUnique: 1
+  clip: {fileID: 8300000, guid: 937290aaa600f8b4eb01dc00840982c0, type: 3}
+  volume: 0.75
+  volumeVariance: 0.1
+  pitch: 1
+  pitchVariance: 0.1
+  spatialBlend: 1
+  reverbZoneMix: 0
+  minDistance: 10
+  maxDistance: 20
+  loop: 0
+  playOnAwake: 0
+  source: {fileID: 0}
 --- !u!1 &3332663368188413176
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: MovingSound
+  soundName: 
   isUnique: 1
   clip: {fileID: 8300000, guid: 44e7c3255bfcb9a42bf5a4919d2d6993, type: 3}
   volume: 0.75
@@ -688,6 +746,7 @@ MonoBehaviour:
   sound_Move: {fileID: 5136280429709173422}
   sound_Hit: {fileID: 7482127259641959527}
   sound_Ability: {fileID: 8977470231012808789}
+  sound_Attack: {fileID: 6999287960026104927}
   isTurn: 0
   moveDirection: {x: 0, y: 0}
   locationLastFrame: {x: 0, y: 0, z: 0}
@@ -703,6 +762,7 @@ MonoBehaviour:
   detectionRange: 50
   endOfTurnWaitTime: 0.4
   timeBetweenAction: 0.2
+  timeUntilEndTurn: 1
   randomLootSpawnScript: {fileID: 4319565161812417069}
   aIPath: {fileID: 40638842}
   aIDestinationSetter: {fileID: 40638845}

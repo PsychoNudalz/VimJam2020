@@ -257,6 +257,63 @@ MonoBehaviour:
   m_maskType: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+--- !u!1 &883637900982944483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8380120753419060960}
+  - component: {fileID: 8954986709734308742}
+  m_Layer: 0
+  m_Name: Attack Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8380120753419060960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883637900982944483}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 671142665663558833}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8954986709734308742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883637900982944483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: AttackSound
+  isUnique: 1
+  clip: {fileID: 8300000, guid: 937290aaa600f8b4eb01dc00840982c0, type: 3}
+  volume: 0.75
+  volumeVariance: 0.1
+  pitch: 1
+  pitchVariance: 0.1
+  spatialBlend: 1
+  reverbZoneMix: 0
+  minDistance: 10
+  maxDistance: 20
+  loop: 0
+  playOnAwake: 0
+  source: {fileID: 0}
 --- !u!1 &4450030920265443040
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: TakeDamage
+  soundName: 
   isUnique: 1
   clip: {fileID: 8300000, guid: 31906dddf6ffd9245a240b9269c6461e, type: 3}
   volume: 0.75
@@ -502,6 +559,7 @@ MonoBehaviour:
   sound_Move: {fileID: 669548079888108660}
   sound_Hit: {fileID: 3015395940881431229}
   sound_Ability: {fileID: 3646627226494187151}
+  sound_Attack: {fileID: 8954986709734308742}
   isTurn: 0
   moveDirection: {x: 0, y: 0}
   locationLastFrame: {x: 0, y: 0, z: 0}
@@ -554,6 +612,7 @@ Transform:
   - {fileID: 7118542143424583675}
   - {fileID: 4780646400689611058}
   - {fileID: 6421005068682325248}
+  - {fileID: 8380120753419060960}
   m_Father: {fileID: 3155628787987548138}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -878,7 +937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Ability
+  soundName: 
   isUnique: 1
   clip: {fileID: 8300000, guid: 11d00b3abe03c574fb60dec0e1ca7b6a, type: 3}
   volume: 0.75
@@ -935,7 +994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: MovingSound
+  soundName: 
   isUnique: 1
   clip: {fileID: 8300000, guid: 44e7c3255bfcb9a42bf5a4919d2d6993, type: 3}
   volume: 0.75
