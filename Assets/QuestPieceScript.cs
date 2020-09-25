@@ -45,4 +45,9 @@ public class QuestPieceScript : MonoBehaviour
     {
         questBoardScript.selectedQuest = questType;
     }
+
+    private void OnEnable()
+    {
+        generateQuest();
+    }
 }

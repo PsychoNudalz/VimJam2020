@@ -2551,10 +2551,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Created By:\n\nProgramming, designing - Anson W.\r\n\r\nCharacter, menu
-    art - Kaitlyn\r\n\n\r\nAssets Used\r\n\r\nsfx and music - Retro Music Pack -
-    https://jdbartist.itch.io/retro-music-pack\r\n\r\nsfx - sfxr, DrPetter - http://www.drpetter.se/project_sfxr.html\u200B\r\n\r\nTilemap
-    - CyberPop - Interior Tiles, MalibuDarby\u200B \u200B - https://malibudarby.itch.io/cyberpop-interior-tiles\u200B\r\n\r\nFont-
-    PressStart2P-vaV7, codeman38\u200B\r\n\r\nA* path finding - https://arongranberg.com/astar/"
+    art - Kaitlyn\r\n\n\r\nAssets Used\rAssets Used\r\n\r\nsfx and music - Retro
+    Music Pack - https://jdbartist.itch.io/retro-music-pack\r\n\r\nsfx - sfxr, DrPetter
+    - http://www.drpetter.se/project_sfxr.html\r\n\r\nTilemap for the map - CyberPop
+    - Interior Tiles, MalibuDarby - https://malibudarby.itch.io/cyberpop-interior-tiles\r\n\r\nPixel
+    Effects - Pixel Animations And Effects, Finalbossblues - https://finalbossblues.itch.io/pixel-animations-and-effects\r\n\r\nFont-
+    PressStart2P-vaV7, codeman38\r\n\r\nA* path finding - https://arongranberg.com/astar/"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e23b42cbc5e55a04bbd6cd1590225779, type: 2}
   m_sharedMaterial: {fileID: 8113790078616417684, guid: e23b42cbc5e55a04bbd6cd1590225779,

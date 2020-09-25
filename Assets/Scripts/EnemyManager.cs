@@ -66,6 +66,7 @@ public class EnemyManager : MonoBehaviour
 
                 while (randomEnemy.GetComponent<AIUnitScript>().level > maxCost|| randomEnemy.GetComponent<AIUnitScript>().level<minCost)
                 {
+                    //print("retry generation" + Time.time);
                     randomEnemy = randomEnemy = pickRandomEnemy();
                 }
 

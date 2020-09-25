@@ -176,6 +176,7 @@ public class PlayerManagerScript : MonoBehaviour
             u.gameObject.SetActive(true);
             u.resetCurrentStats();
             u.transform.position = new Vector2(i, 0);
+            u.health_current = u.health;
             i++;
             //FindObjectOfType<BattleSystem>().addTurn(u);
         }

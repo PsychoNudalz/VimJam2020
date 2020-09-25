@@ -17,6 +17,10 @@ public class QuestBoardScript : SceneControlScript
     public TextMeshProUGUI difficultyQuestText;
     public TextMeshProUGUI partyText;
 
+    [Header("Secret Mission")]
+    public string code;
+    public GameObject secret;
+
     private void Awake()
     {
 
@@ -109,5 +113,15 @@ public class QuestBoardScript : SceneControlScript
     {
         playerManager.activateUnits();
         loadScene(2);
+    }
+
+    public void addCode(string i)
+    {
+        code += i;
+        if (code.Contains("uuddlrlrba"))
+        {
+            secret.SetActive(true);
+        }
+        
     }
 }

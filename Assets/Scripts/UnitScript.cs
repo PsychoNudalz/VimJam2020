@@ -108,6 +108,13 @@ public class UnitScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        if (health_current > 0 && animator.GetBool("Dead"))
+        {
+            animator.SetBool("Dead", false);
+
+        }
+
         if (moveDirection.magnitude > 0.1f && isPlayer)
         {
             move();
@@ -556,6 +563,12 @@ public class UnitScript : MonoBehaviour
             Destroy(gameObject, animator.GetCurrentAnimatorClipInfo(0).Length);
 
         }
+    }
+
+    public void setUnDie()
+    {
+        animator.SetBool("Dead", false);
+
     }
 
     public bool isDead()

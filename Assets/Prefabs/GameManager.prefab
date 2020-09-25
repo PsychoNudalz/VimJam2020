@@ -286,6 +286,7 @@ MonoBehaviour:
   - {fileID: 204136361399561454, guid: f33aead77aa064f40befba5d03fd35fd, type: 3}
   - {fileID: 2714902563577545288, guid: 55db8cd442fce194494da9958db10620, type: 3}
   - {fileID: 3904428611490522458, guid: c8bab2cc1af6e3c45aeb470244ae2484, type: 3}
+  - {fileID: 1353016755364992689, guid: 9bca28bc1640889439ae2d846626028e, type: 3}
   totalEnemyCost: 20
   waveAmount: 3
   maxCost: 6
