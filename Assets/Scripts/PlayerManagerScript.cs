@@ -172,6 +172,7 @@ public class PlayerManagerScript : MonoBehaviour
         foreach (UnitScript u in units)
         {
             u.gameObject.SetActive(true);
+            u.resetCurrentStats();
             //FindObjectOfType<BattleSystem>().addTurn(u);
         }
 

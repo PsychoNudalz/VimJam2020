@@ -8,9 +8,11 @@ public class TurnOrderPieceScript : MonoBehaviour
     public Image image;
     public TextMeshProUGUI text;
 
-    public void setTurn(Sprite s, string t)
+    public void setTurn(SpriteRenderer s, string t)
     {
-        image.sprite = s;
+        image.sprite = s.sprite;
+        image.color = s.color;
+        image.material = s.material;
         text.text = t;
     }
 }

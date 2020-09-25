@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 5442994145795250581}
   - component: {fileID: 744450303}
   - component: {fileID: 744450302}
+  - component: {fileID: -5878906464792741460}
   m_Layer: 15
   m_Name: Loot
   m_TagString: Loot
@@ -187,9 +188,37 @@ MonoBehaviour:
   playerManagerScript: {fileID: 0}
   damagePopUpManagerScript: {fileID: 0}
   lootType: 0
+  lootID: 
   lootValue: 1
   lootRarity: 1
   animator: {fileID: 7748334532947109623}
   animationName: LootItem_NA
   isMoving: 0
   moveLocation: {x: 0, y: 0}
+  sound: {fileID: -5878906464792741460}
+--- !u!114 &-5878906464792741460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7816252214416229104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: PickUpSound
+  isUnique: 1
+  clip: {fileID: 8300000, guid: 38c1b824e34217f479e2e9025f51a6ab, type: 3}
+  volume: 0.75
+  volumeVariance: 0.1
+  pitch: 1
+  pitchVariance: 0.1
+  spatialBlend: 1
+  reverbZoneMix: 0
+  minDistance: 10
+  maxDistance: 20
+  loop: 0
+  playOnAwake: 0
+  source: {fileID: 0}

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Sound : MonoBehaviour
 {
 
-    public string name;
+    public string soundName;
     public bool isUnique;
     public AudioClip clip;
 
@@ -41,7 +41,7 @@ public class Sound : MonoBehaviour
     {
         if (isUnique)
         {
-            name += transform.parent.name + Time.time;
+            soundName = soundName + GetHashCode() + transform.parent.name + Time.time;
         }
     }
 }

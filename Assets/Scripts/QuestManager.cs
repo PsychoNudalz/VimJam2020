@@ -26,7 +26,8 @@ public class QuestManager : MonoBehaviour
         if (lootManager == null)
         {
             lootManager = FindObjectOfType<LootManager>();
-        } if (enemyManager == null)
+        }
+        if (enemyManager == null)
         {
             enemyManager = FindObjectOfType<EnemyManager>();
         }
@@ -82,5 +83,29 @@ public class QuestManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    public (string, Color) getMissionObjective()
+    {
+
+        if (player == null)
+        {
+            return (null, Color.white);
+        }
+        string tempS = "Objective:\nCollect pieces of loot: " + player.loot.Count + "/" + targetValue;
+        if (player.loot.Count >= targetValue)
+        {
+            return (tempS, Color.green);
+
+        }
+        else if (player.loot.Count == 0)
+        {
+            return (tempS, Color.red);
+        }
+        else
+        {
+            return (tempS, Color.yellow);
+
+        }
     }
 }

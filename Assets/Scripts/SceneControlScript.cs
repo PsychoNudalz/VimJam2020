@@ -19,4 +19,9 @@ public class SceneControlScript : MonoBehaviour
     {
         loadScene(0);
     }
+
+    public virtual void quitGame()
+    {
+        Application.Quit();
+    }
 }

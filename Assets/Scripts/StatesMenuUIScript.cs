@@ -129,7 +129,7 @@ public class StatesMenuUIScript : MonoBehaviour
         for (int i = 0; i < sellButtonTexts.Count; i++)
         {
             returnValues = playerManagerScript.getLoot(i);
-            print(returnValues.Item2);
+            //print(returnValues.Item2);
             sellButtonTexts[i].text = "G:"+returnValues.Item1.ToString();
         }
     }

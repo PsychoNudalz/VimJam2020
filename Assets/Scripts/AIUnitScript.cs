@@ -17,6 +17,7 @@ public class AIUnitScript : UnitScript
     public float detectionRange = 50;
     public float endOfTurnWaitTime = 0.5f;
     public float timeBetweenAction = 0.2f;
+    public float timeUntilEndTurn = 1f;
 
     [Header("Loot")]
     public RandomLootSpawnScript randomLootSpawnScript;
@@ -67,18 +68,31 @@ public class AIUnitScript : UnitScript
         yield return new WaitForSeconds(timeBetweenAction);
         pauseAction = false;
     }
-
+    public override void newTurn()
+    {
+        base.newTurn();
+        timeUntilEndTurn = 1f;
+    }
 
     public void AIBehavior()
     {
+
+        if ((locationLastFrame - transform.position).magnitude < 0.5f * Time.deltaTime)
+        {
+            timeUntilEndTurn -= Time.deltaTime;
+            if (timeUntilEndTurn < 0)
+            {
+                StartCoroutine(endAI());
+            }
+
+        }
+
         if (target != null && target.TryGetComponent<UnitScript>(out UnitScript u) && u.isDead())
         {
             stopMoveToTarget();
             activateUnit = false;
             target = null;
         }
-
-
 
         if (!canMove())
         {

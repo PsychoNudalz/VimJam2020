@@ -15,6 +15,10 @@ public class TurnHandler : MonoBehaviour
     public TurnEnum currentState = TurnEnum.NONE;
     [SerializeField] bool aiming = false;
 
+    [Header("Circle")]
+    //public float size;
+    public DrawRadar drawRadar;
+    
 
     // Start is called before the first frame update
     private void Awake()
@@ -200,9 +204,13 @@ public class TurnHandler : MonoBehaviour
     {
         if (currentUnit != null)
         {
+        /*
 
             rangeCircle.transform.localScale = new Vector3(size * 10, size * 10, 1);
             rangeCircle.transform.position = currentUnit.transform.position;
+        */
+            drawRadar.transform.position = currentUnit.transform.position;
+            drawRadar.radius = size;
         }
     }
 

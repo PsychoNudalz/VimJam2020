@@ -669,7 +669,7 @@ MonoBehaviour:
   AC: 13
   movement: 7
   abilityLevel: 4
-  mainWeapon: {fileID: 4861063818852878050, guid: fdd01d28d388aea45ab8646a4ed4b99f,
+  mainWeapon: {fileID: 2613104081599416512, guid: 8f689572b7f64f9468c0e76a15f42899,
     type: 3}
   ammo: 4
   baseDamage: 1

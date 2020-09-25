@@ -9,7 +9,7 @@ public class SoundManager : MonoBehaviour
 {
 
     public static SoundManager instance;
-
+    public Sound themeSong;
 
     public List<Sound> sounds;
 
@@ -27,7 +27,15 @@ public class SoundManager : MonoBehaviour
 		}
 		*/
         updateSounds();
+    }
 
+    private void OnDestroy()
+    {
+        stopAllSound();
+    }
+    private void Start()
+    {
+        Play(themeSong);
     }
 
     void clearNullSounds()
@@ -59,7 +67,7 @@ public class SoundManager : MonoBehaviour
         {
             if (!sounds.Contains(s))
             {
-                print("Found new sound, Adding " + s.name);
+                print("Found new sound, Adding " + s.soundName);
                 sounds.Add(s);
                 s.source = gameObject.AddComponent<AudioSource>();
                 s.source.clip = s.clip;
@@ -89,7 +97,7 @@ public class SoundManager : MonoBehaviour
         foreach (Sound s in sounds)
         {
             //s.source.Stop();
-            Stop(s.name);
+            Stop(s.soundName);
         }
     }
 
@@ -97,7 +105,7 @@ public class SoundManager : MonoBehaviour
     {
         foreach (Sound s in sounds)
         {
-            if (s.name.Equals(sound))
+            if (s.soundName.Equals(sound))
             {
                 return s;
             }
@@ -133,7 +141,7 @@ public class SoundManager : MonoBehaviour
 
     public void Stop(Sound s)
     {
-        Stop(s.name);
+        Stop(s.soundName);
     }
 
 
@@ -165,9 +173,9 @@ public class SoundManager : MonoBehaviour
 
     public void Play(Sound s)
     {
-        if (!Play(s.name))
+        if (!Play(s.soundName))
         {
-            print("Sound " + s.name+" Not found, Force playing");
+            print("Sound " + s.soundName+" Not found, Force playing");
             sounds.Add(s);
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
