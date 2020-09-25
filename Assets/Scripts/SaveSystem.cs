@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEditor;
+//using UnityEditor;
 
 public static class SaveSystem
 {
@@ -39,6 +39,6 @@ public static class SaveSystem
     public static void ResetData()
     {
         File.Delete(Application.persistentDataPath + "/player.NUDALZ");
-        AssetDatabase.Refresh();
+        //AssetDatabase.Refresh();
     }
 }
