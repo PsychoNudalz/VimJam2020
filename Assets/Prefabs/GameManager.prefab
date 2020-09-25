@@ -457,13 +457,13 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1190456063
   m_SortingLayer: -4
-  m_SortingOrder: 0
+  m_SortingOrder: 11
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.5
+    widthMultiplier: 0.12
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -540,6 +540,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8685356952540700225}
   - component: {fileID: 7522463316290497481}
+  - component: {fileID: 712077681431493503}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -573,4 +574,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f672c3cadf4be48801b2f0494a9c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  themeSong: {fileID: 712077681431493503}
   sounds: []
+--- !u!114 &712077681431493503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9133651253108215340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae5f6f8ec7ce10479b0c6daf66d34b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Theme
+  isUnique: 0
+  clip: {fileID: 8300000, guid: 45fd90ade944df449b1d2e63af429cf6, type: 3}
+  volume: 0.75
+  volumeVariance: 0
+  pitch: 1
+  pitchVariance: 0
+  spatialBlend: 0
+  reverbZoneMix: 0
+  minDistance: 10
+  maxDistance: 20
+  loop: 1
+  playOnAwake: 1
+  source: {fileID: 0}

@@ -87,7 +87,12 @@ public class QuestManager : MonoBehaviour
 
     public (string, Color) getMissionObjective()
     {
-        string tempS = "Objective:\n+Collect pieces of loot: " + player.loot.Count + "/" + targetValue;
+
+        if (player == null)
+        {
+            return (null, Color.white);
+        }
+        string tempS = "Objective:\nCollect pieces of loot: " + player.loot.Count + "/" + targetValue;
         if (player.loot.Count >= targetValue)
         {
             return (tempS, Color.green);

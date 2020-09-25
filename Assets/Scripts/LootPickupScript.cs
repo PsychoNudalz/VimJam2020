@@ -22,6 +22,9 @@ public class LootPickupScript : MonoBehaviour
     [SerializeField] bool isMoving = false;
     public Vector2 moveLocation;
 
+    [Header("Sound")]
+    public Sound sound;
+
     private void Awake()
     {
         playerManagerScript = GameObject.FindObjectOfType<PlayerManagerScript>();
@@ -74,6 +77,7 @@ public class LootPickupScript : MonoBehaviour
                 gameObject.SetActive(false);
                 break;
         }
+        FindObjectOfType<SoundManager>().Play(sound);
     }
 
     void displayLoot(string text)
