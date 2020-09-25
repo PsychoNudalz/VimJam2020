@@ -22,4 +22,9 @@ public class ButtonScript : SceneControlScript
 
         }
     }
+
+    public void RESETDATA()
+    {
+        SaveSystem.ResetData();
+    }
 }

@@ -7,10 +7,11 @@ public class QuestPieceScript : MonoBehaviour
 {
     [Header("Quest Para")]
     public ObjectiveEnum objectiveEnum = ObjectiveEnum.COLLECTION;
-    public Vector2 targetValue = new Vector2(0,10);
+    public Vector2 targetValue = new Vector2(0, 10);
     public Vector2 totalEnemyCost = new Vector2(10, 50);
     public Vector2 waveAmount = new Vector2(1, 10);
     public Vector2 maxCost = new Vector2(1, 6);
+    public Vector2 minCost = new Vector2(1, 6);
     public List<Sprite> randomSprite;
 
     [Header("Component")]
@@ -25,7 +26,14 @@ public class QuestPieceScript : MonoBehaviour
         {
             questBoardScript = FindObjectOfType<QuestBoardScript>();
         }
-        questType = new QuestType(ObjectiveEnum.COLLECTION, randomValue(targetValue), randomValue(totalEnemyCost), randomValue(waveAmount), randomValue(maxCost));
+
+        int max = randomValue(maxCost);
+        int min = randomValue(minCost);
+        if (min > max)
+        {
+            min = max;
+        }
+        questType = new QuestType(ObjectiveEnum.COLLECTION, randomValue(targetValue), randomValue(totalEnemyCost), randomValue(waveAmount), max, min);
     }
 
     int randomValue(Vector2 v)

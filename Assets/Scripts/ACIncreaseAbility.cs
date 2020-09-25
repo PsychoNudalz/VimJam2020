@@ -13,7 +13,7 @@ public class ACIncreaseAbility : AbilityClassScript
         {
             if (r.collider.TryGetComponent<UnitScript>(out UnitScript w))
             {
-                if (r.collider.CompareTag("Player") && !Physics2D.Raycast(r.transform.position, transform.position - r.transform.position, (transform.position - r.transform.position).magnitude, mask))
+                if (targetTag.Contains(w.tag) && !Physics2D.Raycast(r.transform.position, transform.position - r.transform.position, (transform.position - r.transform.position).magnitude, mask))
                 {
                     effectedList.Add(r.collider.gameObject);
                 }

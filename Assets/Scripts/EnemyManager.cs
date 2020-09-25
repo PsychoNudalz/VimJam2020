@@ -9,6 +9,7 @@ public class EnemyManager : MonoBehaviour
     public int totalEnemyCost = 10;
     public int waveAmount = 3;
     public int maxCost = 3;
+    public int minCost = 3;
     [SerializeField] int cost_Current;
 
     [Header("Enemy Spawn")]
@@ -37,11 +38,12 @@ public class EnemyManager : MonoBehaviour
         }
 
     }
-    public void setEnemyManager(int totalEnemyCost, int waveAmount, int maxCost)
+    public void setEnemyManager(int totalEnemyCost, int waveAmount, int maxCost, int minCost)
     {
         this.totalEnemyCost = totalEnemyCost;
         this.waveAmount = waveAmount;
         this.maxCost = maxCost;
+        this.minCost = minCost;
         generateEnemy();
     }
 
@@ -62,7 +64,7 @@ public class EnemyManager : MonoBehaviour
             {
                 randomEnemy = pickRandomEnemy();
 
-                while (randomEnemy.GetComponent<AIUnitScript>().level > maxCost)
+                while (randomEnemy.GetComponent<AIUnitScript>().level > maxCost|| randomEnemy.GetComponent<AIUnitScript>().level<minCost)
                 {
                     randomEnemy = randomEnemy = pickRandomEnemy();
                 }

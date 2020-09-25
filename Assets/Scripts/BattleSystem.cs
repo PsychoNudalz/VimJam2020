@@ -32,30 +32,7 @@ public class BattleSystem : MonoBehaviour
         currentTurn = turnOrder[turnOrderPointer];
         turnHandler.setCurrentUnit(currentTurn);
         actionBarScript = GameObject.FindObjectOfType<ActionBarScript>();
-        if(actionBarScript == null)
-        {
-            actionBarScript = FindObjectOfType<ActionBarScript>();
-        }
-        if(cinemachine == null)
-        {
-            cinemachine = FindObjectOfType<Cinemachine.CinemachineVirtualCamera>();
-        }
-        if (battleUIScript == null)
-        {
-            battleUIScript = FindObjectOfType<BattleUIScript>();
-        }
-        if (uIHandlerScript == null)
-        {
-            uIHandlerScript = FindObjectOfType<UIHandlerScript>();
-        }
-        if(questManager == null)
-        {
-            questManager = GetComponent<QuestManager>();
-        }
-        if (playerManager == null)
-        {
-            playerManager = FindObjectOfType<PlayerManagerScript>();
-        }
+        ComponentCheck();
         soundManager = FindObjectOfType<SoundManager>();
         UIUpdate();
     }
@@ -63,6 +40,7 @@ public class BattleSystem : MonoBehaviour
 
     private void FixedUpdate()
     {
+        ComponentCheck();
         if (currentTurn == null)
         {
             nextTurn();
@@ -75,6 +53,34 @@ public class BattleSystem : MonoBehaviour
         updateObjectiveText();
         updateCompass();
 
+    }
+
+    void ComponentCheck()
+    {
+        if (actionBarScript == null)
+        {
+            actionBarScript = FindObjectOfType<ActionBarScript>();
+        }
+        if (cinemachine == null)
+        {
+            cinemachine = FindObjectOfType<Cinemachine.CinemachineVirtualCamera>();
+        }
+        if (battleUIScript == null)
+        {
+            battleUIScript = FindObjectOfType<BattleUIScript>();
+        }
+        if (uIHandlerScript == null)
+        {
+            uIHandlerScript = FindObjectOfType<UIHandlerScript>();
+        }
+        if (questManager == null)
+        {
+            questManager = GetComponent<QuestManager>();
+        }
+        if (playerManager == null)
+        {
+            playerManager = FindObjectOfType<PlayerManagerScript>();
+        }
     }
 
 
@@ -184,12 +190,27 @@ public class BattleSystem : MonoBehaviour
 
     public void updateObjectiveText()
     {
+        try
+        {
+
         battleUIScript.updateObjectiveText(questManager.getMissionObjective());
+        }catch(System.Exception e)
+        {
+
+        }
     }
 
     public void updateCompass()
     {
-        battleUIScript.updateCompass(currentTurn.transform.position,questManager.lootManager.generatedLoot);
+        List<GameObject> l = new List<GameObject>();
+        foreach(GameObject g in questManager.lootManager.generatedLoot)
+        {
+            if (g.activeSelf)
+            {
+                l.Add(g);
+            }
+        }
+        battleUIScript.updateCompass(currentTurn.transform.position,l);
     }
 
     //sound play

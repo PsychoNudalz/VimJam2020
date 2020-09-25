@@ -64,6 +64,7 @@ public class LootPickupScript : MonoBehaviour
 
     public void pickUpLoot()
     {
+        FindObjectOfType<SoundManager>().Play(sound);
         switch (lootType)
         {
             case (LootType.MONEY):
@@ -77,7 +78,6 @@ public class LootPickupScript : MonoBehaviour
                 gameObject.SetActive(false);
                 break;
         }
-        FindObjectOfType<SoundManager>().Play(sound);
     }
 
     void displayLoot(string text)

@@ -107,6 +107,7 @@ MonoBehaviour:
   totalEnemyCost: 10
   waveAmount: 3
   maxCost: 3
+  minCost: 0
   lootManager: {fileID: 1310682978367092186}
   player: {fileID: 0}
   objectiveEnum: 0
@@ -134,7 +135,7 @@ MonoBehaviour:
   actionBarScript: {fileID: 0}
   battleUIScript: {fileID: 0}
   uIHandlerScript: {fileID: 0}
-  soundManager: {fileID: 0}
+  soundManager: {fileID: 7522463316290497481}
   nextTurnSound: {fileID: 174424656831436753}
 --- !u!114 &8101148635956379644
 MonoBehaviour:
@@ -288,6 +289,7 @@ MonoBehaviour:
   totalEnemyCost: 20
   waveAmount: 3
   maxCost: 6
+  minCost: 3
   cost_Current: 0
   spawnZonesHandler_Enemy: {fileID: 0}
   enemyWaveHandlers: []

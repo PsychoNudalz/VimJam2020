@@ -71,7 +71,7 @@ public class AIUnitScript : UnitScript
     public override void newTurn()
     {
         base.newTurn();
-        timeUntilEndTurn = 1f;
+        timeUntilEndTurn = 2f;
     }
 
     public void AIBehavior()
@@ -82,6 +82,7 @@ public class AIUnitScript : UnitScript
             timeUntilEndTurn -= Time.deltaTime;
             if (timeUntilEndTurn < 0)
             {
+                Debug.LogWarning(name + "Pass turn");
                 StartCoroutine(endAI());
             }
 
@@ -100,6 +101,7 @@ public class AIUnitScript : UnitScript
             stopMoveToTarget();
         }
 
+        //Segment attacks
         if (checkTargetInAttackRange() && canAction())
         {
             if (isMoving)
@@ -112,6 +114,8 @@ public class AIUnitScript : UnitScript
                 StartCoroutine(pause());
             }
         }
+
+        //Main behavior
         if (checkTargetInAttackRange() && !canAction() && canMove())
         {
             stopMoveToTarget();
@@ -129,9 +133,9 @@ public class AIUnitScript : UnitScript
         }
         else if (!canMove() && canAction())
         {
-            print(name + "AI dashing");
-            dash();
-            startMoveToTarget();
+            print(name + "AI Deciding");
+            pickDashOrAbility();
+
         }
         else if (canMove())
         {
@@ -296,5 +300,51 @@ public class AIUnitScript : UnitScript
     {
         randomLootSpawnScript.showerLoot();
         base.die();
+    }
+
+
+    public void pickDashOrAbility()
+    {
+        if (abilityClassScript == null)
+        {
+            print(name + "cant find ability");
+
+            dash();
+            startMoveToTarget();
+
+            return;
+        }
+
+        int choice = Random.Range(0, 10);
+        if (choice > 6)
+        {
+            print(name + "use ability");
+
+            useAbility();
+        }
+        else
+        {
+            print(name + "Dashing");
+
+            dash();
+            startMoveToTarget();
+        }
+    }
+    public override void useAbility()
+    {
+        if (ammo_Current > 0)
+        {
+            int amount = abilityClassScript.useAbility(abilityRange, layerMask_insight, abilityLevel);
+            if (amount != 0)
+            {
+                ammo_Current--;
+                PlaySound_Ability();
+                actionCount = 0;
+
+            }
+        }
+        base.useAbility();
+        StartCoroutine(endAI());
+
     }
 }

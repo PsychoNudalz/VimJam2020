@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEditor;
 
 public static class SaveSystem
 {
@@ -33,5 +34,11 @@ public static class SaveSystem
             Debug.LogError("Save File not found in " + path);
             return null;
         }
+    }
+
+    public static void ResetData()
+    {
+        File.Delete(Application.persistentDataPath + "/player.NUDALZ");
+        AssetDatabase.Refresh();
     }
 }

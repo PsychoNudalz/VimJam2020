@@ -569,7 +569,7 @@ public class UnitScript : MonoBehaviour
     {
         float randomPos = 0.5f;
         health_current = Mathf.Clamp(health_current + amount, 1, health);
-        damagePopUpManagerScript.newDamageText(amount.ToString(), transform.position + new Vector3(Random.Range(-randomPos, randomPos), Random.Range(-randomPos, randomPos)), Color.green);
+        damagePopUpManagerScript.newDamageText("HP+" + amount.ToString(), transform.position + new Vector3(Random.Range(-randomPos, randomPos), Random.Range(-randomPos, randomPos)), Color.green);
         animator.SetBool("Dead", false);
         displayCurrentStates();
     }
@@ -578,7 +578,7 @@ public class UnitScript : MonoBehaviour
     {
         float randomPos = 0.5f;
         temp_AC = amount;
-        damagePopUpManagerScript.newDamageText(amount.ToString(), transform.position + new Vector3(Random.Range(-randomPos, randomPos), Random.Range(-randomPos, randomPos)), Color.grey);
+        damagePopUpManagerScript.newDamageText("AC+"+amount.ToString(), transform.position + new Vector3(Random.Range(-randomPos, randomPos), Random.Range(-randomPos, randomPos)), Color.grey);
     }
 
     //Range getters
