@@ -773,7 +773,7 @@ MonoBehaviour:
   battleSystem: {fileID: 0}
   targetList: []
   target: {fileID: 0}
-  detectionRange: 100
+  detectionRange: 20
   endOfTurnWaitTime: 0.4
   timeBetweenAction: 0.2
   timeUntilEndTurn: 1

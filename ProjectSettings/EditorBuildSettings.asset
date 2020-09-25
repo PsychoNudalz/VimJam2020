@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CyperPop_White_1.unity
     guid: 4113de0412211ef4fa5804380948d500
+  - enabled: 1
+    path: Assets/Scenes/Instruction.unity
+    guid: e05f24500f2b03d45a0a993285beebe0
   m_configObjects: {}

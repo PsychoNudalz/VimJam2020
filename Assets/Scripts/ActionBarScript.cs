@@ -172,9 +172,9 @@ public class ActionBarScript : MonoBehaviour
         if (temp != null)
         {
 
-        actionCounterText.text = temp.actionCount.ToString()+"Left";
-        interactionCounterText.text = temp.interactionCount.ToString() + "Left";
-        movementCounterText.text = (temp.getRange_Movement()*5f).ToString("0") + "ft.";
+        actionCounterText.text = temp.actionCount.ToString()+" Left";
+        interactionCounterText.text = temp.interactionCount.ToString() + " Left";
+        movementCounterText.text = (temp.getRange_Movement()*5f).ToString("0") + " ft.";
         }
     }
 }

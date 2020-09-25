@@ -617,10 +617,10 @@ public class UnitScript : MonoBehaviour
     //Health Display
     public void displayCurrentStates()
     {
-        healthTextBox.text = health_current + "/" + health;
+        healthTextBox.text = "HP:"+ health_current + "/" + health;
         if (ammoTextBox != null)
         {
-            ammoTextBox.text = ammo_Current + "/" + ammo;
+            ammoTextBox.text = "AP:" + ammo_Current + "/" + ammo;
         }
     }
 
