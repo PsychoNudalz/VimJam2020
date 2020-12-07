@@ -47,12 +47,16 @@ public class EnemyManager : MonoBehaviour
         generateEnemy();
     }
 
-
+    /// <summary>
+    /// Generates Enemies for the level depending on how much cost the quest has
+    /// </summary>
     public void generateEnemy()
     {
         generateWaves();
         List<SpawnRequest> enemySpawnRequestList;
         EnemyWaveHandler enemyWaveHandler;
+
+        //cost is divided equally among each wave
         for (int i = 0; i<enemyWaveHandlers.Count;i++)
         {
             enemyWaveHandler = enemyWaveHandlers[i];
@@ -64,10 +68,11 @@ public class EnemyManager : MonoBehaviour
             {
                 randomEnemy = pickRandomEnemy();
 
+                // continuously loop until an enemy with a cost that is within a cost range has been picked
                 while (randomEnemy.GetComponent<AIUnitScript>().level > maxCost|| randomEnemy.GetComponent<AIUnitScript>().level<minCost)
                 {
                     //print("retry generation" + Time.time);
-                    randomEnemy = randomEnemy = pickRandomEnemy();
+                    randomEnemy = pickRandomEnemy();
                 }
 
                 randomEnemySpawnRequest = new SpawnRequest(randomEnemy, 1);

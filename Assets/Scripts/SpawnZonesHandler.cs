@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// handles all the spawnZones
+/// </summary>
 public class SpawnZonesHandler : MonoBehaviour
 {
     public List<SpawnZoneScript> spawnZones;
@@ -26,7 +30,9 @@ public class SpawnZonesHandler : MonoBehaviour
             getAllSpawnZones();
         }
     }
-
+    /// <summary>
+    /// Get all Spawn Zones from are Children of this GameObject
+    /// </summary>
     public void getAllSpawnZones()
     {
         spawnZones = new List<SpawnZoneScript>();
@@ -39,6 +45,10 @@ public class SpawnZonesHandler : MonoBehaviour
 
 
     //Get Random Spawn
+    /// <summary>
+    /// picks a random 2D Co-ordinate from a SpawnZone
+    /// </summary>
+    /// <returns> random 2D Co-ordinate </returns>
     public virtual Vector2 getRandomPos()
     {
         zonePTR = zonePTR % spawnZones.Count;
@@ -46,7 +56,11 @@ public class SpawnZonesHandler : MonoBehaviour
         zonePTR++;
         return pos;
     }
-
+    /// <summary>
+    /// picks a random 2D Co-ordinate from a certain SpawnZone
+    /// </summary>
+    /// <param name="ptr">Index of spawnZone</param>
+    /// <returns> random 2D Co-ordinate </returns>
     public virtual Vector2 getRandomPos(int ptr)
     {
         zonePTR = ptr;
@@ -54,6 +68,11 @@ public class SpawnZonesHandler : MonoBehaviour
     }
 
     //Get Selected Zones
+    /// <summary>
+    /// get a certain SpawnZone
+    /// </summary>
+    /// <param name="ptr">Index of the certain SpawnZone</param>
+    /// <returns> a certain SpawnZone </returns>
     public virtual SpawnZoneScript getZone(int ptr)
     {
         zonePTR = ptr % spawnZones.Count;

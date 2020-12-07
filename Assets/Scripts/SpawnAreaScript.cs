@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// References the gameObject's position and scale and pick a random 2D co-ordanates
+/// </summary>
 public class SpawnAreaScript : MonoBehaviour
 {
     [SerializeField] Vector2 worldSpawnPoint;
