@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles Unit's behaviour and stats
+/// </summary>
 public class AIUnitScript : UnitScript
 {
     [Header("AI")]

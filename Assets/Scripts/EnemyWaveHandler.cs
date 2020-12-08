@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// handles the current wave/ group of enemies
+/// </summary>
 public class EnemyWaveHandler : MonoBehaviour
 {
     public int waveNumber;
@@ -23,6 +27,13 @@ public class EnemyWaveHandler : MonoBehaviour
         this.enemyWaveTriggerType = enemyWaveTriggerType;
     }
 
+
+    /// <summary>
+    /// loops through the spawn request list and spawn all required enemies at a random position and adds them to the list of current
+    /// enemies in the level
+    /// 
+    /// enemies are also added to the turn order
+    /// </summary>
     public void spawnEnemies()
     {
         enemySpawnZone = GetComponent<EnemySpawnZone>();
@@ -48,6 +59,9 @@ public class EnemyWaveHandler : MonoBehaviour
         addEnemiesToTurnOrder();
     }
 
+    /// <summary>
+    /// add the enemies from the enemyList to the turn order
+    /// </summary>
     public void addEnemiesToTurnOrder()
     {
         BattleSystem b = FindObjectOfType<BattleSystem>();

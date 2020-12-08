@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     [Header("Generation Parameters")]
-    public List<GameObject> potentialEnemies;
+    public List<GameObject> potentialEnemies; // list of enemies that it can spawn
     public int totalEnemyCost = 10;
     public int waveAmount = 3;
     public int maxCost = 3;
@@ -97,7 +97,10 @@ public class EnemyManager : MonoBehaviour
             enemyWaveHandler.enemySpawnRequestList = enemySpawnRequestList;
         }
     }
-
+    /// <summary>
+    /// Pick a random enemy from the list of potential enemies
+    /// </summary>
+    /// <returns> random enemy from the list of potential enemies</returns>
     public GameObject pickRandomEnemy()
     {
         GameObject enemy;

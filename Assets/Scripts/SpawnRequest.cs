@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// tuple storing what needs game object needs to be spawned and for how many times
+/// </summary>
 
 [Serializable]
 public class SpawnRequest
